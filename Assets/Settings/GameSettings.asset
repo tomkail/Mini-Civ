@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94a8fb7bbf8134059b46b6be2ef882be, type: 3}
+  m_Name: GameSettings
+  m_EditorClassIdentifier: Assembly-CSharp::GameSettings
+  heightScalar: 1.15
+  maximumHandSize: 8
+  freeTilesOnFirstTurn: 3
+  freeTilesEachTurn: 1
+  replaceTilesEachTurn: 0
+  tilesCostMoneyToPlay: 0
+  canBuyTiles: 0
+  moneyPerTurn: 4
+  moneyForPickup: 2
+  extraMoneyIfStartTurnWithoutSpaceForFreeTile: 1
+  canPlayTilesOnExistingRoad: 1
+  playedTilesMustConnect: 1
+  createRoadsUnderForests: 0
+  createRoadsUnderMine: 0
+  createRoadsUnderAnimals: 0
+  canPlayTilesOnObstacles: 1
+  connectToResourcesByBeingAdjacent: 0
+  turnsToRiseWaterLevelByOne: 3
+  cheatsEnabled: 1
+  clickAndDragTime: 0.2

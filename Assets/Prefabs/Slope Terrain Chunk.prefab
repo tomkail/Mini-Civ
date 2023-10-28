@@ -1,0 +1,297 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1394580693544790294
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8660252009915373630}
+  - component: {fileID: 7718539735737144530}
+  - component: {fileID: 7282724423514167347}
+  - component: {fileID: 5898405058337020814}
+  - component: {fileID: 3246725823582495869}
+  - component: {fileID: 5668235897169062708}
+  - component: {fileID: 8057655617450282885}
+  - component: {fileID: 3779476364396878281}
+  - component: {fileID: 4142154734246328768}
+  m_Layer: 9
+  m_Name: Slope Terrain Chunk
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8660252009915373630
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1394580693544790294}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.5, y: 0, z: -6}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7718539735737144530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1394580693544790294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fac5322283d3e934fbb0dc14dd74115a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heightParams:
+    fixedEdgeHeights:
+    - edgeIndex: 0
+      height: 1
+    - edgeIndex: 3
+      height: 2
+  excludeFromGameplay: 0
+--- !u!114 &7282724423514167347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1394580693544790294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dfe4473ba3bb284dada4c7a9b8702cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  editable: 0
+  input:
+    polygon:
+      _vertices:
+      - {x: -0.99999994, y: -0.000000015893258}
+      - {x: -0.50000006, y: 0.8660253}
+      - {x: 0.5000001, y: 0.86602527}
+      - {x: 0.99999994, y: 0.000000047679766}
+      - {x: 0.4999998, y: -0.8660255}
+      - {x: -0.4999999, y: -0.8660254}
+    pivot: {x: 0.5, y: 0, z: 0.5}
+    topHeights:
+    - 1.25
+    - 1.25
+    - 1.875
+    - 2.5
+    - 2.5
+    - 1.875
+    bottomHeights: []
+    topHeight: 1
+    bottomHeight: 0
+    topColor: {r: 1, g: 1, b: 1, a: 1}
+    bottomColor: {r: 1, g: 1, b: 1, a: 1}
+    topColors: []
+    bottomColors: []
+    topFaces: 1
+    bottomFaces: 1
+    sideFaces: 1
+    offsetMatrix:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+  mesh: {fileID: 0}
+--- !u!33 &5898405058337020814
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1394580693544790294}
+  m_Mesh: {fileID: 0}
+--- !u!23 &3246725823582495869
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1394580693544790294}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: c67d28bb0aa038c4f85d9c13c0bcde9b, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &5668235897169062708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1394580693544790294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1e74dcb02ba885419e3ea5cdf90ade7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  position: 1
+  height: 0
+  rotation: 1
+  gridFindMode: 0
+  _grid: {fileID: 0}
+  lockedCoord:
+    q: 0
+    r: 0
+  lockedGrid: {fileID: 0}
+--- !u!64 &8057655617450282885
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1394580693544790294}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
+--- !u!114 &3779476364396878281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1394580693544790294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d97ee3faab65d47ec96d963b95d96507, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gradientMapDimensions: {x: 16, y: 1}
+  wrapMode: 1
+  filterMode: 1
+  gradient:
+    serializedVersion: 2
+    key0: {r: 0.3995639, g: 0.6886792, b: 0.52855384, a: 1}
+    key1: {r: 0.16487184, g: 0.6132076, b: 0.33248508, a: 1}
+    key2: {r: 0.20392153, g: 0.9254902, b: 0.27274567, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 65535
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
+  testing: 0
+  material: {fileID: 2100000, guid: c67d28bb0aa038c4f85d9c13c0bcde9b, type: 2}
+  propertyName: _TintHeightGradient
+  texture: {fileID: 0}
+--- !u!114 &4142154734246328768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1394580693544790294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d97ee3faab65d47ec96d963b95d96507, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gradientMapDimensions: {x: 16, y: 1}
+  wrapMode: 1
+  filterMode: 1
+  gradient:
+    serializedVersion: 2
+    key0: {r: 0.61960787, g: 0.5529412, b: 0.5019608, a: 1}
+    key1: {r: 0.46759114, g: 0.23138995, b: 0.24116041, a: 1}
+    key2: {r: 0.3679245, g: 0.13016197, b: 0.15675113, a: 0}
+    key3: {r: 0.3679245, g: 0.13016197, b: 0.15675113, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 65535
+    ctime3: 65535
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
+  testing: 0
+  material: {fileID: 2100000, guid: c67d28bb0aa038c4f85d9c13c0bcde9b, type: 2}
+  propertyName: _WallTintHeightGradient
+  texture: {fileID: 2800000, guid: 44d90023caf328e49b500c44182f939a, type: 3}

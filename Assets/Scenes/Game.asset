@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d91ca85555944360a0614b945d882dc, type: 3}
+  m_Name: Game
+  m_EditorClassIdentifier: 
+  sets:
+  - {fileID: 11400000, guid: c905086555b9b4724bdcf21f7223705d, type: 2}
+  sceneAssets:
+  - {fileID: 102900000, guid: fcafbb58c60ce46a69899c713b58ce59, type: 3}
+  scenePaths:
+  - Assets/Scenes/Board.unity
