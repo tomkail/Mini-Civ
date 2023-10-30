@@ -31,7 +31,7 @@ public class BoardModel {
 	}
 	
 	public TerrainGridLayerModel landLayer;
-	public GridLayerModel gameEntityLayer;
+	public DynamicGridLayerModel gameEntityLayer;
 	public FogGridLayerModel fogLayer;
 
 	public HexCoord.Layout offsetLayout;
@@ -44,13 +44,13 @@ public class BoardModel {
 	public BoardModel (GameModel gameModel) {
 		this.gameModel = gameModel;
 		landLayer = new TerrainGridLayerModel(this, "Land");
-		gameEntityLayer = new GridLayerModel(this, "Unit");
+		gameEntityLayer = new DynamicGridLayerModel(this, "Unit");
 		fogLayer = new FogGridLayerModel(this, "Fog");
 	}
 	protected BoardModel (GameModel gameModel, BoardModel modelToClone) {
 		this.gameModel = gameModel;
 		landLayer = modelToClone.landLayer.Clone() as TerrainGridLayerModel;
-		gameEntityLayer = modelToClone.gameEntityLayer.Clone();
+		gameEntityLayer = modelToClone.gameEntityLayer.Clone() as DynamicGridLayerModel;
 		fogLayer = modelToClone.fogLayer.Clone() as FogGridLayerModel;
 		offsetLayout = modelToClone.offsetLayout;
 	}
@@ -72,7 +72,7 @@ public class BoardModel {
 
 	public IEnumerable<GridEntity> AllEntities () {
 		foreach(var layer in gridLayers) {
-			foreach(var entity in layer.entities) {
+			foreach(var entity in layer.GetAllEntities()) {
 				yield return entity;
 			}
 		}
@@ -88,7 +88,7 @@ public class BoardModel {
 	
 	public IEnumerable<GridCellModel> GetCells () {
 		foreach(var land in landLayer.entities) {
-			yield return GetCell(land.gridPoint);
+			yield return GetCell(land.Key);
 		}
 	}
 	public GridCellModel GetCell (HexCoord coord) {

@@ -23,7 +23,7 @@ public class GameModel {
 		board.OnDeserializedMethod();
 	}
 
-	public static GameModel current;
+	// public static GameModel current;
 	static int gameIDCount;
 	public bool isLookahead = false;
 	public int gameID;
@@ -107,8 +107,8 @@ public class GameModel {
 	}
 	
 	public IEnumerable<GridCellModel> GetCells () {
-		foreach(var floor in board.landLayer.entities) {
-			yield return GetCell(floor.gridPoint);
+		foreach(var cellModel in board.GetCells()) {
+			yield return cellModel;
 		}
 	}
 	public GridCellModel GetCell (HexCoord coord) {

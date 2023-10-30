@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: CurrentVersionSO
   m_EditorClassIdentifier: 
   version:
-    major: 3
-    minor: 4
-    build: 0
+    major: 1
+    minor: 1
+    build: 2
     buildType: 
-    platform: 
+    platform: GOG
     buildTarget: iOS
-    isDevelopment: 1
-    gitBranch: dev
-    gitCommitSHA: cf6337
-    buildDateTimeString: 26/05/2023 18:26:22
+    isDevelopment: 0
+    gitBranch: ???
+    gitCommitSHA: 
+    buildDateTimeString: 19/04/2022 15:57:40
     inkCompileDateTimeString: 19/05/2021 07:33:49

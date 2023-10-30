@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 
 // IDS are 1 indexed
-[System.Serializable]
+// [System.Serializable]
 public class EntityIDDictionary {
 	#if UNITY_EDITOR
     public 

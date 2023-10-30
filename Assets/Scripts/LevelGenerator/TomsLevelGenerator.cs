@@ -83,7 +83,7 @@ public class TomsLevelGenerator : LevelGenerator {
 
 		{
 			var detector = new IslandDetector<HexCoord>(landTiles, p => HexCoord.Directions(p), p => landTiles.Contains(p));
-			var islands = detector.FindIslands();
+			var islands = detector.FindIslands().ToArray();
 			foreach (var island in islands) {
 				var outlineCoords = OutlineDetector.GetOutlineCoords(island.points, 1, HexCoord.GetPointsOnRing).ToArray();
 				var outlineIslandDetector = new IslandDetector<HexCoord>(outlineCoords, p => HexCoord.Directions(p), p => outlineCoords.Contains(p));
@@ -122,12 +122,12 @@ public class TomsLevelGenerator : LevelGenerator {
 					var point = GetNewPointForIsland(clearingTiles, clearingRoundness);
 					if (!landTiles.Contains(point)) continue;
 					var adjacentPoints = HexCoord.GetPointsOnRing(point, 1);
-					if(adjacentPoints.Any(adjacentPoint => gameModel.board.landLayer.GetValuesAtGridPoint(adjacentPoint).OfType<TerrainModel>().FirstOrDefault()?.type == TerrainType.Grass)) continue;
+					if(adjacentPoints.Any(adjacentPoint => gameModel.board.landLayer.GetValueAtGridPoint<TerrainModel>(adjacentPoint)?.type == TerrainType.Grass)) continue;
 					clearingTiles.Add(point);
 				}
 
 				foreach (var clearingTile in clearingTiles) {
-					gameModel.board.landLayer.GetValuesAtGridPoint(clearingTile).OfType<TerrainModel>().First().type = TerrainType.Grass;
+					gameModel.board.landLayer.GetValueAtGridPoint<TerrainModel>(clearingTile).type = TerrainType.Grass;
 				}
 			}
 			
@@ -143,7 +143,7 @@ public class TomsLevelGenerator : LevelGenerator {
 			List<HexCoord> mountainTiles = new List<HexCoord>();
 			for (int i = 0; i < Mathf.Min(numMountains, samples.Count); i++) {
 				mountainTiles.Add(samples[i]);
-				gameModel.board.landLayer.GetValuesAtGridPoint(samples[i]).OfType<TerrainModel>().First().type = TerrainType.Mountain;
+				gameModel.board.landLayer.GetValueAtGridPoint<TerrainModel>(samples[i]).type = TerrainType.Mountain;
 			}
 		}
 
@@ -171,102 +171,21 @@ public class TomsLevelGenerator : LevelGenerator {
 		// }
 
 		{
-			// foreach(var land in gameModel.board.landLayer.entities) {
-			// 	GridEntity.CreateAndAddEntity(() => new FogModel(land.gridPoint), gameModel.board.fogLayer);
-			// }
-			// gameModel.board.fogLayer.ResetFog();
-			// var radialCoords = HexUtils.HexagonPoints(2);
-			// foreach(var radialCoord in radialCoords) {
-			// 	gameModel.board.fogLayer.RevealFog(radialCoord);
-			// }
+			foreach(var land in gameModel.board.landLayer.entities) {
+				GridEntity.CreateAndAddEntity(() => new FogModel(land.Key), gameModel.board.fogLayer);
+			}
+			gameModel.board.fogLayer.ResetFog();
+
+			for (int i = 0; i < 3; i++) {
+				var pos = landTiles.Random();
+				var radialCoords = HexUtils.HexagonPoints(2);
+				foreach(var radialCoord in radialCoords) {
+					gameModel.board.fogLayer.RevealFog(pos+radialCoord);
+				}
+			}
+
 		}
 		return gameModel;
-	}
-}
-
-
-
-public static class PathFinder {
-
-	public struct PathFinderOptions {
-		public static PathFinderOptions standard {
-			get {
-				var opts = new PathFinderOptions();
-				opts.getActualCostForMovementBetweenElementsFunc = null;
-				opts.getElementsConnectedToElementFunc = null;
-				return opts;
-			}
-		}
-		public System.Func<HexCoord, HexCoord, float> getActualCostForMovementBetweenElementsFunc;
-		public System.Func<HexCoord, IEnumerable<HexCoord>> getElementsConnectedToElementFunc;
-
-		public override string ToString() {
-			return string.Format("[{0}]", GetType());
-		}
-	}
-	
-	[System.Serializable]
-	public class PathFinderSearchParams {
-		public BoardModel board;
-		public HexCoord originPoint;
-		public HexCoord destinationPoint;
-		public PathFinderOptions options;
-
-		public PathFinderSearchParams (BoardModel board, HexCoord originPoint, HexCoord destinationPoint, PathFinderOptions options) {
-			this.board = board;
-			this.originPoint = originPoint;
-			this.destinationPoint = destinationPoint;
-			this.options = options;
-		}
-	}
-	
-	public static List<HexCoord> PathFind(PathFinderSearchParams searchParams) {
-		if(searchParams == null) return null;
-
-		Utils.Algorithms.AStar<HexCoord>.LazyGraph initData = new Utils.Algorithms.AStar<HexCoord>.LazyGraph ();
-		initData.getLowestCostEstimateForMovementBetweenElementsFunc = (HexCoord originPoint, HexCoord destinationPoint) => {
-			return HexCoord.Distance(originPoint, destinationPoint);
-		};
-		
-		if(searchParams.options.getActualCostForMovementBetweenElementsFunc == null) {
-			initData.getActualCostForMovementBetweenElementsFunc = (HexCoord originPoint, HexCoord destinationPoint) => {
-				return HexCoord.Distance(originPoint, destinationPoint);
-			};
-		} else {
-			initData.getActualCostForMovementBetweenElementsFunc = searchParams.options.getActualCostForMovementBetweenElementsFunc;
-		}
-
-		if(searchParams.options.getElementsConnectedToElementFunc == null) {
-			initData.getElementsConnectedToElementFunc = (HexCoord _originPoint) => {
-				return HexCoord.GetPointsOnRing(_originPoint, 1).Where(targetPoint => AreConnected (searchParams.board.gameModel.GetCell(_originPoint), searchParams.board.gameModel.GetCell(targetPoint), searchParams.options));
-			};
-		} else {
-			initData.getElementsConnectedToElementFunc = searchParams.options.getElementsConnectedToElementFunc;
-		}
-
-		
-		Utils.Algorithms.AStar<HexCoord> aStar = new Utils.Algorithms.AStar<HexCoord> (initData);
-
-		IList<HexCoord> results = aStar.Calculate (searchParams.originPoint, searchParams.destinationPoint).solution;
-		// Debug.Log("Pathfinder result: "+DebugX.ListAsString(results)+"\nOptions: "+options);
-		if(results == null) return null;
-		return results.ToList();
-	}
-
-	public static bool AreConnected (GridCellModel gridCellA, GridCellModel gridCellB, PathFinderOptions options) {
-		if(HexCoord.Distance(gridCellA.coord, gridCellB.coord) != 1) return false;
-        // if(gridCellA.city != null && gridCellB.city != null) return true;
-        // if(gridCellA.city != null && gridCellB.road != null) {
-        //     var directionIndex = HexCoord.GetClosestDirectionIndex(gridCellA.coord, gridCellB.coord);
-        //     return gridCellB.road.roadDirections[directionIndex];
-        // }
-        // if(gridCellB.city != null && gridCellA.road != null) {
-        //     var directionIndex = HexCoord.GetClosestDirectionIndex(gridCellB.coord, gridCellA.coord);
-        //     return gridCellA.road.roadDirections[directionIndex];
-        // }
-        // if(gridCellA.road != null && gridCellB.road != null) return gridCellA.road.IsConnectedTo(gridCellB.road);
-        
-        return true;
 	}
 }
 

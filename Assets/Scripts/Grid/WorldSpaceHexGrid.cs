@@ -5,22 +5,12 @@ using System.Linq;
 public class WorldSpaceHexGrid : MonoSingleton<WorldSpaceHexGrid> {
     public UnityEngine.Grid grid;
 
-    public Quaternion axis {
-		get {
-			return Quaternion.LookRotation(Vector3.forward, Vector3.up);
-		}
-	}
-	public Vector3 floorNormal {
-		get {
-			return axis * Vector3.up;
-		}
-	}
-	public Plane floorPlane {
-		get {
-			return new Plane(floorNormal, transform.position);
-		}
-	}
-    
+    public Quaternion axis => Quaternion.LookRotation(Vector3.forward, Vector3.up);
+
+    public Vector3 floorNormal => axis * Vector3.up;
+
+    public Plane floorPlane => new(floorNormal, transform.position);
+
     public HexCoord LocalToCell (Vector3 localPosition) {
         var offsetPos = grid.LocalToCell(localPosition);
         return HexCoord.OffsetToHex(offsetPos.x, offsetPos.y);

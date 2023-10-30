@@ -17,8 +17,19 @@ public static class GizmosX {
 	}
 
 	static void OnSceneView (SceneView sceneView) {
-		foreach(var mesh in meshes) ObjectX.DestroyAutomatic(mesh);
+		foreach(var mesh in meshes) DestroyAutomatic(mesh);
 		meshes.Clear();
+		
+		static void DestroyAutomatic(Object o) {
+			#if UNITY_EDITOR
+			if(Application.isPlaying)
+				UnityEngine.Object.Destroy (o);
+			else
+			UnityEngine.Object.DestroyImmediate (o);
+			#else
+			UnityEngine.Object.Destroy (o);
+			#endif
+		}
 	}
 
 	static List<Mesh> meshes = new List<Mesh>();
@@ -28,7 +39,7 @@ public static class GizmosX {
 	static Mesh CreateMesh () {
 		// Don't even try making meshes outside the editor, since we won't be able to clear them and we'll leak memory.
 		#if UNITY_EDITOR
-		// if(mesh != null) ObjectX.DestroyAutomatic(mesh);
+		// if(mesh != null) DestroyAutomatic(mesh);
 		var mesh = new Mesh();
 		mesh.name = "Gizmos Temp Mesh";
 		meshes.Add(mesh);
@@ -134,18 +145,18 @@ public static class GizmosX {
 		}
 	}
 
-	public static void DrawExtrudedPolygon (Vector2[] points, float height) {
+	public static void DrawExtrudedPolygon (Vector2[] points, float depth) {
 		if(points == null || points.Length == 0) return;
 		Vector3 aLow, aHigh, bLow, bHigh = Vector3.zero;
 		int i = 0;
-		var heightOffset = Vector3.forward * height * 0.5f;
+		var depthOffset = Vector3.forward * depth * 0.5f;
 		var localPolyPos = (Vector3)points[i];
-		aLow = -heightOffset + localPolyPos;
-		aHigh = heightOffset + localPolyPos;
+		aLow = -depthOffset + localPolyPos;
+		aHigh = depthOffset + localPolyPos;
 		for(i = 0; i <= points.Length; i++) {
 			localPolyPos = points[i % points.Length];
-			bLow = -heightOffset + localPolyPos;
-			bHigh = heightOffset + localPolyPos;
+			bLow = -depthOffset + localPolyPos;
+			bHigh = depthOffset + localPolyPos;
 			DrawPlane(aLow, bLow, aHigh, bHigh, true);
 			aLow = bLow;
 			aHigh = bHigh;
@@ -154,34 +165,34 @@ public static class GizmosX {
 		var mesh = CreatePolygonMesh(points, true);
 		if(mesh.vertexCount > 0 && mesh.normals.Length > 0) {
 			var cachedMatrix = Gizmos.matrix;
-			Gizmos.matrix = Gizmos.matrix * Matrix4x4.TRS(-heightOffset, Quaternion.identity, Vector3.one);
+			Gizmos.matrix = Gizmos.matrix * Matrix4x4.TRS(-depthOffset, Quaternion.identity, Vector3.one);
 			Gizmos.DrawMesh(mesh);
 
-			Gizmos.matrix = Gizmos.matrix * Matrix4x4.TRS(heightOffset, Quaternion.identity, Vector3.one);
+			Gizmos.matrix = Gizmos.matrix * Matrix4x4.TRS(depthOffset, Quaternion.identity, Vector3.one);
 			Gizmos.DrawMesh(mesh);
 			Gizmos.matrix = cachedMatrix;
 		}
 	}
 	
-	public static void DrawExtrudedPolygon (Vector3 position, Quaternion rotation, Vector3 scale, Vector2[] points, float height) {
+	public static void DrawExtrudedPolygon (Vector3 position, Quaternion rotation, Vector3 scale, Vector2[] points, float depth) {
 		if(points == null || points.Length == 0) return;
 		BeginMatrix(Matrix4x4.TRS(position, rotation, scale));
-		DrawExtrudedPolygon(points, height);
+		DrawExtrudedPolygon(points, depth);
 		EndMatrix();
 	}
 
-	static void DrawExtrudedWirePolygon (Vector2[] points, float height) {
+	static void DrawExtrudedWirePolygon (Vector2[] points, float depth) {
 		if(points == null || points.Length == 0) return;
 		Vector3 aLow, aHigh, bLow, bHigh = Vector3.zero;
 		int i = 0;
-		var heightOffset = Vector3.forward * height * 0.5f;
+		var depthOffset = Vector3.forward * depth * 0.5f;
 		var localPolyPos = (Vector3)points[i];
-		aLow = -heightOffset + localPolyPos;
-		aHigh = heightOffset + localPolyPos;
+		aLow = -depthOffset + localPolyPos;
+		aHigh = depthOffset + localPolyPos;
 		for(i = 0; i <= points.Length; i++) {
 			localPolyPos = points[i%points.Length];
-			bLow = -heightOffset + localPolyPos;
-			bHigh = heightOffset + localPolyPos;
+			bLow = -depthOffset + localPolyPos;
+			bHigh = depthOffset + localPolyPos;
 			Gizmos.DrawLine(aLow, aHigh);
 			Gizmos.DrawLine(aLow, bLow);
 			Gizmos.DrawLine(aHigh, bHigh);
@@ -189,10 +200,10 @@ public static class GizmosX {
 			aHigh = bHigh;
 		}
 	}
-	public static void DrawExtrudedWirePolygon (Vector3 position, Quaternion rotation, Vector3 scale, Vector2[] points, float height) {
+	public static void DrawExtrudedWirePolygon (Vector3 position, Quaternion rotation, Vector3 scale, Vector2[] points, float depth) {
 		if(points == null || points.Length == 0) return;
 		BeginMatrix(Matrix4x4.TRS(position, rotation, scale));
-		DrawExtrudedWirePolygon(points, height);
+		DrawExtrudedWirePolygon(points, depth);
 		EndMatrix();
 	}
 	
@@ -202,32 +213,32 @@ public static class GizmosX {
 		int i = 0;
 		var r = (1f/numLines) * 2 * Mathf.PI;
 		float radians = i * r;
-		var localCirclePos = new Vector3(Mathf.Sin(radians) * radius, 0, Mathf.Cos(radians) * radius);
+		var localCirclePos = new Vector3(Mathf.Sin(radians) * radius, Mathf.Cos(radians) * radius);
 		a = position + rotation * localCirclePos;
-		for(i = 0; i < numLines-1; i++) {
+		for(i = 0; i < numLines; i++) {
 			radians = (i + 1) * r;
-			localCirclePos = new Vector3(Mathf.Sin(radians) * radius, 0, Mathf.Cos(radians) * radius);
+			localCirclePos = new Vector3(Mathf.Sin(radians) * radius, Mathf.Cos(radians) * radius);
 			b = position + rotation * localCirclePos;
 			Gizmos.DrawLine(a, b);
 			a = b;
 		}
 	}
 
-    public static void DrawWireCylinder (Vector3 position, Quaternion rotation, float radius, float height, int numColumns = 32) {
+    public static void DrawWireCylinder (Vector3 position, Quaternion rotation, float radius, float depth, int numColumns = 32) {
 		BeginMatrix(Matrix4x4.TRS(position, rotation, Vector3.one));
         Debug.Assert(numColumns > 2);
 		Vector3 aLow, aHigh, bLow, bHigh = Vector3.zero;
 		int i = 0;
         var r = (1f/numColumns) * 2 * Mathf.PI;
-        var up = new Vector3(0,height,0);
-        var halfUp = new Vector3(0,height*0.5f,0);
 		float radians = i * r;
-		var localCirclePos = new Vector3(Mathf.Sin(radians) * radius, 0, Mathf.Cos(radians) * radius);
+        var up = new Vector3(0,0, depth);
+        var halfUp = new Vector3(0,0, depth*0.5f);
+		var localCirclePos = new Vector3(Mathf.Sin(radians) * radius, Mathf.Cos(radians) * radius);
 		aLow = localCirclePos - halfUp;
 		aHigh = aLow + up;
 		for(i = 0; i < numColumns; i++) {
 			radians = (i + 1) * r;
-			localCirclePos = new Vector3(Mathf.Sin(radians) * radius, 0, Mathf.Cos(radians) * radius);
+			localCirclePos = new Vector3(Mathf.Sin(radians) * radius, Mathf.Cos(radians) * radius);
 			bLow = localCirclePos - halfUp;
 			bHigh = bLow + up;
 			Gizmos.DrawLine(aLow, aHigh);
@@ -236,21 +247,23 @@ public static class GizmosX {
 			aLow = bLow;
 			aHigh = bHigh;
 		}
+		EndMatrix();
 	}
 
-	public static void DrawCylinder (Vector3 position, Quaternion rotation, float radius, float height, int numColumns = 32) {
+	public static void DrawCylinder (Vector3 position, Quaternion rotation, float radius, float depth, int numColumns = 32) {
 		Debug.Assert(numColumns > 2);
 		Vector3 aLow, aHigh, bLow, bHigh = Vector3.zero;
 		int i = 0;
-		float radians = MathX.RadiansFromRange(i, numColumns);
-		var localCirclePos = new Vector3(Mathf.Sin(radians), 0, Mathf.Cos(radians)) * radius;
-		aLow = position + rotation * localCirclePos - (rotation * Vector3.up * height * 0.5f);
-		aHigh = aLow + rotation * Vector3.up * height;
+		var r = (1f/numColumns) * 2 * Mathf.PI;
+		float radians = i * r;
+		var localCirclePos = new Vector3(Mathf.Sin(radians), Mathf.Cos(radians)) * radius;
+		aLow = position + rotation * localCirclePos - (rotation * Vector3.up * depth * 0.5f);
+		aHigh = aLow + rotation * Vector3.up * depth;
 		for(i = 0; i < numColumns; i++) {
-			radians = MathX.RadiansFromRange(i + 1, numColumns);
-			localCirclePos = new Vector3(Mathf.Sin(radians), 0, Mathf.Cos(radians)) * radius;
-			bLow = position + rotation * localCirclePos - (rotation * Vector3.up * height * 0.5f);
-			bHigh = bLow + rotation * Vector3.up * height;
+			radians = (i + 1) * r;
+			localCirclePos = new Vector3(Mathf.Sin(radians), Mathf.Cos(radians)) * radius;
+			bLow = position + rotation * localCirclePos - (rotation * Vector3.up * depth * 0.5f);
+			bHigh = bLow + rotation * Vector3.up * depth;
 			DrawPlane(aHigh, bHigh, aLow, bLow);
 			aLow = bLow;
 			aHigh = bHigh;
@@ -263,14 +276,19 @@ public static class GizmosX {
 		float deltaAngle = Mathf.DeltaAngle(startAngle, endAngle);
 		if(deltaAngle == 0) DrawWireCircle(position, rotation, radius, numLines);
 
+		var startRadians = startAngle * Mathf.Deg2Rad;
+		var endRadians = endAngle * Mathf.Deg2Rad;
 		Vector3 a, b = Vector3.zero;
-		int i = 0;
-
-		a = position + rotation * (MathX.DegreesToVector2(startAngle) * radius);
 		float r = 1f/(numLines-1);
-		for(i = 0; i < numLines; i++) {
-			float angle = Mathf.Lerp(startAngle, endAngle, i * r);
-			b = position + rotation * (MathX.DegreesToVector2(angle) * radius);
+
+		float radians = startRadians;
+		var localCirclePos = new Vector3(Mathf.Sin(radians) * radius, Mathf.Cos(radians) * radius);
+		a = position + rotation * localCirclePos;
+		for(int i = 0; i < numLines; i++) {
+			radians = Mathf.Lerp(startRadians, endRadians, i * r);
+			localCirclePos = new Vector3(Mathf.Sin(radians), Mathf.Cos(radians)) * radius;
+			
+			b = position + rotation * localCirclePos;
 			Gizmos.DrawLine(a, b);
 			a = b;
 		}
@@ -282,15 +300,20 @@ public static class GizmosX {
 		float deltaAngle = Mathf.DeltaAngle(startAngle, endAngle);
 		if(deltaAngle == 0) DrawWireCircle(position, rotation, radius, numLines);
 
+		var startRadians = startAngle * Mathf.Deg2Rad;
+		var endRadians = endAngle * Mathf.Deg2Rad;
 		Vector3 a, b = Vector3.zero;
-		int i = 0;
-
-		a = position + rotation * (MathX.DegreesToVector2(startAngle) * radius);
-		if(deltaAngle < 180) Gizmos.DrawLine(position, a);
 		float r = 1f/(numLines-1);
-		for(i = 0; i < numLines; i++) {
-			float angle = Mathf.Lerp(startAngle, endAngle, i * r);
-			b = position + rotation * (MathX.DegreesToVector2(angle) * radius);
+
+		float radians = startRadians;
+		var localCirclePos = new Vector3(Mathf.Sin(radians) * radius, Mathf.Cos(radians) * radius);
+		a = position + rotation * localCirclePos;
+		if(deltaAngle < 180) Gizmos.DrawLine(position, a);
+		for(int i = 0; i < numLines; i++) {
+			radians = Mathf.Lerp(startRadians, endRadians, i * r);
+			localCirclePos = new Vector3(Mathf.Sin(radians), Mathf.Cos(radians)) * radius;
+			
+			b = position + rotation * localCirclePos;
 			Gizmos.DrawLine(a, b);
 			a = b;
 		}
@@ -468,11 +491,15 @@ public static class GizmosX {
 		if(guiPos.z > 0) {
 			Vector2 size = helpBoxStyle.CalcSize(new GUIContent(text)) * 1.25f;
 			// Do it a few times to make it bolder. Yeah, not optimal.
-			EditorGUI.HelpBox(RectX.CreateFromCenter(guiPos.x, guiPos.y, size.x, size.y), text, messageType);
-			EditorGUI.HelpBox(RectX.CreateFromCenter(guiPos.x, guiPos.y, size.x, size.y), text, messageType);
-			EditorGUI.HelpBox(RectX.CreateFromCenter(guiPos.x, guiPos.y, size.x, size.y), text, messageType);
+			EditorGUI.HelpBox(CreateFromCenter(guiPos.x, guiPos.y, size.x, size.y), text, messageType);
+			EditorGUI.HelpBox(CreateFromCenter(guiPos.x, guiPos.y, size.x, size.y), text, messageType);
+			EditorGUI.HelpBox(CreateFromCenter(guiPos.x, guiPos.y, size.x, size.y), text, messageType);
 		}
 		Handles.EndGUI();
+		
+		static Rect CreateFromCenter (float centerX, float centerY, float sizeX, float sizeY) {
+			return new Rect(centerX - sizeX * 0.5f, centerY - sizeY * 0.5f, sizeX, sizeY);
+		}
 	}
 	#endif
 }

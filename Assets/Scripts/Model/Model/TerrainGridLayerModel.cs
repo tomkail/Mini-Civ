@@ -4,13 +4,9 @@ using System.Linq;
 using UnityEngine;
 
 [System.Serializable]
-public class TerrainGridLayerModel : GridLayerModel {
-	[Newtonsoft.Json.JsonIgnore]
-	public new List<TerrainModel> entities {
-		get {
-			return base.entities.Cast<TerrainModel>().ToList();
-		}
-	}
+public class TerrainGridLayerModel : StaticGridLayerModel {
+	// [Newtonsoft.Json.JsonIgnore]
+	// public new List<TerrainModel> entities => base.entities.Values.Cast<TerrainModel>().ToList();
 
 	protected TerrainGridLayerModel () : base () {}
 	public TerrainGridLayerModel (BoardModel board, string name) : base(board, name) {}

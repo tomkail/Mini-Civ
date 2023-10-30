@@ -14,14 +14,16 @@ public struct GridCellModel : IEquatable<GridCellModel> {
 	public bool valid => gameModel != null && board != null;
 	public bool onGrid => terrain != null;
 
-	public TerrainModel terrain => board.landLayer.GetValuesAtGridPoint(coord).OfType<TerrainModel>().FirstOrDefault();
-	public FogModel fog => board.fogLayer.GetValuesAtGridPoint(coord).OfType<FogModel>().FirstOrDefault();
+	public TerrainModel terrain => board.landLayer.GetValueAtGridPoint<TerrainModel>(coord);
+	public FogModel fog => board.fogLayer.GetValueAtGridPoint<FogModel>(coord);
 
 	public IEnumerable<GridEntity> entities {
 		get {
-			foreach(var land in board.landLayer.GetValuesAtGridPoint(coord)) yield return land;
+			var land = board.landLayer.GetValueAtGridPoint<GridEntity>(coord);
+			if(land != null) yield return land;
 			foreach(var gameEntity in board.gameEntityLayer.GetValuesAtGridPoint(coord)) yield return gameEntity;
-			foreach(var fog in board.fogLayer.GetValuesAtGridPoint(coord)) yield return fog;
+			var fog = board.fogLayer.GetValueAtGridPoint<GridEntity>(coord);
+			if(fog != null) yield return fog;
 		}
 	}
 	
