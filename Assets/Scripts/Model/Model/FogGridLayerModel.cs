@@ -22,7 +22,7 @@ public class FogGridLayerModel : StaticGridLayerModel {
             fog.revealed = true;
         }
     }
-    public void RevealFog (HexCoord point, int radius = 1) {
+    public void RevealFog (HexCoord point, int radius = 0) {
         var pointsToReveal = HexCoord.GetPointsInRing(point, 0, radius);
         foreach(var fog in OfType<FogModel>()) {
             if(pointsToReveal.Contains(fog.gridPoint)) {

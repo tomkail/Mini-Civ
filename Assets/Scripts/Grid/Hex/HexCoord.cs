@@ -1,8 +1,9 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Newtonsoft.Json;
 using UnityEngine;
+using Object = System.Object;
 
 /// <summary>
 /// Axial Hexagon grid coordinate.
@@ -12,19 +13,8 @@ using UnityEngine;
 /// These are "pointy topped" hexagons. The q axis points right, and the r axis points up-right.
 /// When converting to and from Unity coordinates, the length of a hexagon side is 1 unit.
 /// </remarks>
-[System.Serializable]
+[Serializable]
 public struct HexCoord : IEquatable<HexCoord> {
-	// return values of turns() method
-   public static int LEFT = 1;
-   public static int RIGHT = -1;
-   public static int STRAIGHT = 0;
-   
-   // returns one of the 3 above constants, depending on whether the
-   // three vertices constitute a left turn or a right turn.
-   public static int turns(Vector2 v0,Vector2 v1,Vector2 v2) {
-      var cross = (v1.x-v0.x)*(v2.y-v0.y) - (v2.x-v0.x)*(v1.y-v0.y);
-      return((cross>0.0f) ? LEFT : ((cross==0.0f) ? STRAIGHT : RIGHT));
-   }
 	/// <summary>
 	/// Position on the q axis.
 	/// </summary>
@@ -36,12 +26,8 @@ public struct HexCoord : IEquatable<HexCoord> {
 	[SerializeField]
 	public int r;
 
-	[Newtonsoft.Json.JsonIgnore]
-	public int s {
-		get {
-			return -q-r;
-		}
-	}
+	[JsonIgnore]
+	public int s => -q-r;
 
 	public static readonly HexCoord zero = default(HexCoord);
 
@@ -72,23 +58,9 @@ public struct HexCoord : IEquatable<HexCoord> {
 	}
 
 	/// <summary>
-	/// Unity position of this hex.
+	/// position of this hex.
 	/// </summary>
 	public Vector2 Position() {
-		// var offsetPos = ToOddR(this);
-		// return GridController.Instance.room.grid.CellToWorld(new Vector3Int(offsetPos.x, offsetPos.y, 0));
-		
-		
-		// var offsetPos = ToOffset();
-		// return GridController.Instance.room.grid.CellToLocal(new Vector3Int(offsetPos.x, offsetPos.y, 0));
-		// if(orientation == Orientation.Flat) {
-			// var offsetPos = ToOddQ(this);
-			// return GridController.Instance.room.grid.CellToLocal(new Vector3Int(offsetPos.x, offsetPos.y, 0));
-		// } else {
-		// }
-		// var cubeCoord = HexToCube();
-		// return GridController.Instance.room.grid.CellToLocal(new Vector3Int(cubeCoord.y, cubeCoord.x, cubeCoord.z));
-		// return GridController.Instance.room.grid.CellToLocal(new Vector3Int(cubeCoord.x, cubeCoord.y, cubeCoord.z));
 		return q*Q_XY + r*R_XY;
 	}
 
@@ -184,7 +156,7 @@ public struct HexCoord : IEquatable<HexCoord> {
 	}
 
 	/// <summary>
-	/// Get the Unity position of a corner vertex.
+	/// Get the position of a corner vertex.
 	/// </summary>
 	/// <remarks>
 	/// Corner 0 is at the upper right, others proceed counterclockwise.
@@ -220,7 +192,7 @@ public struct HexCoord : IEquatable<HexCoord> {
 	/// <param name="index">Index of the desired corner.</param>
 	public float CornerPolarAngle(int index) {
 		Vector2 pos = Corner(index);
-		return (float)Mathf.Atan2(pos.y, pos.x);
+		return Mathf.Atan2(pos.y, pos.x);
 	}
 
 	/// <summary>
@@ -331,7 +303,7 @@ public struct HexCoord : IEquatable<HexCoord> {
 	/// <param name="sextants">How many sextants to rotate by.</param>
 	public HexCoord SextantRotation(int sextants) {
 		if (this == zero) return this;
-		sextants = NormalizeRotationIndex(sextants, 6);
+		sextants = NormalizeRotationIndex(sextants);
 		if (sextants == 0) return this;
 		if (sextants == 1) return new HexCoord(-r, -s);
 		if (sextants == 2) return new HexCoord(s, q);
@@ -412,9 +384,9 @@ public struct HexCoord : IEquatable<HexCoord> {
 	/// Determines whether this hex is on the ray starting at origin in a direction
 	/// </summary>
 	public bool IsOnLine(HexCoord origin, HexCoord direction) {
-		var offsetOriginC = (this-origin).HexToCube();
+		var offsetOriginC = (this-origin).AxialToCube();
 		if(offsetOriginC == Point3.zero) return true;
-		var dirC = direction.HexToCube();
+		var dirC = direction.AxialToCube();
 		// If I need this to work in either direction, then check if dirC.x is 0 AND this condition before returning false
 		if(MathX.Sign(dirC.x, true) != MathX.Sign(offsetOriginC.x, true)) {
 			return false;
@@ -462,7 +434,20 @@ public struct HexCoord : IEquatable<HexCoord> {
 		return false;
 	}
 
+	
 
+	// return values of turns() method
+	public static int LEFT = 1;
+	public static int RIGHT = -1;
+	public static int STRAIGHT = 0;
+   
+	// returns one of the 3 above constants, depending on whether the
+	// three vertices constitute a left turn or a right turn.
+	public static int turns(Vector2 v0,Vector2 v1,Vector2 v2) {
+		var cross = (v1.x-v0.x)*(v2.y-v0.y) - (v2.x-v0.x)*(v1.y-v0.y);
+		return((cross>0.0f) ? LEFT : ((cross==0.0f) ? STRAIGHT : RIGHT));
+	}
+	
 	// A routine to tell if a hexagon has any part of it is "left" of a given
    // arc boundary (clockwise arm of the cone)
    public bool leftOfArc(HexCoord hc,Vector2 ac) {
@@ -485,6 +470,7 @@ public struct HexCoord : IEquatable<HexCoord> {
       return false;
    }
    
+   
 
 	/// <summary>
 	/// Returns a <see cref="System.String"/> that represents the current <see cref="Settworks.Hexagons.HexCoord"/>.
@@ -493,7 +479,7 @@ public struct HexCoord : IEquatable<HexCoord> {
 	/// Matches the formatting of <see cref="UnityEngine.Vector2.ToString()"/>.
 	/// </remarks>
 	public override string ToString () {
-		return string.Format("({0},{1})", q, r);
+		return $"({q},{r})";
 	}
 	public string ToDirectionString () {
 		return Position()+" "+Position().DirectionName();
@@ -548,14 +534,14 @@ public struct HexCoord : IEquatable<HexCoord> {
 	}
 
 	public static HexCoord[] GetPointsOnRing(int ringDistance, int startIndex = 0) {
-		if(ringDistance == 0) return new HexCoord[] {HexCoord.zero};
+		if(ringDistance == 0) return new[] {zero};
 		HexCoord[] results = new HexCoord[ringDistance * 6];
 		GetPointsOnRingNonAlloc(results, 0, ringDistance, startIndex);
 	    return results;
 	}
 	public static void GetPointsOnRingNonAlloc(HexCoord[] array, int arrayOffset, int ringDistance, int startIndex = 0) {
 		if(ringDistance == 0) {
-            array[arrayOffset] = HexCoord.zero;
+            array[arrayOffset] = zero;
         } else {
             //    # this code doesn't work for ringDistance == 0; can you see why?
             var cube = (Direction(4)) * ringDistance;
@@ -598,7 +584,7 @@ public struct HexCoord : IEquatable<HexCoord> {
 		var results = new HexCoord[distance + 1];
 		var n = 1f/(distance);
 	    for (int i = 0; i <= distance; i++) {
-			results[i] = RoundFromQRVector(HexCoord.HexLerp(a, b, n * i));
+			results[i] = RoundFromQRVector(HexLerp(a, b, n * i));
 	    }
 	    return results;
     }
@@ -610,15 +596,15 @@ public struct HexCoord : IEquatable<HexCoord> {
     /// <param name="a">The alpha component.</param>
     /// <param name="b">The blue component.</param>
 	public static bool StraightLineExistsBetween (HexCoord a, HexCoord b) {
-		var ac = a.HexToCube();
-		var bc = b.HexToCube();
+		var ac = a.AxialToCube();
+		var bc = b.AxialToCube();
 		return ac.x == bc.x || ac.y == bc.y || ac.z == bc.z;
     }
 
 	// The closest distance to either of the grid-aligned lines from the origin to the target
 	public static int GetMinDistanceToCoordOnStraightLine (HexCoord linesOrigin, HexCoord targetCoord) {
-		var coords = HexCoord.GetClosestPointsToCoordOnStraightLine(linesOrigin, targetCoord);
-		return Mathf.Min(HexCoord.Distance(linesOrigin, coords.First()), HexCoord.Distance(targetCoord, coords.First()));
+		var coords = GetClosestPointsToCoordOnStraightLine(linesOrigin, targetCoord);
+		return Mathf.Min(Distance(linesOrigin, coords.First()), Distance(targetCoord, coords.First()));
 	}
     /// <summary>
 	/// Gets the points on a straight line from a closest to b. Note there can two lines!
@@ -632,8 +618,8 @@ public struct HexCoord : IEquatable<HexCoord> {
 		//NOTE THERES AN ISSUE HERE - Depending on the distance from the line, theres a correlated number of points of equal proximity from that line - not just 2!
 		// It should be easily solvable, but I dont know what the intended function is.
 		var p = new List<HexCoord>();
-		var ac = linesOrigin.HexToCube();
-		var bc = targetCoord.HexToCube();
+		var ac = linesOrigin.AxialToCube();
+		var bc = targetCoord.AxialToCube();
 		if(ac.x == bc.x || ac.y == bc.y || ac.z == bc.z) p.Add(targetCoord);
 		else {
 			var xMin = MathX.Difference(ac.x, bc.x);
@@ -643,15 +629,15 @@ public struct HexCoord : IEquatable<HexCoord> {
 			if(xMin <= yMin && xMin <= zMin) {
 				// p.Add(HexCoord.CubeToHex(new Point3(ac.x, bc.y+(bc.x-ac.x), bc.z)));
 				// p.Add(HexCoord.CubeToHex(new Point3(ac.x, bc.y, bc.z+(bc.x-ac.x))));
-				p.AddRange(HexCoord.LineDraw(HexCoord.CubeToHex(new Point3(ac.x, bc.y+(bc.x-ac.x), bc.z)), HexCoord.CubeToHex(new Point3(ac.x, bc.y, bc.z+(bc.x-ac.x)))));
+				p.AddRange(LineDraw(CubeToAxial(new Point3(ac.x, bc.y+(bc.x-ac.x), bc.z)), CubeToAxial(new Point3(ac.x, bc.y, bc.z+(bc.x-ac.x)))));
 			}
 			if(yMin <= xMin && yMin <= zMin) {
 				// p.Add(HexCoord.CubeToHex(new Point3(bc.x+(bc.y-ac.y), ac.y, bc.z)));
 				// p.Add(HexCoord.CubeToHex(new Point3(bc.x, ac.y, bc.z+(bc.y-ac.y))));
-				p.AddRange(HexCoord.LineDraw(HexCoord.CubeToHex(new Point3(bc.x+(bc.y-ac.y), ac.y, bc.z)), HexCoord.CubeToHex(new Point3(bc.x, ac.y, bc.z+(bc.y-ac.y)))));
+				p.AddRange(LineDraw(CubeToAxial(new Point3(bc.x+(bc.y-ac.y), ac.y, bc.z)), CubeToAxial(new Point3(bc.x, ac.y, bc.z+(bc.y-ac.y)))));
 			}
 			if(zMin <= xMin && zMin <= yMin) {
-				p.AddRange(HexCoord.LineDraw(HexCoord.CubeToHex(new Point3(bc.x+(bc.z-ac.z), bc.y, ac.z)), HexCoord.CubeToHex(new Point3(bc.x, bc.y+(bc.z-ac.z), ac.z))));
+				p.AddRange(LineDraw(CubeToAxial(new Point3(bc.x+(bc.z-ac.z), bc.y, ac.z)), CubeToAxial(new Point3(bc.x, bc.y+(bc.z-ac.z), ac.z))));
 				// p.Add(HexCoord.CubeToHex(new Point3(bc.x+(bc.z-ac.z), bc.y, ac.z)));
 				// p.Add(HexCoord.CubeToHex(new Point3(bc.x, bc.y+(bc.z-ac.z), ac.z)));
 			}
@@ -679,7 +665,7 @@ public struct HexCoord : IEquatable<HexCoord> {
 	public static HexCoord GetClosestDirection (HexCoord a, HexCoord b) {
 		if(Distance(a, b) <= 1) return (b - a);
 		var direction = Vector2X.NormalizedDirection(a.Position(), b.Position());
-		return HexCoord.AtPosition(direction * 1.5f);
+		return AtPosition(direction * 1.5f);
 	}
 	
 	public static IEnumerable<HexCoord> GetClosestDirections (HexCoord a, HexCoord b) {
@@ -716,7 +702,7 @@ public struct HexCoord : IEquatable<HexCoord> {
 	/// </remarks>
 	/// <param name="index">Index of the desired neighbor vector. Cyclically constrained 0..5.</param>
 	public static HexCoord Direction(int index)
-	{ return directions[NormalizeRotationIndex(index, 6)]; }
+	{ return directions[NormalizeRotationIndex(index)]; }
 
 	/// <summary>
 	/// Enumerate the six neighbor vectors.
@@ -726,7 +712,7 @@ public struct HexCoord : IEquatable<HexCoord> {
 	/// </remarks>
 	/// <param name="first">Index of the first neighbor vector to enumerate.</param>
 	public static IEnumerable<HexCoord> Directions(int first = 0) {
-		first = NormalizeRotationIndex(first, 6);
+		first = NormalizeRotationIndex(first);
 		for (int i = first; i < 6; i++)
 			yield return directions[i];
 		for (int i = 0; i < first; i++)
@@ -745,8 +731,8 @@ public struct HexCoord : IEquatable<HexCoord> {
 	}
 
 	public static HexCoord RotateDirection (HexCoord direction, int numRotationSteps) {
-		int index = HexCoord.ClosestDirectionIndex(direction) + numRotationSteps;
-		return HexCoord.Direction(index);
+		int index = ClosestDirectionIndex(direction) + numRotationSteps;
+		return Direction(index);
 	}
 
 	
@@ -763,14 +749,14 @@ public struct HexCoord : IEquatable<HexCoord> {
 	{ return index * SEXTANT; }
 
 	/// <summary>
-	/// Unity position vector from hex center to a corner.
+	/// position vector from hex center to a corner.
 	/// </summary>
 	/// <remarks>
 	/// Corner 0 is at the upper right, others proceed counterclockwise.
 	/// </remarks>
 	/// <param name="index">Index of the desired corner. Cyclically constrained 0..5.</param>
 	public static Vector2 CornerVector(int index) {
-		return corners[NormalizeRotationIndex(index, 6)];
+		return corners[NormalizeRotationIndex(index)];
 	}
 
 	/// <summary>
@@ -786,7 +772,7 @@ public struct HexCoord : IEquatable<HexCoord> {
             for (int i = 0; i < cachedCorners.Length; i++)
 				yield return cachedCorners[i] * hexSize;
         } else {
-			first = NormalizeRotationIndex(first, 6);
+			first = NormalizeRotationIndex(first);
 			for (int i = first; i < 6; i++)
 				yield return cachedCorners[i];
 			for (int i = 0; i < first; i++)
@@ -819,7 +805,7 @@ public struct HexCoord : IEquatable<HexCoord> {
 	{ return index * SEXTANT / 2; }
 	
 	/// <summary>
-	/// <see cref="Settworks.Hexagons.HexCoord"/> containing a Unity position.
+	/// <see cref="Settworks.Hexagons.HexCoord"/> containing a position.
 	/// </summary>
 	public static HexCoord AtPosition(Vector2 position) {
 		var qr = VectorXYtoQR(position);
@@ -918,8 +904,8 @@ public struct HexCoord : IEquatable<HexCoord> {
 		Vector2 min = new Vector2(Mathf.Min(cornerA.x, cornerB.x), Mathf.Min(cornerA.y, cornerB.y));
 		Vector2 max = new Vector2(Mathf.Max(cornerA.x, cornerB.x), Mathf.Max(cornerA.y, cornerB.y));
 		HexCoord[] results = {
-			HexCoord.AtPosition(min),
-			HexCoord.AtPosition(max)
+			AtPosition(min),
+			AtPosition(max)
 		};
 		Vector2 pos = results[0].Position();
 		if (pos.y - 0.5f >= min.y)
@@ -937,7 +923,7 @@ public struct HexCoord : IEquatable<HexCoord> {
 	public static int[] GetCornerIndiciesSharedWithOther (HexCoord coord, HexCoord otherCoord) {
 		var distance = Distance(coord, otherCoord);
 		if(distance == 0) {
-			return new int[] {0,1,2,3,4,5};
+			return new[] {0,1,2,3,4,5};
 		} else if(distance == 1) {
 			List<int> sharedIndicies = new List<int>();
 			for(int i = 0; i < 6; i++) {
@@ -950,7 +936,7 @@ public struct HexCoord : IEquatable<HexCoord> {
 	}
 
 	public static int[] GetCornerIndiciesSharedWithOthers (HexCoord coord, params HexCoord[] otherCoords) {
-		List<int> sharedIndicies = new List<int>() {0,1,2,3,4,5};
+		List<int> sharedIndicies = new List<int> {0,1,2,3,4,5};
 		foreach(var otherCoord in otherCoords) {
 			var newShared = GetCornerIndiciesSharedWithOther(coord, otherCoord);
 			if(newShared == null) sharedIndicies.Clear();
@@ -961,7 +947,7 @@ public struct HexCoord : IEquatable<HexCoord> {
 
 	// Given a coord and corner index, find the corner index of another coord that shares the same vert.
 	public static int GetTouchingCornerPointIndex (HexCoord coord, int coordCornerIndex, HexCoord otherCoord) {
-		if(HexCoord.Distance(coord, otherCoord) != 1) return -1;
+		if(Distance(coord, otherCoord) != 1) return -1;
 		int numCorners = 6;
 		var cachedCorners = corners;
 		
@@ -989,7 +975,7 @@ public struct HexCoord : IEquatable<HexCoord> {
 		int bestIndex = -1;
 		float bestDot = -1f;
 
-		foreach(var corner in HexCoord.CornerVectors()) {
+		foreach(var corner in CornerVectors()) {
 			var dot = Vector2.Dot(corner, direction);
 			if(dot > bestDot) {
 				bestDot = dot;
@@ -1044,19 +1030,11 @@ public struct HexCoord : IEquatable<HexCoord> {
 		Flat,
 		Pointy,
 	}
-	public static Orientation orientation {
-		get {
-			return HexCoord.LayoutToOrientation(offsetLayout);
-		}
-	}
+	public static Orientation orientation => LayoutToOrientation(offsetLayout);
 
 	// Corner locations in XY space. Private for same reason as neighbors.
-	static Vector2[] corners {
-		get {
-			if(orientation == Orientation.Flat) return corners_flat;
-			else return corners_pointy;
-		}
-	}
+	static Vector2[] corners => orientation == Orientation.Flat ? corners_flat : corners_pointy;
+
 	// Corner locations in XY space. Private for same reason as neighbors.
 	static readonly Vector2[] corners_pointy = {
 		HexCornerOffset(Orientation.Pointy, 0),
@@ -1075,43 +1053,24 @@ public struct HexCoord : IEquatable<HexCoord> {
 		HexCornerOffset(Orientation.Flat, 5),
 	};
 
-	public static Vector2 HexCornerOffset(HexCoord.Orientation orientation, int corner) {
-        var angle = 2f * Mathf.PI * ((orientation == HexCoord.Orientation.Flat ? 0 : -0.5f) - corner) / 6f;
+	public static Vector2 HexCornerOffset(Orientation orientation, int corner) {
+        var angle = 2f * Mathf.PI * ((orientation == Orientation.Flat ? 0 : -0.5f) - corner) / 6f;
         return new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
     }
 
 	// Vector transformations between QR and XY space.
 	// Private to keep IntelliSense tidy. Safe to make public, but sensible uses are covered above.
-	static Vector2 Q_XY {
-		get {
-			if(orientation == Orientation.Flat) return Q_XY_Flat;
-			else return Q_XY_Pointy;
-		}
-	}
-	static Vector2 R_XY {
-		get {
-			if(orientation == Orientation.Flat) return R_XY_Flat;
-			else return R_XY_Pointy;
-		}
-	}
+	static Vector2 Q_XY => orientation == Orientation.Flat ? Q_XY_Flat : Q_XY_Pointy;
+	static Vector2 R_XY => orientation == Orientation.Flat ? R_XY_Flat : R_XY_Pointy;
 
 	static readonly Vector2 Q_XY_Pointy = new Vector2(SQRT3, 0);
 	static readonly Vector2 R_XY_Pointy = new Vector2(SQRT3/2, 1.5f);
 	static readonly Vector2 Q_XY_Flat = new Vector2(1.5f, SQRT3/2);
 	static readonly Vector2 R_XY_Flat = new Vector2(0, SQRT3);
 
-	static Vector2 X_QR {
-		get {
-			if(orientation == Orientation.Flat) return X_QR_Flat;
-			else return X_QR_Pointy;
-		}
-	}
-	static Vector2 Y_QR {
-		get {
-			if(orientation == Orientation.Flat) return Y_QR_Flat;
-			else return Y_QR_Pointy;
-		}
-	}
+	static Vector2 X_QR => orientation == Orientation.Flat ? X_QR_Flat : X_QR_Pointy;
+	static Vector2 Y_QR => orientation == Orientation.Flat ? Y_QR_Flat : Y_QR_Pointy;
+	
 	static readonly Vector2 X_QR_Pointy = new Vector2(SQRT3/3, 0);
 	static readonly Vector2 Y_QR_Pointy = new Vector2(-1/3f, 2/3f);
 	static readonly Vector2 X_QR_Flat = new Vector2(2/3f, -1/3f);
@@ -1127,9 +1086,8 @@ public struct HexCoord : IEquatable<HexCoord> {
 	}
 	static Layout _offsetLayout = Layout.OddR;
 	public static Layout offsetLayout {
-		get {
-			return _offsetLayout;
-		} set {
+		get => _offsetLayout;
+		set {
 			if(_offsetLayout == value) return;
 			// Debug.Log(_offsetLayout+" "+value);
 			
@@ -1139,91 +1097,102 @@ public struct HexCoord : IEquatable<HexCoord> {
 	}
 	public static Action<Layout> OnChangeOffsetLayout;
 
-	public static HexCoord.Orientation LayoutToOrientation(Layout layout) {
+	public static Orientation LayoutToOrientation(Layout layout) {
 		switch (layout) {
 		case Layout.OddR: 
-			return HexCoord.Orientation.Pointy;
+			return Orientation.Pointy;
 		case Layout.EvenR: 
-			return HexCoord.Orientation.Pointy;
+			return Orientation.Pointy;
 		case Layout.OddQ: 
-			return HexCoord.Orientation.Flat;
+			return Orientation.Flat;
 		default:
-			return HexCoord.Orientation.Flat;
+			return Orientation.Flat;
 		}
 	}
 
-	public static HexCoord OffsetToHex(int x, int y) {
-		return OffsetToHex(new Point(x, y));
+	public static HexCoord OffsetToAxial(int x, int y) {
+		return OffsetToAxial(new Point(x, y));
 	}
-	public static HexCoord OffsetToHex(Point offsetCoord) {
-		return OffsetToHex(offsetCoord, offsetLayout);
+	public static HexCoord OffsetToAxial(Point offsetCoord) {
+		return OffsetToAxial(offsetCoord, offsetLayout);
 	}
-	public static HexCoord OffsetToHex(Point offsetCoord, Layout offsetLayout) {
+	public static HexCoord OffsetToAxial(Point offsetCoord, Layout offsetLayout) {
 		switch (offsetLayout) {
 		case Layout.OddR: 
-			return OddRToHex(offsetCoord);
+			return OddRToAxial(offsetCoord);
 		case Layout.EvenR: 
-			return EvenRToHex(offsetCoord);
+			return EvenRToAxial(offsetCoord);
 		case Layout.OddQ: 
-			return OddQToHex(offsetCoord);
+			return OddQToAxial(offsetCoord);
 		default:
-			return EvenQToHex(offsetCoord);
+			return EvenQToAxial(offsetCoord);
 		}
 	}
 
-	public static HexCoord OddRToHex(Point hex) {
+	public static HexCoord OddRToAxial(Point hex) {
 		var q = hex.x - (hex.y - (hex.y&1)) / 2;
 		var r = hex.y;
 		return new HexCoord(q, r);
 	}
-	static HexCoord EvenRToHex(Point hex) {
+	static HexCoord EvenRToAxial(Point hex) {
 		var q = hex.x - (hex.y + (hex.y&1)) / 2;
 		var r = hex.y;
 		return new HexCoord(q, r);
 	}
-	static HexCoord OddQToHex(Point hex) {
+	static HexCoord OddQToAxial(Point hex) {
 		var q = hex.x;
 		var r = hex.y - (hex.x - (hex.x&1)) / 2;
 		return new HexCoord(q, r);
 	}
-	static HexCoord EvenQToHex(Point hex) {
+	static HexCoord EvenQToAxial(Point hex) {
 		var q = hex.x;
 		var r = hex.y - (hex.x + (hex.x&1)) / 2;
 		return new HexCoord(q, r);
 	}
 
 
-	public Point3 HexToCube() {
-		return HexToCube(this);
+	public Point3 AxialToCube() {
+		return AxialToCube(this);
 	}
 
-	public static Point3 HexToCube(HexCoord coord) {
+	public static Point3 AxialToCube(HexCoord coord) {
 		return new Point3(coord.q, coord.s, coord.r);
 	}
 
-	public static HexCoord CubeToHex(Point3 cubeCoord) {
+	public static HexCoord CubeToAxial(Point3 cubeCoord) {
 		var q = cubeCoord.x;
 		var r = cubeCoord.z;
 		return new HexCoord(q, r);
     }
 
 	public Point ToOffset() {
-		return HexToOffset(this);
+		return AxialToOffset(this);
 	}
 
-	public static Point HexToOffset(HexCoord coord) {
-		return HexToOffset(coord, HexCoord.offsetLayout);
+	public static Point AxialToOffset(HexCoord coord) {
+		return AxialToOffset(coord, offsetLayout);
 	}
 
-	static Point HexToOffset(HexCoord coord, HexCoord.Layout mode) {
+	static Point AxialToOffset(HexCoord coord, Layout mode) {
 		switch (mode) {
-		case Layout.OddR: return ToOddR(coord);
-		case Layout.EvenR: return ToEvenR(coord);
-		case Layout.OddQ: return ToOddQ(coord);
-		default: return ToEvenQ(coord);
+			case Layout.OddR: return ToOddR(coord);
+			case Layout.EvenR: return ToEvenR(coord);
+			case Layout.OddQ: return ToOddQ(coord);
+			case Layout.EvenQ:
+			default: return ToEvenQ(coord);
 		}
 	}
-
+	
+	static Vector2 HexToOffsetInterpolated(Vector2 coord, Layout mode) {
+		switch (mode) {
+			case Layout.OddR: return ToOddRInterpolated(coord);
+			case Layout.EvenR: return ToEvenRInterpolated(coord);
+			case Layout.OddQ: return ToOddQInterpolated(coord);
+			case Layout.EvenQ:
+			default: return ToEvenQInterpolated(coord);
+		}
+	}
+	
 	public static Point ToOddR(HexCoord coord) {
 		var x = coord.q + (coord.r - (coord.r&1)) / 2;
 		var y = coord.r;
@@ -1387,7 +1356,7 @@ public struct HexCoord : IEquatable<HexCoord> {
 		return Divide(left, right);
 	}
 
-	public override bool Equals(System.Object obj) {
+	public override bool Equals(Object obj) {
 		return obj is HexCoord && this == (HexCoord)obj;
 	}
 

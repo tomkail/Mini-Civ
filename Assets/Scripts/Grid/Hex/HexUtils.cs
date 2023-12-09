@@ -29,7 +29,7 @@ public static class HexUtils {
         List<HexCoord> hexCoords = new List<HexCoord>();
         for (int r = gridSize.yMin; r < gridSize.yMax; r++) {
             for (int q = gridSize.xMin; q < gridSize.xMax; q++) {
-                var hex = HexCoord.OffsetToHex(new Point(q,r));
+                var hex = HexCoord.OffsetToAxial(new Point(q,r));
                 hexCoords.Add(hex);
             }
         }

@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
+using Newtonsoft.Json;
 using Random = UnityEngine.Random;
 
 public class TomsLevelGenerator : LevelGenerator {
@@ -176,13 +177,38 @@ public class TomsLevelGenerator : LevelGenerator {
 			}
 			gameModel.board.fogLayer.ResetFog();
 
-			for (int i = 0; i < 3; i++) {
-				var pos = landTiles.Random();
-				var radialCoords = HexUtils.HexagonPoints(2);
-				foreach(var radialCoord in radialCoords) {
-					gameModel.board.fogLayer.RevealFog(pos+radialCoord);
-				}
+			var randomPos = HexUtils.HexagonPoints(3).Random();
+			var radialCoords = HexUtils.HexagonPoints(2);
+			foreach(var radialCoord in radialCoords) {
+				gameModel.board.fogLayer.RevealFog(randomPos+radialCoord);
 			}
+			
+			// This tests a bug where the fog has a hole in it
+// 			var text = @"
+// [{""q"":0,""r"":0},{""q"":1,""r"":0},{""q"":2,""r"":0},{""q"":2,""r"":1},{""q"":3,""r"":1},{""q"":3,""r"":2},{""q"":4,""r"":2},{""q"":5,""r"":2},{""q"":5,""r"":3},{""q"":4,""r"":4},{""q"":4,""r"":3},{""q"":3,""r"":3},{""q"":2,""r"":3},{""q"":1,""r"":4},{""q"":0,""r"":4},{""q"":0,""r"":3},{""q"":1,""r"":3},{""q"":1,""r"":2},{""q"":1,""r"":1},{""q"":0,""r"":1},{""q"":-1,""r"":2},{""q"":-1,""r"":3},{""q"":-2,""r"":4},{""q"":-3,""r"":5},{""q"":-2,""r"":3},{""q"":-2,""r"":2},{""q"":-3,""r"":2},{""q"":-1,""r"":1},{""q"":5,""r"":1},{""q"":6,""r"":1},{""q"":5,""r"":0},{""q"":5,""r"":-1},{""q"":6,""r"":-1},{""q"":6,""r"":-2},{""q"":5,""r"":-2},{""q"":4,""r"":-1},{""q"":3,""r"":-1},{""q"":2,""r"":-1},{""q"":1,""r"":-1},{""q"":0,""r"":-1},{""q"":-1,""r"":-1},{""q"":-2,""r"":0},{""q"":-3,""r"":0},{""q"":-2,""r"":-1},{""q"":-2,""r"":-2},{""q"":-1,""r"":-2},{""q"":0,""r"":-2},{""q"":0,""r"":-3},{""q"":1,""r"":-3},{""q"":2,""r"":-3},{""q"":3,""r"":-3},{""q"":4,""r"":-3},{""q"":5,""r"":-3},{""q"":6,""r"":-3},{""q"":6,""r"":-4},{""q"":5,""r"":-4},{""q"":4,""r"":-4},{""q"":3,""r"":-4},{""q"":2,""r"":-4},{""q"":1,""r"":-4},{""q"":2,""r"":-5},{""q"":4,""r"":-2},{""q"":3,""r"":-2}]
+// ";
+// 			var coords = JsonConvert.DeserializeObject<List<HexCoord>>(text);
+// 			foreach(var radialCoord in coords) {
+// 				gameModel.board.fogLayer.RevealFog(randomPos+radialCoord);
+// 			}
+			// var rect = RectX.CreateEncapsulating(coords.Select(x => x.Position()));
+			// var hexCoordsInRect = HexCoord.CartesianRectangleBounds(rect.min, rect.max);
+			
+			
+			// Find islands in hexCoordsInRect
+			// Find convex hull
+			// var islandHoleDetector = new IslandDetector<HexCoord>(coords, p => HexCoord.Directions(p), p => !coords.Contains(p));
+			// var islands = islandHoleDetector.FindIslands();
+			// foreach (var island in islands) {
+			// 	var outlineCoords = OutlineDetector.GetOutlineCoords(island.points, 0, HexCoord.GetPointsOnRing).ToArray();
+			// }
+			// for (int i = 0; i < 3; i++) {
+			// 	var pos = landTiles.Random();
+			// 	var radialCoords = HexUtils.HexagonPoints(2);
+			// 	foreach(var radialCoord in radialCoords) {
+			// 		gameModel.board.fogLayer.RevealFog(pos+radialCoord);
+			// 	}
+			// }
 
 		}
 		return gameModel;

@@ -5,7 +5,6 @@ using System.Collections.Generic;
 public static class OutlineDetector {
 	public static List<Vector2> GetOutlinePoly<Coord> (List<Coord> points, Func<Coord, int, Coord, int> GetTouchingCornerPointIndex, Func<Coord, int, Vector2> GetCornerPoint, int numCorners) where Coord : IEquatable<Coord> {
 		var outline = new List<Vector2>();
-		// List<HexCoord> hexPoints = points.Cast<HexCoord>().ToList();
 		Coord currentCoord = default(Coord);
 		int rotIndex = -1;
 

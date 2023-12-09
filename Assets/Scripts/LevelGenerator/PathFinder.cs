@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Utils.Algorithms;
 
 public static class PathFinder {
 
@@ -35,11 +36,11 @@ public static class PathFinder {
         }
     }
 	
-    public static List<HexCoord> PathFind(BoardModel board, HexCoord originPoint, HexCoord destinationPoint, PathFinderOptions options) {
+    public static AStar<HexCoord>.PathfinderSolution PathFind(BoardModel board, HexCoord originPoint, HexCoord destinationPoint, PathFinderOptions options) {
         return PathFind(new PathFinderSearchParams(board, originPoint, destinationPoint, options));
     }
     
-    public static List<HexCoord> PathFind(PathFinderSearchParams searchParams) {
+    public static AStar<HexCoord>.PathfinderSolution PathFind(PathFinderSearchParams searchParams) {
         if(searchParams == null) return null;
 
         Utils.Algorithms.AStar<HexCoord>.LazyGraph initData = new Utils.Algorithms.AStar<HexCoord>.LazyGraph ();
@@ -64,12 +65,11 @@ public static class PathFinder {
         }
 
 		
-        Utils.Algorithms.AStar<HexCoord> aStar = new Utils.Algorithms.AStar<HexCoord> (initData);
+        var aStar = new Utils.Algorithms.AStar<HexCoord> (initData);
 
-        IList<HexCoord> results = aStar.Calculate (searchParams.originPoint, searchParams.destinationPoint).solution;
+        var results = aStar.Calculate (searchParams.originPoint, searchParams.destinationPoint);
         // Debug.Log("Pathfinder result: "+DebugX.ListAsString(results)+"\nOptions: "+options);
-        if(results == null) return null;
-        return results.ToList();
+        return results;
     }
 
     public static bool AreConnected (GridCellModel gridCellA, GridCellModel gridCellB, PathFinderOptions options) {

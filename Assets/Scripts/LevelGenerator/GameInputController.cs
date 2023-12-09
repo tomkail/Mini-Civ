@@ -18,7 +18,7 @@ public class GameInputController : MonoSingleton<GameInputController> {
 
     public Vector3 GetWorldPosition (Vector2 mousePosition) => ScreenToFloorPoint(Camera.main, mousePosition);
 
-    public HexCoord GetGridPoint (Vector2 mousePosition) => GameController.Instance.hexGrid.WorldToCell(GetWorldPosition(mousePosition));
+    public HexCoord GetGridPoint (Vector2 mousePosition) => GameController.Instance.hexGrid.WorldToAxial(GetWorldPosition(mousePosition));
     
 
     public Vector3 ScreenToFloorPoint (Camera camera, Vector2 screenPoint) {

@@ -109,7 +109,7 @@ public class RenderTextureCreator : MonoBehaviour {
         _renderTexture.Release();
     }
 
-    void DestroyRenderTexture() {
+    public void DestroyRenderTexture() {
         if(_renderTexture == null) return;
         if(Application.isPlaying) Destroy(_renderTexture);
         else DestroyImmediate(_renderTexture);

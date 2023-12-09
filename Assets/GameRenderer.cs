@@ -10,6 +10,8 @@ using UnityEngine.Rendering;
 
 [ExecuteAlways]
 public class GameRenderer : ImmediateModeShapeDrawer {
+    public bool showFog = true;
+    
     public WorldSpaceHexGrid worldSpaceHexGrid;
     public Color grassColor;
     public Color forestColor;
@@ -25,13 +27,12 @@ public class GameRenderer : ImmediateModeShapeDrawer {
 
     GameModel gameModel => GameController.Instance.gameModel;
 
-    public bool generateEachFrame;
     public override void DrawShapes( Camera cam ) {
         if (gameModel == null) return;
         
         using (Draw.Command(cam)) {
             DrawFloor(gameModel);
-            DrawFog(gameModel);
+            if(showFog) DrawFog(gameModel);
             DrawOwnership(gameModel);
             DrawCursor(gameModel.cursor);
             DrawMovementPath(GameController.Instance.currentPathPoints);
@@ -57,14 +58,14 @@ public class GameRenderer : ImmediateModeShapeDrawer {
 
     void DrawTextureTile(HexCoord coord, Action draw) {
         Draw.PushMatrix();
-        Draw.Matrix = Matrix4x4.TRS(worldSpaceHexGrid.CellToWorld(coord), worldSpaceHexGrid.axis.Rotate(new Vector3(90, 0, 0)), Vector3.one);
+        Draw.Matrix = Matrix4x4.TRS(worldSpaceHexGrid.AxialToWorld(coord), worldSpaceHexGrid.axis, Vector3.one);
         draw();
         Draw.PopMatrix();
     }
 
     void DrawPolygonTile(HexCoord coord, Action draw) {
         Draw.PushMatrix();
-        Draw.Matrix = Matrix4x4.TRS(worldSpaceHexGrid.CellToWorld(coord), worldSpaceHexGrid.axis.Rotate(new Vector3(90, 0, 0)).Rotate(new Vector3(0,0,30)), Vector3.one);
+        Draw.Matrix = Matrix4x4.TRS(worldSpaceHexGrid.AxialToWorld(coord), worldSpaceHexGrid.axis.Rotate(new Vector3(0,0,30)), Vector3.one);
         draw();
         Draw.PopMatrix();
     }
@@ -82,7 +83,8 @@ public class GameRenderer : ImmediateModeShapeDrawer {
         
     }
 
-    public Quaternion rotation => worldSpaceHexGrid.axis * Quaternion.Euler(90, 0, 0);
+    public Quaternion rotation => worldSpaceHexGrid.axis;
+    public Matrix4x4 worldToXYMatrix => Matrix4x4.TRS(Vector3.zero, rotation, Vector3.one);
     
     void DrawFog(GameModel gameModel) {
         Draw.PushMatrix();
@@ -92,13 +94,6 @@ public class GameRenderer : ImmediateModeShapeDrawer {
         var revealedIslands = revealedAreasDetector.FindIslands();
         
         foreach (var island in revealedIslands) {
-            // var outlineCoords = OutlineDetector.GetOutlinePoly(island.points, HexCoord.GetBestCornerIndex, HexCoord.Corner, HexCoord.GetPointsOnRing).ToArray();
-            
-            System.Func<HexCoord, int, Vector2> GetCornerPoint = (HexCoord coord, int corner) => {
-                Vector3 pos = (HexCoord.CornerVector(corner) + coord.Position()).ToVector3XZY();
-                pos = (Matrix4x4.TRS(Vector3.zero, Quaternion.Euler(0,90,0), Vector3.one).MultiplyPoint(pos));
-                return pos.XZ();
-            };
             var outline = OutlineDetector.GetOutlinePoly(island.points, HexCoord.GetTouchingCornerPointIndex, HexCoord.Corner, 6).ToArray();
             var polygon = new Polygon(outline);
             Vector2[] extrudedPoints = Polygon.GetExtruded(polygon, fogExtrusion);
@@ -116,6 +111,7 @@ public class GameRenderer : ImmediateModeShapeDrawer {
             Draw.ColorMask = (ColorWriteMask) 0;
             
             Draw.Polygon(polygonPath);
+            Draw.ResetStyle();
             
         }
         
@@ -127,8 +123,8 @@ public class GameRenderer : ImmediateModeShapeDrawer {
         
         Draw.UseDashes = true;
         Draw.DashOffset = Time.time;
-        Draw.DashSize = 0.5f;
-        Draw.DashSpacing = 0.5f;
+        Draw.DashSize = scrollingOverlayLinesDashSize;
+        Draw.DashSpacing = scrollingOverlayLinesDashSpacing;
         Draw.DashType = DashType.Angled;
         Draw.DashShapeModifier = -1;
         Draw.DashSpace = DashSpace.Meters;
@@ -137,7 +133,7 @@ public class GameRenderer : ImmediateModeShapeDrawer {
         Draw.LineGeometry = LineGeometry.Flat2D;
         Draw.LineEndCaps = LineEndCap.None;
         
-        var rect = RectX.CreateEncapsulating(new Vector2(-10, -10), new Vector2(10, 10));
+        var rect = RectX.CreateEncapsulating(new Vector2(-30, -30), new Vector2(30, 30));
         Draw.Thickness = rect.size.y;
         Draw.ThicknessSpace = ThicknessSpace.Meters;
 
@@ -147,15 +143,23 @@ public class GameRenderer : ImmediateModeShapeDrawer {
         Draw.Line(new Vector3(rect.center.x - rect.size.x * 0.5f, rect.center.y, 0), new Vector3(rect.center.x + rect.size.x * 0.5f, rect.center.y, 0));
         Draw.ResetStyle();
         
-        Draw.PopMatrix();
-        
+
+        // foreach (var island in revealedIslands) {
+            // var outlineCoords = OutlineDetector.GetOutlinePoly(island.points, HexCoord.GetBestCornerIndex, HexCoord.Corner, HexCoord.GetPointsOnRing).ToArray();
+            // foreach (var coord in island.points) {
+            //     Draw.Disc(coord.Position(), 0.5f);    
+            // }
+        // }
         // foreach (var cell in gameModel.GetCells()) {
         //     DrawFogTile(cell);
         // }
+        Draw.PopMatrix();
     }
 
     public Color scrollingOverlayColorA;
     public Color scrollingOverlayColorB;
+    public float scrollingOverlayLinesDashSize = 1f;
+    public float scrollingOverlayLinesDashSpacing = 1f;
     
     [Range(-1,1)]
     public float fogExtrusion = 0;
@@ -182,29 +186,40 @@ public class GameRenderer : ImmediateModeShapeDrawer {
 
     void DrawMovementPath(List<HexCoord> instanceCurrentPathPoints) {
         Draw.Color = arrowColor;
-        
-        Draw.PushMatrix();
-        Draw.Matrix = Matrix4x4.TRS(Vector3.zero, rotation, Vector3.one);
-        var polylinePath = new PolylinePath();
-        List<Vector2> points = new List<Vector2>();
-        Vector2 arrowDir = Vector2.zero;
-        foreach (var pathPoint in instanceCurrentPathPoints) {
-            var point = (Vector2)Draw.Matrix.inverse.MultiplyPoint3x4(GameController.Instance.hexGrid.CellToWorld(pathPoint));
-            if(points.Count == instanceCurrentPathPoints.Count-1) {
-                arrowDir = (point-points[^1]);
-                point = points.Last() + arrowDir.normalized * (arrowDir.magnitude - (arrowHeadLength * arrowHeadPivot));
-            }
-            points.Add(point);
-        }
-        polylinePath.AddPoints(points);
-        Draw.PolylineGeometry = PolylineGeometry.Flat2D;
-        Draw.Polyline(polylinePath, false, arrowThickness, PolylineJoins.Round);
+        if (instanceCurrentPathPoints.Count < 2) {
+            Draw.PushMatrix();
+            Draw.Matrix = worldToXYMatrix;
+            Draw.Disc(0.3f);
+            Draw.PopMatrix();
+        } else {
+            Draw.PushMatrix();
+            Draw.Matrix = worldToXYMatrix;
+            var polylinePath = new PolylinePath();
+            List<Vector2> points2D = new List<Vector2>();
+            List<Vector3> points3D = new List<Vector3>();
+            Vector2 arrowDir = Vector2.zero;
+            foreach (var pathPoint in instanceCurrentPathPoints) {
+                var worldPoint = GameController.Instance.hexGrid.AxialToWorld(pathPoint);
+                var point = (Vector2)Draw.Matrix.inverse.MultiplyPoint3x4(worldPoint);
+                if(points2D.Count == instanceCurrentPathPoints.Count-1) {
+                    arrowDir = (point-points2D[^1]);
+                    point = points2D.Last() + arrowDir.normalized * (arrowDir.magnitude - (arrowHeadLength * arrowHeadPivot));
+                }
 
-        if (instanceCurrentPathPoints.Count > 1) {
-            // var arrowDir = GameController.Instance.hexGrid.CellToWorld(instanceCurrentPathPoints[instanceCurrentPathPoints.Count-1])-GameController.Instance.hexGrid.CellToWorld(instanceCurrentPathPoints[instanceCurrentPathPoints.Count-2]);
-            var arrowRot = Quaternion.LookRotation(arrowDir, worldSpaceHexGrid.floorNormal);
-            ShapesUtils.DrawArrowHeadPolygon(points.Last(), Qua, arrowHeadThickness, arrowHeadLength, arrowHeadRadius, 16);
+                points2D.Add(point);
+                points3D.Add(Draw.Matrix.MultiplyPoint3x4(point));
+            }
+            polylinePath.AddPoints(points2D);
+            Draw.PolylineGeometry = PolylineGeometry.Flat2D;
+            Draw.Polyline(polylinePath, false, arrowThickness, PolylineJoins.Round);
+            Draw.PopMatrix();
+
+            if (instanceCurrentPathPoints.Count > 1) {
+                // var arrowDir = GameController.Instance.hexGrid.AxialToWorld(instanceCurrentPathPoints[instanceCurrentPathPoints.Count-1])-GameController.Instance.hexGrid.AxialToWorld(instanceCurrentPathPoints[instanceCurrentPathPoints.Count-2]);
+                var arrowRot = Quaternion.Inverse(Quaternion.LookRotation(arrowDir, Vector3.forward)) * worldSpaceHexGrid.axis;
+                ShapesUtils.DrawArrowHeadPolygon(points3D.Last(), arrowRot, arrowHeadThickness, arrowHeadLength, arrowHeadRadius, 16);
+            }
         }
-        Draw.PopMatrix();
+        
     }
 }

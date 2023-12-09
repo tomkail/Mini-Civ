@@ -1,0 +1,967 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="83844c7d-d12e-4135-8ce7-03164b0b52cd" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.MiniCiv/.idea/projectSettingsUpdater.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.MiniCiv/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Palette.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Palette/New Palette.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Palette/New Palette.prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Grid/ShapesHexTest.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Grid/ShapesHexTest.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brick.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brick/Brick.unity" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brick/Physics2D.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brick/Physics2D/Brick.physicsMaterial2D" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brick/Physics2D/Brick.physicsMaterial2D.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brick/Scripts.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brick/Scripts/Ball.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brick/Scripts/Ball.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brick/Scripts/Brick.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brick/Scripts/Brick.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brick/Scripts/GameEnd.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brick/Scripts/GameEnd.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brick/Sprites.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brick/Sprites/Ball.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brick/Sprites/Ball.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brick/Sprites/Brick.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brick/Sprites/Brick.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brick/TileAssets.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brick/TileAssets/BlueBrick.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brick/TileAssets/BlueBrick.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brick/TileAssets/GreenBrick.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brick/TileAssets/GreenBrick.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brick/TileAssets/RedBrick.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brick/TileAssets/RedBrick.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brick/TileAssets/YellowBrick.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brick/TileAssets/YellowBrick.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brick/TilePalettes.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brick/TilePalettes/Blocks.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brick/TilePalettes/Blocks.prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brushes.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brushes/Prefab Brush.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brushes/Prefab Brush/Circle.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brushes/Prefab Brush/Circle.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brushes/Prefab Brush/Example Prefab Brush.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brushes/Prefab Brush/Example Prefab Brush.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brushes/Prefab Brush/Example Prefab Random Brush.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brushes/Prefab Brush/Example Prefab Random Brush.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brushes/Prefab Brush/PrefabCircleBlue.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brushes/Prefab Brush/PrefabCircleBlue.prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brushes/Prefab Brush/PrefabCircleGreen.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brushes/Prefab Brush/PrefabCircleGreen.prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brushes/Prefab Brush/PrefabCircleRed.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brushes/Prefab Brush/PrefabCircleRed.prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brushes/Random Brush.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brushes/Random Brush/Brush Asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brushes/Random Brush/Brush Asset/Random Plant Brush.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brushes/Random Brush/Brush Asset/Random Plant Brush.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brushes/Random Brush/Brush Asset/Random Temple Brush.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brushes/Random Brush/Brush Asset/Random Temple Brush.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brushes/Random Brush/Sprites.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brushes/Random Brush/Sprites/TempleCarved.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brushes/Random Brush/Sprites/TempleCarved.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brushes/Random Brush/Sprites/TemplePlants.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brushes/Random Brush/Sprites/TemplePlants.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brushes/Random Brush/Tile Asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brushes/Random Brush/Tile Asset/TempleCarved_0.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brushes/Random Brush/Tile Asset/TempleCarved_0.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brushes/Random Brush/Tile Asset/TempleCarved_1.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brushes/Random Brush/Tile Asset/TempleCarved_1.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brushes/Random Brush/Tile Asset/TempleCarved_2.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brushes/Random Brush/Tile Asset/TempleCarved_2.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brushes/Random Brush/Tile Asset/TempleCarved_3.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brushes/Random Brush/Tile Asset/TempleCarved_3.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brushes/Random Brush/Tile Asset/TemplePlants_0.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brushes/Random Brush/Tile Asset/TemplePlants_0.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brushes/Random Brush/Tile Asset/TemplePlants_1.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brushes/Random Brush/Tile Asset/TemplePlants_1.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brushes/Random Brush/Tile Asset/TemplePlants_10.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brushes/Random Brush/Tile Asset/TemplePlants_10.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brushes/Random Brush/Tile Asset/TemplePlants_2.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brushes/Random Brush/Tile Asset/TemplePlants_2.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brushes/Random Brush/Tile Asset/TemplePlants_3.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brushes/Random Brush/Tile Asset/TemplePlants_3.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brushes/Random Brush/Tile Asset/TemplePlants_4.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brushes/Random Brush/Tile Asset/TemplePlants_4.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brushes/Random Brush/Tile Asset/TemplePlants_5.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brushes/Random Brush/Tile Asset/TemplePlants_5.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brushes/Random Brush/Tile Asset/TemplePlants_6.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brushes/Random Brush/Tile Asset/TemplePlants_6.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brushes/Random Brush/Tile Asset/TemplePlants_7.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brushes/Random Brush/Tile Asset/TemplePlants_7.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brushes/Random Brush/Tile Asset/TemplePlants_8.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brushes/Random Brush/Tile Asset/TemplePlants_8.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brushes/Random Brush/Tile Asset/TemplePlants_9.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brushes/Random Brush/Tile Asset/TemplePlants_9.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brushes/Tint Brush Smooth.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brushes/Tint Brush Smooth/Materials.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brushes/Tint Brush Smooth/Materials/TintedTilemap.mat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brushes/Tint Brush Smooth/Materials/TintedTilemap.mat.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brushes/Tint Brush Smooth/Tint Brush Smooth.unity" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brushes/Tint Brush Smooth/Tint Brush Smooth.unity.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brushes/Tint Brush.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brushes/Tint Brush/Sprites.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brushes/Tint Brush/Sprites/Brick.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brushes/Tint Brush/Sprites/Brick.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brushes/Tint Brush/TileAssets.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brushes/Tint Brush/TileAssets/TintTile.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brushes/Tint Brush/TileAssets/TintTile.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brushes/Tint Brush/TilePalettes.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brushes/Tint Brush/TilePalettes/Tint.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brushes/Tint Brush/TilePalettes/Tint.prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brushes/Tint Brush/TintBrushExample.unity" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Brushes/Tint Brush/TintBrushExample.unity.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Destructible.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Destructible/Destructible.unity" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Destructible/Destructible.unity.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Destructible/Explosion.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Destructible/Explosion/Explosion.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Destructible/Explosion/Explosion.prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Destructible/Explosion/GameObject.controller" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Destructible/Explosion/GameObject.controller.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Destructible/Explosion/explosion.anim" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Destructible/Explosion/explosion.anim.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Destructible/Palette.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Destructible/Palette/Destructible.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Destructible/Palette/Destructible.prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Destructible/Scripts.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Destructible/Scripts/Destructible.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Destructible/Scripts/Destructible.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Destructible/Scripts/Editor.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Destructible/Scripts/Editor/DestructibleEditor.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Destructible/Scripts/Editor/DestructibleEditor.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Destructible/Scripts/Explosion.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Destructible/Scripts/Explosion.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Destructible/Scripts/MouseClickBomb.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Destructible/Scripts/MouseClickBomb.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Destructible/Sprites.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Destructible/Sprites/destruct.PNG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Destructible/Sprites/destruct.PNG.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Destructible/Sprites/dungeon2border.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Destructible/Sprites/dungeon2border.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Destructible/Sprites/explosion.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Destructible/Sprites/explosion.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Destructible/Sprites/floorexploded.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Destructible/Sprites/floorexploded.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Destructible/Tile Assets.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Destructible/Tile Assets/Border.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Destructible/Tile Assets/Border.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Destructible/Tile Assets/Destructible.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Destructible/Tile Assets/Destructible.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Destructible/Tile Assets/Floor.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Destructible/Tile Assets/Floor.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Destructible/Tile Assets/FloorExploded.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Destructible/Tile Assets/FloorExploded.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Destructible/Tile Assets/Undestructible.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Destructible/Tile Assets/Undestructible.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Editor.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Editor/PreviewUtil.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Editor/PreviewUtil.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Palettes.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Palettes/Hexagonal.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Palettes/Hexagonal.prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Scenes.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Scenes/Hexagonal.unity" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Scenes/Hexagonal.unity.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Sprites.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Sprites/opengameart.org" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Sprites/opengameart.org.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Sprites/phlosioneer_hex_coastline.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Sprites/phlosioneer_hex_coastline.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Land.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Land.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_0.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_0.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_1.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_1.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_11.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_11.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_12.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_12.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_13.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_13.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_14.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_14.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_15.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_15.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_16.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_16.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_2.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_2.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_21.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_21.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_22.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_22.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_23.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_23.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_24.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_24.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_25.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_25.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_26.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_26.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_27.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_27.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_28.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_28.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_29.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_29.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_31.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_31.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_32.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_32.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_33.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_33.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_34.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_34.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_35.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_35.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_36.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_36.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_38.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_38.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_39.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_39.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_40.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_40.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_41.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_41.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_42.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_42.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_43.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_43.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_44.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_44.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_45.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_45.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_46.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_46.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_47.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_47.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_48.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_48.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_50.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_50.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_51.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_51.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_52.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_52.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_53.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_53.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_54.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_54.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_55.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_55.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_56.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_56.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_57.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_57.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_58.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_58.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_60.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_60.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_61.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_61.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_62.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_62.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_63.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_63.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_64.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_64.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_65.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_65.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_66.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_66.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_67.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_67.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_68.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_68.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_70.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_70.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_71.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_71.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_72.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_72.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_73.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_73.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_74.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_74.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_75.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_75.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_77.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_77.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_78.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_78.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_79.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_79.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_80.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_80.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_81.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_81.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_82.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Hexagonal/Tiles/Palette/phlosioneer_hex_coastline_82.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationClips.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationClips/Run E.anim" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationClips/Run E.anim.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationClips/Run N.anim" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationClips/Run N.anim.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationClips/Run NE.anim" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationClips/Run NE.anim.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationClips/Run NW.anim" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationClips/Run NW.anim.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationClips/Run S.anim" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationClips/Run S.anim.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationClips/Run SE.anim" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationClips/Run SE.anim.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationClips/Run SW.anim" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationClips/Run SW.anim.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationClips/Run W.anim" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationClips/Run W.anim.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationClips/Static E.anim" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationClips/Static E.anim.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationClips/Static N.anim" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationClips/Static N.anim.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationClips/Static NE.anim" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationClips/Static NE.anim.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationClips/Static NW.anim" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationClips/Static NW.anim.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationClips/Static S.anim" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationClips/Static S.anim.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationClips/Static SE.anim" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationClips/Static SE.anim.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationClips/Static SW.anim" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationClips/Static SW.anim.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationClips/Static W.anim" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationClips/Static W.anim.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationSprites.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationSprites/Run E.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationSprites/Run E/witch run E00.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationSprites/Run E/witch run E00.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationSprites/Run E/witch run E01.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationSprites/Run E/witch run E01.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationSprites/Run E/witch run E02.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationSprites/Run E/witch run E02.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationSprites/Run E/witch run E03.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationSprites/Run E/witch run E03.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationSprites/Run E/witch run E04.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationSprites/Run E/witch run E04.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationSprites/Run E/witch run E05.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationSprites/Run E/witch run E05.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationSprites/Run N.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationSprites/Run N/witch run N00.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationSprites/Run N/witch run N00.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationSprites/Run N/witch run N01.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationSprites/Run N/witch run N01.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationSprites/Run N/witch run N02.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationSprites/Run N/witch run N02.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationSprites/Run N/witch run N03.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationSprites/Run N/witch run N03.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationSprites/Run N/witch run N04.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationSprites/Run N/witch run N04.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationSprites/Run N/witch run N05.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationSprites/Run N/witch run N05.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationSprites/Run NE.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationSprites/Run NE/witch run NE00.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationSprites/Run NE/witch run NE00.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationSprites/Run NE/witch run NE01.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationSprites/Run NE/witch run NE01.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationSprites/Run NE/witch run NE02.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationSprites/Run NE/witch run NE02.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationSprites/Run NE/witch run NE03.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationSprites/Run NE/witch run NE03.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationSprites/Run NE/witch run NE04.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationSprites/Run NE/witch run NE04.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationSprites/Run NE/witch run NE05.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationSprites/Run NE/witch run NE05.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationSprites/Run S.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationSprites/Run S/witch run S00.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationSprites/Run S/witch run S00.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationSprites/Run S/witch run S01.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationSprites/Run S/witch run S01.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationSprites/Run S/witch run S02.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationSprites/Run S/witch run S02.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationSprites/Run S/witch run S03.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationSprites/Run S/witch run S03.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationSprites/Run S/witch run S04.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationSprites/Run S/witch run S04.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationSprites/Run S/witch run S05.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationSprites/Run S/witch run S05.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationSprites/Run SE.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationSprites/Run SE/witch run SE00.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationSprites/Run SE/witch run SE00.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationSprites/Run SE/witch run SE01.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationSprites/Run SE/witch run SE01.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationSprites/Run SE/witch run SE02.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationSprites/Run SE/witch run SE02.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationSprites/Run SE/witch run SE03.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationSprites/Run SE/witch run SE03.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationSprites/Run SE/witch run SE04.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationSprites/Run SE/witch run SE04.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationSprites/Run SE/witch run SE05.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationSprites/Run SE/witch run SE05.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationSprites/Static.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationSprites/Static/witch static00.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationSprites/Static/witch static00.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationSprites/Static/witch static01.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationSprites/Static/witch static01.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationSprites/Static/witch static02.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationSprites/Static/witch static02.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationSprites/Static/witch static03.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationSprites/Static/witch static03.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationSprites/Static/witch static04.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationSprites/Static/witch static04.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationSprites/Static/witch static05.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationSprites/Static/witch static05.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationSprites/Static/witch static06.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationSprites/Static/witch static06.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationSprites/Static/witch static07.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/AnimationSprites/Static/witch static07.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/WitchController.controller" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Characters/Witch/WitchController.controller.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Palettes.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Palettes/IsometricZAsY.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Palettes/IsometricZAsY.prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Prefabs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Prefabs/Decorations.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Prefabs/Decorations/Desert.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Prefabs/Decorations/Desert/Bones_1.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Prefabs/Decorations/Desert/Bones_1.prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Prefabs/Decorations/Desert/Bones_2.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Prefabs/Decorations/Desert/Bones_2.prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Prefabs/Decorations/Desert/Bones_3.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Prefabs/Decorations/Desert/Bones_3.prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Prefabs/Decorations/Desert/Rock_Purple_Large.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Prefabs/Decorations/Desert/Rock_Purple_Large.prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Prefabs/Decorations/Desert/Rock_Purple_Small.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Prefabs/Decorations/Desert/Rock_Purple_Small.prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Prefabs/Decorations/Desert/Tent.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Prefabs/Decorations/Desert/Tent.prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Prefabs/Decorations/Desert/Tree_Palm.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Prefabs/Decorations/Desert/Tree_Palm.prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Prefabs/MainCamera_IsometricPixelPerfect.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Prefabs/MainCamera_IsometricPixelPerfect.prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Scenes.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Scenes/Scene_Biome_Desert_ZAsY.unity" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Scenes/Scene_Biome_Desert_ZAsY.unity.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Scripts.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Scripts/BasicCameraFollow.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Scripts/BasicCameraFollow.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Scripts/CustomAxisSortCamera.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Scripts/CustomAxisSortCamera.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Scripts/HideTilemapColliderOnPlay.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Scripts/HideTilemapColliderOnPlay.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Scripts/IsometricCharacterRenderer.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Scripts/IsometricCharacterRenderer.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Scripts/IsometricPlayerMovementController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Scripts/IsometricPlayerMovementController.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Scripts/ToggleHeightLevel.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Scripts/ToggleHeightLevel.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Colliders.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Colliders/ColliderSprites.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Colliders/ColliderSprites/stairs-border.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Colliders/ColliderSprites/stairs-border.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Colliders/ColliderSprites/tile-border-left.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Colliders/ColliderSprites/tile-border-left.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Colliders/ColliderSprites/tile-border-right.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Colliders/ColliderSprites/tile-border-right.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Colliders/ColliderSprites/tile-border-top.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Colliders/ColliderSprites/tile-border-top.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Colliders/ColliderTiles.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Colliders/ColliderTiles/stairs-border.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Colliders/ColliderTiles/stairs-border.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Colliders/ColliderTiles/tile-border-left.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Colliders/ColliderTiles/tile-border-left.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Colliders/ColliderTiles/tile-border-right.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Colliders/ColliderTiles/tile-border-right.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Colliders/ColliderTiles/tile-border-top.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Colliders/ColliderTiles/tile-border-top.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/RuleTiles.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/RuleTiles/NeighbourTiles.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/RuleTiles/NeighbourTiles/NeighbourTile_Desert_FlatSand.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/RuleTiles/NeighbourTiles/NeighbourTile_Desert_FlatSand.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/RuleTiles/NeighbourTiles/NeighbourTile_Desert_RaisedSand.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/RuleTiles/NeighbourTiles/NeighbourTile_Desert_RaisedSand.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert/Decoration.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert/Decoration/desert-sliced_46.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert/Decoration/desert-sliced_46.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert/Decoration/desert-sliced_47.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert/Decoration/desert-sliced_47.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert/Decoration/desert-sliced_54.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert/Decoration/desert-sliced_54.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert/Decoration/desert-sliced_55.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert/Decoration/desert-sliced_55.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert/Decoration/desert-sliced_56.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert/Decoration/desert-sliced_56.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert/Decoration/desert-sliced_57.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert/Decoration/desert-sliced_57.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert/Decoration/desert-sliced_58.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert/Decoration/desert-sliced_58.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert/Decoration/desert-sliced_60.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert/Decoration/desert-sliced_60.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert/Decoration/desert-sliced_61.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert/Decoration/desert-sliced_61.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert/Decoration/desert-sliced_62.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert/Decoration/desert-sliced_62.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert/Decoration/desert-sliced_63.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert/Decoration/desert-sliced_63.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert/Decoration/desert-sliced_64.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert/Decoration/desert-sliced_64.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert/Decoration/desert-sliced_65.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert/Decoration/desert-sliced_65.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert/Decoration/desert-sliced_67.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert/Decoration/desert-sliced_67.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert/Flat.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert/Flat/desert-sliced_01.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert/Flat/desert-sliced_01.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert/Flat/desert-sliced_02.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert/Flat/desert-sliced_02.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert/Flat/desert-sliced_04.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert/Flat/desert-sliced_04.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert/Flat/desert-sliced_05.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert/Flat/desert-sliced_05.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert/Flat/desert-sliced_06.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert/Flat/desert-sliced_06.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert/Flat/desert-sliced_07.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert/Flat/desert-sliced_07.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert/Flat/desert-sliced_08.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert/Flat/desert-sliced_08.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert/Flat/desert-sliced_10.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert/Flat/desert-sliced_10.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert/Flat/desert-sliced_12.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert/Flat/desert-sliced_12.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert/Flat/desert-sliced_13.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert/Flat/desert-sliced_13.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert/Flat/desert-sliced_14.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert/Flat/desert-sliced_14.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert/Flat/desert-sliced_16.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert/Flat/desert-sliced_16.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert/Flat/desert-sliced_17.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert/Flat/desert-sliced_17.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert/Raised.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert/Raised/desert-sliced_25.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert/Raised/desert-sliced_25.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert/Raised/desert-sliced_26.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert/Raised/desert-sliced_26.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert/Raised/desert-sliced_28.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert/Raised/desert-sliced_28.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert/Raised/desert-sliced_29.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert/Raised/desert-sliced_29.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert/Raised/desert-sliced_30.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert/Raised/desert-sliced_30.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert/Raised/desert-sliced_31.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert/Raised/desert-sliced_31.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert/Raised/desert-sliced_32.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert/Raised/desert-sliced_32.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert/Raised/desert-sliced_34.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert/Raised/desert-sliced_34.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert/Raised/desert-sliced_36.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert/Raised/desert-sliced_36.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert/Raised/desert-sliced_37.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert/Raised/desert-sliced_37.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert/Raised/desert-sliced_38.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert/Raised/desert-sliced_38.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert/Raised/desert-sliced_40.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert/Raised/desert-sliced_40.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert/Raised/desert-sliced_41.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert/Raised/desert-sliced_41.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert/Raised/desert-sliced_52.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert/Raised/desert-sliced_52.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert/Raised/desert-sliced_53.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/IsometricZAsY/Tilemaps/Isometric/Sprites/Desert/Raised/desert-sliced_53.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Normal Mapping.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Normal Mapping/Material.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Normal Mapping/Material/Normal Mapped Tile.mat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Normal Mapping/Material/Normal Mapped Tile.mat.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Normal Mapping/Material/Shader.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Normal Mapping/Material/Shader/NormalMappedTile.shader" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Normal Mapping/Material/Shader/NormalMappedTile.shader.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Normal Mapping/Palette.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Normal Mapping/Palette/Normal Mapped.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Normal Mapping/Palette/Normal Mapped.prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Normal Mapping/Scene.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Normal Mapping/Scene/normalmapping.unity" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Normal Mapping/Scene/normalmapping.unity.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Normal Mapping/Sprites.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Normal Mapping/Sprites/NormalMappedPlatform.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Normal Mapping/Sprites/NormalMappedPlatform.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Normal Mapping/Sprites/normalmap.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Normal Mapping/Sprites/normalmap.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Normal Mapping/Sprites/sprites.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Normal Mapping/Sprites/sprites.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/PaletteSwap.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/PaletteSwap/PaletteSwap.unity" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/PaletteSwap/PaletteSwap.unity.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/PaletteSwap/Scripts.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/PaletteSwap/Scripts/TilePaletteSwap.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/PaletteSwap/Scripts/TilePaletteSwap.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/PaletteSwap/Tile Palettes.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/PaletteSwap/Tile Palettes/Swap Palette A.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/PaletteSwap/Tile Palettes/Swap Palette A.prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/PaletteSwap/Tile Palettes/Swap Palette B.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/PaletteSwap/Tile Palettes/Swap Palette B.prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/PaletteSwap/Tile Palettes/Swap Palette C.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/PaletteSwap/Tile Palettes/Swap Palette C.prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Animated Ocean Tile.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Animated Ocean Tile/Atlas.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Animated Ocean Tile/Atlas/Ocean.spriteatlas" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Animated Ocean Tile/Atlas/Ocean.spriteatlas.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Animated Ocean Tile/Sprites.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Animated Ocean Tile/Sprites/ocean.ase" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Animated Ocean Tile/Sprites/ocean.ase.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Animated Ocean Tile/Sprites/ocean.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Animated Ocean Tile/Sprites/ocean.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Animated Ocean Tile/Tile Asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Animated Ocean Tile/Tile Asset/Ocean.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Animated Ocean Tile/Tile Asset/Ocean.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Custom Rule Tile.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Custom Rule Tile/Custom Rule Tile.unity" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Custom Rule Tile/Custom Rule Tile.unity.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Custom Rule Tile/Scripts.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Custom Rule Tile/Scripts/CustomTypeRuleTile.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Custom Rule Tile/Scripts/CustomTypeRuleTile.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Custom Rule Tile/Scripts/ExampleCustomRuleTile.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Custom Rule Tile/Scripts/ExampleCustomRuleTile.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Custom Rule Tile/Sprites.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Custom Rule Tile/Sprites/Kenney.nl.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Custom Rule Tile/Sprites/Kenney.nl.txt.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Custom Rule Tile/Sprites/dungeonblue.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Custom Rule Tile/Sprites/dungeonblue.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Custom Rule Tile/Sprites/topdowntanksredux.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Custom Rule Tile/Sprites/topdowntanksredux.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Custom Rule Tile/Tile Asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Custom Rule Tile/Tile Asset/CustomDesertRoadTile.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Custom Rule Tile/Tile Asset/CustomDesertRoadTile.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Custom Rule Tile/Tile Asset/CustomGrassRoadTile.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Custom Rule Tile/Tile Asset/CustomGrassRoadTile.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Custom Rule Tile/Tile Asset/CustomGrassTile.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Custom Rule Tile/Tile Asset/CustomGrassTile.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Custom Rule Tile/Tile Asset/Dungeon Blue.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Custom Rule Tile/Tile Asset/Dungeon Blue.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Custom Rule Tile/Tile Asset/Dungeon.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Custom Rule Tile/Tile Asset/Dungeon.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Custom Rule Tile/Tile Asset/desert.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Custom Rule Tile/Tile Asset/desert.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Custom Rule Tile/Tile Asset/grass.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Custom Rule Tile/Tile Asset/grass.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Custom Rule Tile/Tile Asset/mixed.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Custom Rule Tile/Tile Asset/mixed.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Dungeon Tile.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Dungeon Tile/Atlas.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Dungeon Tile/Atlas/Dungeon.spriteatlas" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Dungeon Tile/Atlas/Dungeon.spriteatlas.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Dungeon Tile/Sprites.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Dungeon Tile/Sprites/dungeon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Dungeon Tile/Sprites/dungeon.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Dungeon Tile/Tile Asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Dungeon Tile/Tile Asset/Cave.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Dungeon Tile/Tile Asset/Cave.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Foliage Tile.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Foliage Tile/Atlas.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Foliage Tile/Atlas/Foliage.spriteatlas" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Foliage Tile/Atlas/Foliage.spriteatlas.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Foliage Tile/Sprites.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Foliage Tile/Sprites/foliage.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Foliage Tile/Sprites/foliage.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Foliage Tile/Tile Asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Foliage Tile/Tile Asset/Foliage.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Foliage Tile/Tile Asset/Foliage.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Ladder Tile.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Ladder Tile/Atlas.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Ladder Tile/Atlas/Ladder.spriteatlas" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Ladder Tile/Atlas/Ladder.spriteatlas.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Ladder Tile/Sprites.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Ladder Tile/Sprites/ladder.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Ladder Tile/Sprites/ladder.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Ladder Tile/Tile Asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Ladder Tile/Tile Asset/Ladder.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Ladder Tile/Tile Asset/Ladder.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Palette.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Palette/Rule Override Tiles.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Palette/Rule Override Tiles.prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Palette/Rule Tiles.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Palette/Rule Tiles.prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Pipeline Tile.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Pipeline Tile/Atlas.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Pipeline Tile/Atlas/Pipeline.spriteatlas" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Pipeline Tile/Atlas/Pipeline.spriteatlas.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Pipeline Tile/Sprites.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Pipeline Tile/Sprites/pipeline.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Pipeline Tile/Sprites/pipeline.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Pipeline Tile/Tile Asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Pipeline Tile/Tile Asset/Pipeline.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Pipeline Tile/Tile Asset/Pipeline.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Platform Tile 2.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Platform Tile 2/Atlas.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Platform Tile 2/Atlas/Platform2.spriteatlas" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Platform Tile 2/Atlas/Platform2.spriteatlas.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Platform Tile 2/Sprites.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Platform Tile 2/Sprites/platform2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Platform Tile 2/Sprites/platform2.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Platform Tile 2/Tile Asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Platform Tile 2/Tile Asset/platform2.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Platform Tile 2/Tile Asset/platform2.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Platform Tile 3.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Platform Tile 3/Atlas.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Platform Tile 3/Atlas/Platform3.spriteatlas" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Platform Tile 3/Atlas/Platform3.spriteatlas.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Platform Tile 3/Sprites.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Platform Tile 3/Sprites/platform3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Platform Tile 3/Sprites/platform3.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Platform Tile 3/Tile Asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Platform Tile 3/Tile Asset/platform3.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Platform Tile 3/Tile Asset/platform3.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Platform Tile.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Platform Tile/Atlas.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Platform Tile/Atlas/Platformer.spriteatlas" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Platform Tile/Atlas/Platformer.spriteatlas.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Platform Tile/Sprites.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Platform Tile/Sprites/platform.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Platform Tile/Sprites/platform.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Platform Tile/Tile Asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Platform Tile/Tile Asset/Platform.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Platform Tile/Tile Asset/Platform.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Rule Override Tile.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Rule Override Tile/ExampleSiblingRuleTile.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Rule Override Tile/ExampleSiblingRuleTile.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Rule Override Tile/Rule Override Tile.unity" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Rule Override Tile/Rule Override Tile.unity.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Rule Override Tile/Sprites.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Rule Override Tile/Sprites/Kenney.nl.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Rule Override Tile/Sprites/Kenney.nl.txt.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Rule Override Tile/Sprites/tilemap.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Rule Override Tile/Sprites/tilemap.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Rule Override Tile/Sprites/tilemap2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Rule Override Tile/Sprites/tilemap2.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Rule Override Tile/Tile Asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Rule Override Tile/Tile Asset/Clothesline.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Rule Override Tile/Tile Asset/Clothesline.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Rule Override Tile/Tile Asset/Poles.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Rule Override Tile/Tile Asset/Poles.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Rule Override Tile/Tile Asset/Terrain.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Rule Override Tile/Tile Asset/Terrain.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Rule Override Tile/Tile Asset/TerrainSlope.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Rule Override Tile/Tile Asset/TerrainSlope.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Animated Tile.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Animated Tile/Animated Tile.unity" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Animated Tile/Animated Tile.unity.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Animated Tile/Sprite Atlas.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Animated Tile/Sprite Atlas/Animated Tiles.spriteatlas" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Animated Tile/Sprite Atlas/Animated Tiles.spriteatlas.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Animated Tile/Sprites.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Animated Tile/Sprites/Animated Tiles.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Animated Tile/Sprites/Animated Tiles.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Animated Tile/Tile Asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Animated Tile/Tile Asset/WaterfallMain.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Animated Tile/Tile Asset/WaterfallMain.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Animated Tile/Tile Asset/WaterfallSplash.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Animated Tile/Tile Asset/WaterfallSplash.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Animated Tile/Tile Palette.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Animated Tile/Tile Palette/Animated Tiles.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Animated Tile/Tile Palette/Animated Tiles.prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Pipeline Tile.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Pipeline Tile/Pipeline Tile.unity" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Pipeline Tile/Pipeline Tile.unity.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Pipeline Tile/Sprite Atlas.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Pipeline Tile/Sprite Atlas/Pipeline Tiles.spriteatlas" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Pipeline Tile/Sprite Atlas/Pipeline Tiles.spriteatlas.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Pipeline Tile/Sprites.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Pipeline Tile/Sprites/Pipeline Tiles.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Pipeline Tile/Sprites/Pipeline Tiles.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Pipeline Tile/TileAssets.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Pipeline Tile/TileAssets/Pipes.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Pipeline Tile/TileAssets/Pipes.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Pipeline Tile/TilePalettes.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Pipeline Tile/TilePalettes/Pipeline Tiles.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Pipeline Tile/TilePalettes/Pipeline Tiles.prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Random Tile.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Random Tile/Random Tile.unity" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Random Tile/Random Tile.unity.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Random Tile/Sprites.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Random Tile/Sprites/TempleStoneBasic.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Random Tile/Sprites/TempleStoneBasic.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Random Tile/Sprites/TempleStoneGrass.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Random Tile/Sprites/TempleStoneGrass.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Random Tile/Tile Assets.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Random Tile/Tile Assets/RandomTempleGrassTile.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Random Tile/Tile Assets/RandomTempleGrassTile.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Random Tile/Tile Assets/RandomTempleStoneTile.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Random Tile/Tile Assets/RandomTempleStoneTile.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Random Tile/Tile Palettes.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Random Tile/Tile Palettes/Random Tiles.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Random Tile/Tile Palettes/Random Tiles.prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Terrain Tile.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Terrain Tile/Sprite Atlas.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Terrain Tile/Sprite Atlas/Terrain Tiles.spriteatlas" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Terrain Tile/Sprite Atlas/Terrain Tiles.spriteatlas.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Terrain Tile/Sprites.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Terrain Tile/Sprites/Terrain Tiles.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Terrain Tile/Sprites/Terrain Tiles.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Terrain Tile/Terrain Tile.unity" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Terrain Tile/Terrain Tile.unity.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Terrain Tile/Tile Assets.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Terrain Tile/Tile Assets/PBricks.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Terrain Tile/Tile Assets/PBricks.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Terrain Tile/Tile Assets/Pebbles.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Terrain Tile/Tile Assets/Pebbles.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Terrain Tile/Tile Palettes.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Terrain Tile/Tile Palettes/Terrain Tiles.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Terrain Tile/Tile Palettes/Terrain Tiles.prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Weighted Random Tile.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Weighted Random Tile/Tile Assets.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Weighted Random Tile/Tile Assets/WeightedRandomTempleGrassTile.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Weighted Random Tile/Tile Assets/WeightedRandomTempleGrassTile.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Weighted Random Tile/Tile Assets/WeightedRandomTempleStoneTile.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Weighted Random Tile/Tile Assets/WeightedRandomTempleStoneTile.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Weighted Random Tile/Tile Palettes.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Weighted Random Tile/Tile Palettes/Weighted Random Tiles.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Weighted Random Tile/Tile Palettes/Weighted Random Tiles.prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Weighted Random Tile/Weighted Random Tile.unity" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Weighted Random Tile/Weighted Random Tile.unity.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tiles/MountainTerrainTile.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Tiles/MountainTerrainTile.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UserSettings/Layouts/default-2022.dwlt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.MiniCiv/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.MiniCiv/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MiniCiv/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/GameRenderer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GameRenderer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Plugins/Shapes/Resources/Shapes Config.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/Shapes/Resources/Shapes Config.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Plugins/Shapes/Textures/Inconsolata/Inconsolata-SemiBold SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/Shapes/Textures/Inconsolata/Inconsolata-SemiBold SDF.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Plugins/Shapes/Textures/Inconsolata/Inconsolata-SemiBold SDF.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/Shapes/Textures/Inconsolata/Inconsolata-SemiBold SDF.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Plugins/UI Shapes Kit/Geometry/Editor/CustomDrawers/PointListDrawer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/UI Shapes Kit/Geometry/Editor/CustomDrawers/PointListDrawer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Board.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Board.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Board_Profiles/Board Camera Profile.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Board_Profiles/Board Camera Profile.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Level1.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Level1.unity.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tilemap/Brick/Brick.unity.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Main.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Main.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Grid/Hex/HexCoord.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Grid/Hex/HexCoord.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Grid/Hex/HexEdgeDirections.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Grid/Hex/HexEdgeDirections.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Grid/Hex/HexUtils.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Grid/Hex/HexUtils.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Grid/MasterGrid.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Grid/MasterGrid.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Grid/WorldSpaceHexGrid.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Grid/WorldSpaceHexGrid.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/LevelGenerator/GameController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/LevelGenerator/GameController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/LevelGenerator/GameInputController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/LevelGenerator/GameInputController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/LevelGenerator/PathFinder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/LevelGenerator/PathFinder.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/LevelGenerator/TomsLevelGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/LevelGenerator/TomsLevelGenerator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/LevelGenerator/TomsLevelGeneratorSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/LevelGenerator/TomsLevelGeneratorSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Model/Model/FogGridLayerModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Model/Model/FogGridLayerModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Land.psd" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/Land.psd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Land.psd.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/Land.psd.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UnityX/Scripts/Components/Region/Editor/RegionEditor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UnityX/Scripts/Components/Region/Editor/RegionEditor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UnityX/Scripts/Components/Render Texture Creator/RenderTextureCreator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UnityX/Scripts/Components/Render Texture Creator/RenderTextureCreator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UnityX/Scripts/Extensions/Spline System/Editor/SplineEditor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UnityX/Scripts/Extensions/Spline System/Editor/SplineEditor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UnityX/Scripts/Extensions/Structures/Island/OutlineDetector.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UnityX/Scripts/Extensions/Structures/Island/OutlineDetector.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UnityX/Scripts/Extensions/UnityEditorX/Editor/SaveAllOnEnterPlayMode.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UnityX/Scripts/Extensions/UnityEditorX/Editor/SaveAllOnEnterPlayMode.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.testtools.codecoverage/Settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.testtools.codecoverage/Settings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/boot.config" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/CurrentMaximizeLayout.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/CurrentMaximizeLayout.dwlt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/default-2021.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/default-2021.dwlt" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Tilemap/Rule Tiles/Custom Rule Tile/Scripts/CustomTypeRuleTile.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Tiles/RiverTerrainTile.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/0dd0f869655b42c1b27cba11ac078d1f4200/3b/9f48d9bd/Grid.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/e9043e5dbf2a494db0ced42f6606eca89a00/91/4072f0bf/TileBase.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/e9043e5dbf2a494db0ced42f6606eca89a00/c7/9ae0096b/Tile.cs" root0="SKIP_HIGHLIGHTING" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="2YlyVLEhBuZTRz2ml4VYPYzDN0V" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;rider.external.source.directories&quot;: [
+      &quot;/Users/tom/Library/Application Support/JetBrains/Rider2023.2/resharper-host/DecompilerCache&quot;,
+      &quot;/Users/tom/Library/Application Support/JetBrains/Rider2023.2/resharper-host/SourcesCache&quot;,
+      &quot;/Users/tom/.local/share/Symbols/src&quot;
+    ]
+  }
+}</component>
+  <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
+    <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
+      <option name="EXE_PATH" value="/Applications/Unity/Hub/Editor/2022.3.11f1/Unity.app/Contents/MacOS/Unity" />
+      <option name="PROGRAM_PARAMETERS" value="-projectPath &quot;$PROJECT_DIR$&quot; -debugCodeOptimization" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Unit Tests (batch mode)" type="RunUnityExe" factoryName="Unity Executable">
+      <option name="EXE_PATH" value="/Applications/Unity/Hub/Editor/2022.3.11f1/Unity.app/Contents/MacOS/Unity" />
+      <option name="PROGRAM_PARAMETERS" value="-runTests -batchmode -projectPath &quot;$PROJECT_DIR$&quot; -testResults Logs/results.xml -testPlatform EditMode -debugCodeOptimization" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" />
+      <option name="projectPathOnTarget" />
+      <option name="selectedOptions">
+        <list />
+      </option>
+      <method v="2" />
+    </configuration>
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" />
+      <option name="projectPathOnTarget" />
+      <option name="selectedOptions">
+        <list />
+      </option>
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
+  <component name="UnityUnitTestConfiguration" currentTestLauncher="Both" />
+  <component name="VcsManagerConfiguration">
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+</project>
