@@ -17,7 +17,8 @@ public class ShapesHexTest : ImmediateModeShapeDrawer {
             DrawFloor();
         }
     }
-    
+
+    public float radius = 0.5f;
     void DrawFloor() {
         HexCoord.offsetLayout = HexCoord.Layout.OddR;
         
@@ -26,16 +27,16 @@ public class ShapesHexTest : ImmediateModeShapeDrawer {
         var polygonPath = new PolygonPath();
         polygonPath.AddPoints(MasterGrid.HexCornerVectors2D());
         
-        Draw.PushMatrix();
-        Draw.Matrix = Matrix4x4.TRS(worldSpaceHexGrid.AxialToWorld(coord), worldSpaceHexGrid.axis, Vector3.one);
-        Draw.Polygon(polygonPath);
-        Draw.Color = Color.black;
-        Draw.Line(Vector3.zero, worldSpaceHexGrid.GetWorldPositionOnCoordInEdgeDirection(HexCoord.zero, corner));
-        Draw.PopMatrix();
+        // Draw.PushMatrix();
+        // Draw.Matrix = Matrix4x4.TRS(worldSpaceHexGrid.AxialToWorld(coord), worldSpaceHexGrid.axis, Vector3.one);
+        // Draw.Polygon(polygonPath);
+        // Draw.Color = Color.black;
+        // Draw.Line(Vector3.zero, worldSpaceHexGrid.GetWorldPositionOnCoordInEdgeDirection(HexCoord.zero, corner));
+        // Draw.PopMatrix();
         
         foreach (var axial in HexCoord.GetPointsInRing(0, 3)) {
             Draw.PushMatrix();
-            Draw.Matrix = Matrix4x4.TRS(worldSpaceHexGrid.AxialToWorld(axial), worldSpaceHexGrid.axis, Vector3.one);
+            Draw.Matrix = Matrix4x4.TRS(worldSpaceHexGrid.AxialToWorld(axial), worldSpaceHexGrid.axis, Vector3.one * radius);
             
             Draw.Color = Color.white.WithAlpha(0.5f);
             Draw.Polygon(polygonPath);
@@ -60,7 +61,7 @@ public class ShapesHexTest : ImmediateModeShapeDrawer {
             for (int i = 0; i < 6; i++) {
                 var cornerPosition = worldSpaceHexGrid.GetWorldPositionOnCoordInCornerDirection(axial, i, 0.8f);
                 Draw.PushMatrix();
-                Draw.Matrix = Matrix4x4.TRS(cornerPosition, worldSpaceHexGrid.axis, Vector3.one);
+                Draw.Matrix = Matrix4x4.TRS(cornerPosition, worldSpaceHexGrid.axis, Vector3.one * radius);
                 
                 // var cornerVector = HexCoord.CornerVector(coord, i);
                 Draw.Ring(Vector3.zero, 0.1f, 0.025f);

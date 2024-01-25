@@ -1,0 +1,2 @@
+public class RoadTile : TerrainTile {
+}

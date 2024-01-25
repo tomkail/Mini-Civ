@@ -164,9 +164,9 @@ public class GameRenderer : ImmediateModeShapeDrawer {
     [Range(-1,1)]
     public float fogExtrusion = 0;
     [Range(0,1)]
-    public float smoothingRadius = 10;
+    public float smoothingRadius = 0.3f;
     [Range(0,90)]
-    public float smoothingDegPerPoint = 5;
+    public float smoothingDegPerPoint = 20;
     
     void DrawFogTile(GridCellModel cell) {
         if(cell.fog == null || cell.fog.revealed) return;

@@ -1241,11 +1241,59 @@ public struct HexCoord : IEquatable<HexCoord> {
 		return new Vector2(x, y);
 	}
 
+	
 
-	public static explicit operator Vector2(HexCoord src) {
-		return new Vector2(src.q, src.r);
+	public static HexCoord FromVector2Int(Vector2Int vector) {
+		return new HexCoord(Mathf.RoundToInt(vector.x), Mathf.RoundToInt(vector.y));
 	}
 
+	public static HexCoord FromVector3Int(Vector3Int vector) {
+		return new HexCoord(Mathf.RoundToInt(vector.x), Mathf.RoundToInt(vector.y));
+	}
+
+	public static Vector2 ToVector2(HexCoord point) {
+		return new Vector2(point.q, point.r);
+	}
+	
+	public static Vector2Int ToVector2Int(HexCoord point) {
+		return new Vector2Int(point.q, point.r);
+	}
+
+	public static Vector3Int ToVector3Int(HexCoord point) {
+		return new Vector3Int(point.q, point.r, 0);
+	}
+
+	public Vector2 ToVector2() {
+		return ToVector2(this);
+	}
+	
+	public Vector2Int ToVector2Int() {
+		return ToVector2Int(this);
+	}
+
+	public Vector3Int ToVector3Int() {
+		return ToVector3Int(this);
+	}
+
+	public static implicit operator HexCoord(Vector2Int src) {
+		return FromVector2Int(src);
+	}
+
+	public static implicit operator HexCoord(Vector3Int src) {
+		return FromVector3Int(src);
+	}
+	
+	public static implicit operator Vector2(HexCoord src) {
+		return src.ToVector2();
+	}
+	
+	public static implicit operator Vector2Int(HexCoord src) {
+		return src.ToVector2Int();
+	}
+
+	public static implicit operator Vector3Int(HexCoord src) {
+		return src.ToVector3Int();
+	}
 
 
 	#region Operators

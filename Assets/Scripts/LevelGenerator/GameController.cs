@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 using Utils.Algorithms;
 
 [ExecuteAlways]
@@ -10,11 +11,13 @@ public class GameController : MonoSingleton<GameController> {
     [SerializeReference]
     public GameModel gameModel;
     public WorldSpaceHexGrid hexGrid;
+    public Tilemap terrainTilemap;
+    public Tilemap fogTilemap;
 
     [Space]
     public HexCoord playerHexCoord;
     public List<HexCoord> currentPathPoints = new List<HexCoord>();
-    public int playerMovementRange = 3;
+    public int playerMovementRange = 1;
 
     void OnEnable() {
         CreateGame();

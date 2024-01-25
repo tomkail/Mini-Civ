@@ -7,6 +7,8 @@ public class WorldSpaceHexGrid : MonoSingleton<WorldSpaceHexGrid> {
 
     public Quaternion gridSwizzleRotation => Quaternion.LookRotation(UnityEngine.Grid.Swizzle(grid.cellSwizzle, Vector3.forward), UnityEngine.Grid.Swizzle(grid.cellSwizzle, Vector3.up));
     public Quaternion axis => gridSwizzleRotation * transform.rotation;
+
+    public Matrix4x4 hexCoordPositionToWorldMatrix => Matrix4x4.TRS(transform.position, axis, transform.lossyScale * 0.5f);
     // public Quaternion axis => Quaternion.LookRotation(Vector3.forward, Vector3.up);
 
     public Vector3 floorNormal => axis * Vector3.forward;
@@ -90,7 +92,7 @@ public class WorldSpaceHexGrid : MonoSingleton<WorldSpaceHexGrid> {
 	public Vector3 GetCornerPosition (HexCoord coord, int corner) {
 		var position = AxialToWorld(coord);
 		// var cornerPosition = (MasterGrid.CornerVector2D(corner).ToVector3XZY());
-		var cornerPosition = axis * HexCoord.HexCornerOffset(HexCoord.orientation, corner);
+		var cornerPosition = hexCoordPositionToWorldMatrix.MultiplyPoint3x4(HexCoord.HexCornerOffset(HexCoord.orientation, corner));
 		return position + cornerPosition;
 	}
 	
