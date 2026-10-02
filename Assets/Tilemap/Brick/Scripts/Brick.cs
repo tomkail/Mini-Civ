@@ -16,6 +16,6 @@ public class Brick : MonoBehaviour
 
     void Update()
     {
-        rb.velocity = Input.GetAxis("Horizontal") * Vector3.right * moveSpeed;
+        rb.linearVelocity = Input.GetAxis("Horizontal") * Vector3.right * moveSpeed;
     }
 }

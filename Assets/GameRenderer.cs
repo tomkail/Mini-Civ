@@ -31,7 +31,9 @@ public class GameRenderer : ImmediateModeShapeDrawer {
     public override void DrawShapes( Camera cam ) {
         if (gameModel == null) return;
         
-        using (Draw.Command(cam)) {
+        // Shapes defaults to CameraEvent.BeforeImageEffects, which never runs on this camera: the Post
+        // Processing v2 PostProcessLayer takes over image effects. Draw before post-processing instead.
+        using (Draw.Command(cam, CameraEvent.AfterForwardAlpha)) {
             DrawFloor(gameModel);
             if(showFog) DrawFog(gameModel);
             DrawOwnership(gameModel);
