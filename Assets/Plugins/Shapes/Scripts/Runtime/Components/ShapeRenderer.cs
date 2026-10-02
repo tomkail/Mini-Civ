@@ -443,7 +443,7 @@ namespace Shapes {
 
 			// the next two modes are copy-sensitive, meaning that if we duplicate this object,
 			// we also have to duplicate the mesh and update which mesh the duplicate is pointing to
-			int id = gameObject.GetInstanceID();
+			int id = gameObject.GetEntityId().GetHashCode();
 
 			bool createMesh = Mesh == null || meshOwnerID != id;
 

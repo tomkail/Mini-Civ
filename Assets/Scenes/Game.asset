@@ -14,7 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sets:
   - {fileID: 11400000, guid: c905086555b9b4724bdcf21f7223705d, type: 2}
-  sceneAssets:
-  - {fileID: 102900000, guid: fcafbb58c60ce46a69899c713b58ce59, type: 3}
-  scenePaths:
-  - Assets/Scenes/Board.unity
+  scenes:
+  - sceneAsset: {fileID: 102900000, guid: fcafbb58c60ce46a69899c713b58ce59, type: 3}
+    scenePath: Assets/Scenes/Board.unity
+  activeScene:
+    sceneAsset: {fileID: 0}
+    scenePath: 
+  sceneAssets: []
+  scenePaths: []

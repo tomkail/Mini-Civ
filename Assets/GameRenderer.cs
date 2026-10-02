@@ -7,6 +7,7 @@ using UnityEngine;
 using Shapes;
 using TMPro;
 using UnityEngine.Rendering;
+using UnityX.Islands;
 
 [ExecuteAlways]
 public class GameRenderer : ImmediateModeShapeDrawer {

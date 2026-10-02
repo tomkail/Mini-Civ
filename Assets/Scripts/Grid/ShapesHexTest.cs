@@ -44,12 +44,12 @@ public class ShapesHexTest : ImmediateModeShapeDrawer {
 
             
             var offsetCoord = HexCoord.AxialToOffset(axial);
-            if (offsetCoord == new Point(0, 1)) {
+            if (offsetCoord == new Vector2Int(0, 1)) {
             //     var x = axial.q + (axial.r + (axial.r&1)) / 2;
             //     var x2 = axial.q + (axial.r - (axial.r&1)) / 2;
             //     Debug.Log(x+" "+x2);
             }
-            Debug.Assert(HexCoord.AxialToOffset(worldSpaceHexGrid.WorldToAxial(Draw.Matrix.GetPosition())) == new Point(offsetCoord.x, offsetCoord.y));
+            Debug.Assert(HexCoord.AxialToOffset(worldSpaceHexGrid.WorldToAxial(Draw.Matrix.GetPosition())) == new Vector2Int(offsetCoord.x, offsetCoord.y));
             Debug.Assert(axial == worldSpaceHexGrid.WorldToAxial(Draw.Matrix.GetPosition()));
             
             var debugText = "Axial: "+axial.ToString();

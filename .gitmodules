@@ -1,0 +1,3 @@
+[submodule "UnityX"]
+	path = UnityX
+	url = git@github.com:tomkail/UnityX.git

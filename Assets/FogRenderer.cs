@@ -6,6 +6,7 @@ using Shapes;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Tilemaps;
+using UnityX.Islands;
 
 public static class TilemapExtensions {
     
