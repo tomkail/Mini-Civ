@@ -55,7 +55,9 @@ public class FogRenderer : ImmediateModeShapeDrawer {
     public Matrix4x4 worldToXYMatrix => Matrix4x4.TRS(Vector3.zero, rotation, Vector3.one);
 
     public override void DrawShapes( Camera cam ) {
-        using (Draw.Command(cam)) {
+        // Shapes defaults to CameraEvent.BeforeImageEffects, which never runs on this camera: the Post
+        // Processing v2 PostProcessLayer takes over image effects. Draw before post-processing instead.
+        using (Draw.Command(cam, CameraEvent.AfterForwardAlpha)) {
             DrawFog();
         }
     }
