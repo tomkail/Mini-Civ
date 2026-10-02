@@ -30,6 +30,7 @@ namespace UnityX.Versioning {
                 PlayerSettings.macOS.buildNumber = bundleVersionCode.ToString()+"00";
             }
             
+#if false // PlayerSettings.Switch NMETA API removed in Unity 6000.5
             {
                 PlayerSettings.Switch.displayVersion = versionString;
                 if(System.IO.File.Exists(PlayerSettings.Switch.NMETAOverrideFullPath)) {
@@ -41,6 +42,7 @@ namespace UnityX.Versioning {
                     System.IO.File.WriteAllText(PlayerSettings.Switch.NMETAOverrideFullPath, text);
                 }
             }
+#endif
             
             UpdateCurrentVersion(versionSO);
             EditorUtility.SetDirty(versionSO);

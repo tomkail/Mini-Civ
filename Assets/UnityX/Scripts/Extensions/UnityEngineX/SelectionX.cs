@@ -1,7 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
+using UnityEngine;
+using Object = UnityEngine.Object;
 
 /// <summary>
 /// Provides callbacks for more specific selection events.
@@ -13,16 +17,9 @@ public static class SelectionX {
     #if UNITY_EDITOR
 	const string editorPrefsPath = "SelectionXLastSelection";
 
-	public static Object[] orderedObjects {
-		get {
-			return LoadLastSelection().objects;
-		}
-	}
-	public static GameObject[] orderedGameObjects {
-		get {
-			return LoadLastSelection().gameObjects;
-		}
-	}
+	public static Object[] orderedObjects => LoadLastSelection().objects;
+
+	public static GameObject[] orderedGameObjects => LoadLastSelection().gameObjects;
 
 	public delegate void SelectionDelegate ();
 	public static SelectionDelegate OnSelectionChanged;
@@ -56,8 +53,8 @@ public static class SelectionX {
 	static SerializedSelection CreateSerializedSelection () {
 		var selection = new SerializedSelection();
 		selection.activeContext = Selection.activeContext;
-		selection.activeInstanceID = Selection.activeInstanceID;
-		selection.instanceIDs = Selection.instanceIDs;
+		selection.activeInstanceID = EntityId.ToULong(Selection.activeEntityId);
+		selection.instanceIDs = Selection.entityIds.Select(e => EntityId.ToULong(e)).ToArray();
 		return selection;
 	}
 
@@ -66,7 +63,7 @@ public static class SelectionX {
 		if(lastSelection != null) {
 			CompareWithLastSelection(lastSelection);
 		}
-		if(Selection.instanceIDs.Length == 0)
+		if(Selection.entityIds.Length == 0)
 			lastSelection = CreateSerializedSelection();
 		SaveLastSelection(lastSelection);
 		if(OnSelectionChanged != null) OnSelectionChanged();
@@ -88,11 +85,11 @@ public static class SelectionX {
 	static void CompareWithLastSelection (SerializedSelection selection) {
 		List<Object> objects = new List<Object>();
 		objects.AddRange(selection.objects);
-		foreach(var deselected in selection.objects.Except(Selection.gameObjects)) {
+		foreach(var deselected in selection.objects.Except(Selection.objects)) {
 			objects.Remove(deselected);
 			if(OnDeselectObject != null) OnDeselectObject(deselected);
 		}
-		foreach(var selected in Selection.objects.Except(selection.gameObjects)) {
+		foreach(var selected in Selection.objects.Except(selection.objects)) {
 			objects.Remove(selected);
 			objects.Add(selected);
 			if(OnSelectObject != null) OnSelectObject(selected);
@@ -107,54 +104,39 @@ public static class SelectionX {
 	}
 
 	class SerializedSelection {
-		public int activeContextInstanceID;
-		public int activeInstanceID;
-		public int[] instanceIDs;
+		public ulong activeContextInstanceID;
+		public ulong activeInstanceID;
+		public ulong[] instanceIDs;
 
 		public Object activeContext {
-			get {
-				return EditorUtility.InstanceIDToObject(activeContextInstanceID);
-			} set {
+			get => EditorUtility.EntityIdToObject(EntityId.FromULong(activeContextInstanceID));
+			set {
 				if(value == null) activeContextInstanceID = 0;
-				else activeContextInstanceID = value.GetInstanceID();
+				else activeContextInstanceID = EntityId.ToULong(value.GetEntityId());
 			}
 		}
 
 		public Object activeObject {
-			get {
-				return EditorUtility.InstanceIDToObject(activeInstanceID);
-			} set {
+			get => EditorUtility.EntityIdToObject(EntityId.FromULong(activeInstanceID));
+			set {
 				if(value == null) activeInstanceID = 0;
-				activeInstanceID = value.GetInstanceID();
+				else activeInstanceID = EntityId.ToULong(value.GetEntityId());
 			}
 		}
 
-		public GameObject activeGameObject {
-			get {
-				return activeObject == null ? null : activeObject as GameObject;
-			}
-		}
+		public GameObject activeGameObject => activeObject == null ? null : activeObject as GameObject;
 
-		public Transform activeTransform {
-			get {
-				return activeGameObject == null ? null : activeGameObject.transform;
-			}
-		}
+		public Transform activeTransform => activeGameObject == null ? null : activeGameObject.transform;
 
 		public Object[] objects {
-			get {
-				return instanceIDs.Select(instanceID => EditorUtility.InstanceIDToObject(instanceID)).ToArray();
-			} set {
-				if(value == null) objects = new Object[0];
-				else instanceIDs = value.Where(obj => obj != null).Select(obj => obj.GetInstanceID()).ToArray();
+			get => instanceIDs.Select(id => EditorUtility.EntityIdToObject(EntityId.FromULong(id))).ToArray();
+			set {
+				if(value == null) instanceIDs = Array.Empty<ulong>();
+				else instanceIDs = value.Where(obj => obj != null).Select(obj => EntityId.ToULong(obj.GetEntityId())).ToArray();
 			}
 		}
 
-		public GameObject[] gameObjects {
-			get {
-				return objects.Where(obj => obj is GameObject).Select(obj => obj as GameObject).ToArray();
-			}
-		}
+		public GameObject[] gameObjects => objects.OfType<GameObject>().ToArray();
 	}
     #endif
 }
