@@ -12,8 +12,8 @@ public interface IGridLayerModel {
 	void AddEntity(GridEntity newEntity);
 	void RemoveEntity(GridEntity newEntity);
 	GridEntity Get(int x, int y);
-	GridEntity Get(Point gridPosition);
+	GridEntity Get(Vector2Int gridPosition);
 	
-	IList<Point> GetEmptyGridPositions();
-	bool GetEmptyGridPosition(out Point gridPosition);
+	IList<Vector2Int> GetEmptyGridPositions();
+	bool GetEmptyGridPosition(out Vector2Int gridPosition);
 }

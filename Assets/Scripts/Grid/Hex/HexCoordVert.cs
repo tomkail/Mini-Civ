@@ -7,7 +7,7 @@ public struct HexCoordVert {
 		x = _x;
 		y = _y;
 	}
-	public HexCoordVert(Point point) {
+	public HexCoordVert(Vector2Int point) {
 		x = point.x;
 		y = point.y;
 	}
@@ -68,7 +68,7 @@ public struct HexCoordVert {
 		position -= offset;
         Vector2 vPoint = position.x*X_QR + position.y*Y_QR;
         // This SHOULD round in a special way.
-        return new Point(vPoint);
+        return (Vector2)Vector2Int.RoundToInt(vPoint);
 	}
 
     static Vector2 offset {
@@ -120,15 +120,15 @@ public struct HexCoordVert {
 
 
 
-    public static Point ToPoint(HexCoordVert point) {
-		return new Point(point.x, point.y);
+    public static Vector2Int ToPoint(HexCoordVert point) {
+		return new Vector2Int(point.x, point.y);
 	}
 
-    public Point ToPoint() {
+    public Vector2Int ToPoint() {
 		return ToPoint(this);
 	}
 
-    public static HexCoordVert FromPoint(Point vector) {
+    public static HexCoordVert FromPoint(Vector2Int vector) {
 		return new HexCoordVert(vector.x, vector.y);
 	}
 
@@ -138,22 +138,12 @@ public struct HexCoordVert {
 			return false;
 		}
 
-		// If parameter cannot be cast to Point return false.
-		Point p = (Point)obj;
-		if ((System.Object)p == null) {
-			return false;
-		}
-
-		// Return true if the fields match:
-		return Equals(p);
+		if (obj is HexCoordVert v) return Equals(v.ToPoint());
+		if (obj is Vector2Int p) return Equals(p);
+		return false;
 	}
 
-	public bool Equals(Point p) {
-		// If parameter is null return false:
-		if ((object)p == null) {
-			return false;
-		}
-
+	public bool Equals(Vector2Int p) {
 		// Return true if the fields match:
 		return (x == p.x) && (y == p.y);
 	}
@@ -188,7 +178,7 @@ public struct HexCoordVert {
 	}
 
 	public static HexCoordVert operator +(HexCoordVert left, HexCoordVert right) {
-		return Point.Add(left, right);
+		return new HexCoordVert(left.x + right.x, left.y + right.y);
 	}
 
 	public static HexCoordVert operator -(HexCoordVert left) {
@@ -196,24 +186,24 @@ public struct HexCoordVert {
 	}
 
 	public static HexCoordVert operator -(HexCoordVert left, HexCoordVert right) {
-		return Point.Subtract(left, right);
+		return new HexCoordVert(left.x - right.x, left.y - right.y);
 	}
 
 
 	public static HexCoordVert operator *(HexCoordVert left, HexCoordVert right) {
-		return Point.Multiply(left, right);
+		return new HexCoordVert(left.x * right.x, left.y * right.y);
 	}
 
 
 	public static HexCoordVert operator /(HexCoordVert left, HexCoordVert right) {
-		return Point.Divide(left, right);
+		return new HexCoordVert(left.x / right.x, left.y / right.y);
 	}
 
-	public static implicit operator HexCoordVert(Point src) {
+	public static implicit operator HexCoordVert(Vector2Int src) {
 		return FromPoint(src);
 	}
 	
-	public static implicit operator Point(HexCoordVert src) {
+	public static implicit operator Vector2Int(HexCoordVert src) {
 		return src.ToPoint();
 	}
 

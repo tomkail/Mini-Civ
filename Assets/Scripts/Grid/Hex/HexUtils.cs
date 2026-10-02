@@ -21,15 +21,15 @@ public static class HexUtils {
         return currentDirectionIndex + Mathf.Clamp(deltaDirection, -maxRotationSteps, maxRotationSteps);
     }
     
-	public static List<HexCoord> OffsetRectPoints (Point rectSize) {
-        return OffsetRectPoints(new PointRect(new Point(0,0), rectSize));
+	public static List<HexCoord> OffsetRectPoints (Vector2Int rectSize) {
+        return OffsetRectPoints(new RectInt(Vector2Int.zero, rectSize));
     }
 
-    public static List<HexCoord> OffsetRectPoints (PointRect gridSize) {
+    public static List<HexCoord> OffsetRectPoints (RectInt gridSize) {
         List<HexCoord> hexCoords = new List<HexCoord>();
         for (int r = gridSize.yMin; r < gridSize.yMax; r++) {
             for (int q = gridSize.xMin; q < gridSize.xMax; q++) {
-                var hex = HexCoord.OffsetToAxial(new Point(q,r));
+                var hex = HexCoord.OffsetToAxial(new Vector2Int(q,r));
                 hexCoords.Add(hex);
             }
         }

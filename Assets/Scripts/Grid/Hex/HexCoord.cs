@@ -385,7 +385,7 @@ public struct HexCoord : IEquatable<HexCoord> {
 	/// </summary>
 	public bool IsOnLine(HexCoord origin, HexCoord direction) {
 		var offsetOriginC = (this-origin).AxialToCube();
-		if(offsetOriginC == Point3.zero) return true;
+		if(offsetOriginC == Vector3Int.zero) return true;
 		var dirC = direction.AxialToCube();
 		// If I need this to work in either direction, then check if dirC.x is 0 AND this condition before returning false
 		if(MathX.Sign(dirC.x, true) != MathX.Sign(offsetOriginC.x, true)) {
@@ -627,19 +627,19 @@ public struct HexCoord : IEquatable<HexCoord> {
 			var zMin = MathX.Difference(ac.z, bc.z);
 			// Then it's on the x axis
 			if(xMin <= yMin && xMin <= zMin) {
-				// p.Add(HexCoord.CubeToHex(new Point3(ac.x, bc.y+(bc.x-ac.x), bc.z)));
-				// p.Add(HexCoord.CubeToHex(new Point3(ac.x, bc.y, bc.z+(bc.x-ac.x))));
-				p.AddRange(LineDraw(CubeToAxial(new Point3(ac.x, bc.y+(bc.x-ac.x), bc.z)), CubeToAxial(new Point3(ac.x, bc.y, bc.z+(bc.x-ac.x)))));
+				// p.Add(HexCoord.CubeToHex(new Vector3Int(ac.x, bc.y+(bc.x-ac.x), bc.z)));
+				// p.Add(HexCoord.CubeToHex(new Vector3Int(ac.x, bc.y, bc.z+(bc.x-ac.x))));
+				p.AddRange(LineDraw(CubeToAxial(new Vector3Int(ac.x, bc.y+(bc.x-ac.x), bc.z)), CubeToAxial(new Vector3Int(ac.x, bc.y, bc.z+(bc.x-ac.x)))));
 			}
 			if(yMin <= xMin && yMin <= zMin) {
-				// p.Add(HexCoord.CubeToHex(new Point3(bc.x+(bc.y-ac.y), ac.y, bc.z)));
-				// p.Add(HexCoord.CubeToHex(new Point3(bc.x, ac.y, bc.z+(bc.y-ac.y))));
-				p.AddRange(LineDraw(CubeToAxial(new Point3(bc.x+(bc.y-ac.y), ac.y, bc.z)), CubeToAxial(new Point3(bc.x, ac.y, bc.z+(bc.y-ac.y)))));
+				// p.Add(HexCoord.CubeToHex(new Vector3Int(bc.x+(bc.y-ac.y), ac.y, bc.z)));
+				// p.Add(HexCoord.CubeToHex(new Vector3Int(bc.x, ac.y, bc.z+(bc.y-ac.y))));
+				p.AddRange(LineDraw(CubeToAxial(new Vector3Int(bc.x+(bc.y-ac.y), ac.y, bc.z)), CubeToAxial(new Vector3Int(bc.x, ac.y, bc.z+(bc.y-ac.y)))));
 			}
 			if(zMin <= xMin && zMin <= yMin) {
-				p.AddRange(LineDraw(CubeToAxial(new Point3(bc.x+(bc.z-ac.z), bc.y, ac.z)), CubeToAxial(new Point3(bc.x, bc.y+(bc.z-ac.z), ac.z))));
-				// p.Add(HexCoord.CubeToHex(new Point3(bc.x+(bc.z-ac.z), bc.y, ac.z)));
-				// p.Add(HexCoord.CubeToHex(new Point3(bc.x, bc.y+(bc.z-ac.z), ac.z)));
+				p.AddRange(LineDraw(CubeToAxial(new Vector3Int(bc.x+(bc.z-ac.z), bc.y, ac.z)), CubeToAxial(new Vector3Int(bc.x, bc.y+(bc.z-ac.z), ac.z))));
+				// p.Add(HexCoord.CubeToHex(new Vector3Int(bc.x+(bc.z-ac.z), bc.y, ac.z)));
+				// p.Add(HexCoord.CubeToHex(new Vector3Int(bc.x, bc.y+(bc.z-ac.z), ac.z)));
 			}
 		}
 		return p;
@@ -1111,12 +1111,12 @@ public struct HexCoord : IEquatable<HexCoord> {
 	}
 
 	public static HexCoord OffsetToAxial(int x, int y) {
-		return OffsetToAxial(new Point(x, y));
+		return OffsetToAxial(new Vector2Int(x, y));
 	}
-	public static HexCoord OffsetToAxial(Point offsetCoord) {
+	public static HexCoord OffsetToAxial(Vector2Int offsetCoord) {
 		return OffsetToAxial(offsetCoord, offsetLayout);
 	}
-	public static HexCoord OffsetToAxial(Point offsetCoord, Layout offsetLayout) {
+	public static HexCoord OffsetToAxial(Vector2Int offsetCoord, Layout offsetLayout) {
 		switch (offsetLayout) {
 		case Layout.OddR: 
 			return OddRToAxial(offsetCoord);
@@ -1129,51 +1129,51 @@ public struct HexCoord : IEquatable<HexCoord> {
 		}
 	}
 
-	public static HexCoord OddRToAxial(Point hex) {
+	public static HexCoord OddRToAxial(Vector2Int hex) {
 		var q = hex.x - (hex.y - (hex.y&1)) / 2;
 		var r = hex.y;
 		return new HexCoord(q, r);
 	}
-	static HexCoord EvenRToAxial(Point hex) {
+	static HexCoord EvenRToAxial(Vector2Int hex) {
 		var q = hex.x - (hex.y + (hex.y&1)) / 2;
 		var r = hex.y;
 		return new HexCoord(q, r);
 	}
-	static HexCoord OddQToAxial(Point hex) {
+	static HexCoord OddQToAxial(Vector2Int hex) {
 		var q = hex.x;
 		var r = hex.y - (hex.x - (hex.x&1)) / 2;
 		return new HexCoord(q, r);
 	}
-	static HexCoord EvenQToAxial(Point hex) {
+	static HexCoord EvenQToAxial(Vector2Int hex) {
 		var q = hex.x;
 		var r = hex.y - (hex.x + (hex.x&1)) / 2;
 		return new HexCoord(q, r);
 	}
 
 
-	public Point3 AxialToCube() {
+	public Vector3Int AxialToCube() {
 		return AxialToCube(this);
 	}
 
-	public static Point3 AxialToCube(HexCoord coord) {
-		return new Point3(coord.q, coord.s, coord.r);
+	public static Vector3Int AxialToCube(HexCoord coord) {
+		return new Vector3Int(coord.q, coord.s, coord.r);
 	}
 
-	public static HexCoord CubeToAxial(Point3 cubeCoord) {
+	public static HexCoord CubeToAxial(Vector3Int cubeCoord) {
 		var q = cubeCoord.x;
 		var r = cubeCoord.z;
 		return new HexCoord(q, r);
     }
 
-	public Point ToOffset() {
+	public Vector2Int ToOffset() {
 		return AxialToOffset(this);
 	}
 
-	public static Point AxialToOffset(HexCoord coord) {
+	public static Vector2Int AxialToOffset(HexCoord coord) {
 		return AxialToOffset(coord, offsetLayout);
 	}
 
-	static Point AxialToOffset(HexCoord coord, Layout mode) {
+	static Vector2Int AxialToOffset(HexCoord coord, Layout mode) {
 		switch (mode) {
 			case Layout.OddR: return ToOddR(coord);
 			case Layout.EvenR: return ToEvenR(coord);
@@ -1193,28 +1193,28 @@ public struct HexCoord : IEquatable<HexCoord> {
 		}
 	}
 	
-	public static Point ToOddR(HexCoord coord) {
+	public static Vector2Int ToOddR(HexCoord coord) {
 		var x = coord.q + (coord.r - (coord.r&1)) / 2;
 		var y = coord.r;
-		return new Point(x, y);
+		return new Vector2Int(x, y);
 	}
 
-	public static Point ToEvenR(HexCoord coord) {
+	public static Vector2Int ToEvenR(HexCoord coord) {
 		var x = coord.q + (coord.r + (coord.r&1)) / 2;
 		var y = coord.r;
-		return new Point(x, y);
+		return new Vector2Int(x, y);
 	}
 
-	public static Point ToOddQ(HexCoord coord) {
+	public static Vector2Int ToOddQ(HexCoord coord) {
 		var x = coord.q;
 		var y = coord.r + (coord.q - (coord.q&1)) / 2;
-		return new Point(x, y);
+		return new Vector2Int(x, y);
 	}
 
-	public static Point ToEvenQ(HexCoord coord) {
+	public static Vector2Int ToEvenQ(HexCoord coord) {
 		var x = coord.q;
 		var y = coord.r + (coord.q + (coord.q&1)) / 2;
-		return new Point(x, y);
+		return new Vector2Int(x, y);
 	}
 	
 	public static Vector2 ToOddRInterpolated(Vector2 coord) {

@@ -14,6 +14,67 @@
       "dependencies": {},
       "hash": "4854b65a98b89882dd5c3ee480aa09b7f94cff5d"
     },
+    "com.tomkail.unityx.core": {
+      "version": "file:../UnityX/Packages/com.tomkail.unityx.core",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {
+        "com.unity.ugui": "2.0.0"
+      }
+    },
+    "com.tomkail.unityx.geometry": {
+      "version": "file:../UnityX/Packages/com.tomkail.unityx.geometry",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {}
+    },
+    "com.tomkail.unityx.gradient-renderer": {
+      "version": "file:../UnityX/Packages/com.tomkail.unityx.gradient-renderer",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {}
+    },
+    "com.tomkail.unityx.islands": {
+      "version": "file:../UnityX/Packages/com.tomkail.unityx.islands",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {}
+    },
+    "com.tomkail.unityx.noise": {
+      "version": "file:../UnityX/Packages/com.tomkail.unityx.noise",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {}
+    },
+    "com.tomkail.unityx.pathfinding": {
+      "version": "file:../UnityX/Packages/com.tomkail.unityx.pathfinding",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {}
+    },
+    "com.tomkail.unityx.polygon-renderer": {
+      "version": "file:../UnityX/Packages/com.tomkail.unityx.polygon-renderer",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {
+        "com.tomkail.unityx.geometry": "2.0.0",
+        "com.tomkail.unityx.property-drawers": "2.0.0"
+      }
+    },
+    "com.tomkail.unityx.property-drawers": {
+      "version": "file:../UnityX/Packages/com.tomkail.unityx.property-drawers",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {
+        "com.tomkail.unityx.core": "2.0.0"
+      }
+    },
+    "com.tomkail.unityx.scene-management": {
+      "version": "file:../UnityX/Packages/com.tomkail.unityx.scene-management",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {}
+    },
     "com.unity.2d.sprite": {
       "version": "1.0.0",
       "depth": 0,

@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
 using Random = UnityEngine.Random;
+using UnityX.NoiseSampler;
+using UnityX.Islands;
 
 public class TomsLevelGenerator : LevelGenerator {
 	public int numLandTiles = 100;
