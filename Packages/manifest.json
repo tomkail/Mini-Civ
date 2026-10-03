@@ -55,7 +55,8 @@
     "com.unity.postprocessing": "3.5.4",
     "com.unity.timeline": "1.8.12",
     "com.unity.ugui": "2.5.0",
-    "jillejr.newtonsoft.json-for-unity.converters": "1.5.0"
+    "jillejr.newtonsoft.json-for-unity.converters": "1.5.0",
+    "com.unity.pipeline": "0.8.0-exp.1"
   },
   "scopedRegistries": [
     {
