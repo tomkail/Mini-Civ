@@ -50,9 +50,8 @@ public class GameController : MonoSingleton<GameController> {
         if (land == null) {
             gameModel.board.fogLayer.RevealFog(gameModel.cursor.gridPoint);
         } else if (land.type == TerrainType.Mountain) {
-            var radialCoords = HexUtils.HexagonPoints(2);
-            foreach(var radialCoord in radialCoords) {
-                gameModel.board.fogLayer.RevealFog(gameModel.cursor.gridPoint+radialCoord);
+            foreach(var coord in HexShapes.Hexagon(gameModel.cursor.gridPoint, 1)) {
+                gameModel.board.fogLayer.RevealFog(coord);
             }
         } else if (land.type == TerrainType.River) {
             gameModel.board.fogLayer.RevealFog(gameModel.cursor.gridPoint);

@@ -181,9 +181,8 @@ public class TomsLevelGenerator : LevelGenerator {
 			gameModel.board.fogLayer.ResetFog();
 
 			var randomPos = HexUtils.HexagonPoints(3).Random();
-			var radialCoords = HexUtils.HexagonPoints(2);
-			foreach(var radialCoord in radialCoords) {
-				gameModel.board.fogLayer.RevealFog(randomPos+radialCoord);
+			foreach(var coord in HexShapes.Hexagon(randomPos, 1)) {
+				gameModel.board.fogLayer.RevealFog(coord);
 			}
 			
 			// This tests a bug where the fog has a hole in it
