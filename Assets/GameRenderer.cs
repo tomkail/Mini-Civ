@@ -45,11 +45,12 @@ public class GameRenderer : ImmediateModeShapeDrawer {
 
     void DrawFloor(GameModel gameModel) {
         foreach (var cell in gameModel.GetCells()) {
-            if(cell.terrain.type == TerrainType.Grass) Draw.Color = grassColor;
-            else if(cell.terrain.type == TerrainType.Mountain) Draw.Color = mountainColor;
-            else if(cell.terrain.type == TerrainType.Forest) Draw.Color = forestColor;
-            else if(cell.terrain.type == TerrainType.River) Draw.Color = riverColor;
-            else if(cell.terrain.type == TerrainType.Road) Draw.Color = roadColor;
+            var terrainType = cell.terrainType;
+            if(terrainType == TerrainType.Grass) Draw.Color = grassColor;
+            else if(terrainType == TerrainType.Mountain) Draw.Color = mountainColor;
+            else if(terrainType == TerrainType.Forest) Draw.Color = forestColor;
+            else if(terrainType == TerrainType.River) Draw.Color = riverColor;
+            else if(terrainType == TerrainType.Road) Draw.Color = roadColor;
             
             DrawPolygonTile(cell.coord, () => {
                 Draw.RegularPolygon(6);
@@ -94,7 +95,7 @@ public class GameRenderer : ImmediateModeShapeDrawer {
         Draw.PushMatrix();
         Draw.Matrix = Matrix4x4.TRS(Vector3.zero, rotation, Vector3.one);
         
-        var revealedAreasDetector = new IslandDetector<HexCoord>(gameModel.GetCells().Select(x => x.coord), p => HexCoord.Directions(p), p => gameModel.GetCell(p).onGrid && (gameModel.GetCell(p).fog == null || gameModel.GetCell(p).fog.revealed));
+        var revealedAreasDetector = new IslandDetector<HexCoord>(gameModel.GetCells().Select(x => x.coord), p => HexCoord.Directions(p), p => gameModel.board.terrain.Contains(p) && gameModel.board.IsRevealed(p));
         var revealedIslands = revealedAreasDetector.FindIslands();
         
         foreach (var island in revealedIslands) {
@@ -173,7 +174,7 @@ public class GameRenderer : ImmediateModeShapeDrawer {
     public float smoothingDegPerPoint = 20;
     
     void DrawFogTile(GridCellModel cell) {
-        if(cell.fog == null || cell.fog.revealed) return;
+        if(cell.revealed) return;
         DrawPolygonTile(cell.coord, () => {
             Draw.Color = fogColor;
             Draw.RegularPolygon(6);

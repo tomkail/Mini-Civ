@@ -80,7 +80,7 @@ public class TomsLevelGenerator : LevelGenerator {
 			return HexCoord.zero;
 		}
 		foreach (var point in landTiles) {
-			GridEntity.CreateAndAddEntity(() => new TerrainModel(point, TerrainType.Forest), gameModel.board.landLayer);
+			gameModel.board.terrain[point] = TerrainType.Forest;
 		}
 		
 		
@@ -126,12 +126,12 @@ public class TomsLevelGenerator : LevelGenerator {
 					var point = GetNewPointForIsland(clearingTiles, clearingRoundness);
 					if (!landTiles.Contains(point)) continue;
 					var adjacentPoints = HexCoord.GetPointsOnRing(point, 1);
-					if(adjacentPoints.Any(adjacentPoint => gameModel.board.landLayer.GetValueAtGridPoint<TerrainModel>(adjacentPoint)?.type == TerrainType.Grass)) continue;
+					if(adjacentPoints.Any(adjacentPoint => gameModel.board.terrain.TryGetValue(adjacentPoint, out var type) && type == TerrainType.Grass)) continue;
 					clearingTiles.Add(point);
 				}
 
 				foreach (var clearingTile in clearingTiles) {
-					gameModel.board.landLayer.GetValueAtGridPoint<TerrainModel>(clearingTile).type = TerrainType.Grass;
+					gameModel.board.terrain[clearingTile] = TerrainType.Grass;
 				}
 			}
 			
@@ -147,7 +147,7 @@ public class TomsLevelGenerator : LevelGenerator {
 			List<HexCoord> mountainTiles = new List<HexCoord>();
 			for (int i = 0; i < Mathf.Min(numMountains, samples.Count); i++) {
 				mountainTiles.Add(samples[i]);
-				gameModel.board.landLayer.GetValueAtGridPoint<TerrainModel>(samples[i]).type = TerrainType.Mountain;
+				gameModel.board.terrain[samples[i]] = TerrainType.Mountain;
 			}
 		}
 
@@ -175,16 +175,12 @@ public class TomsLevelGenerator : LevelGenerator {
 		// }
 
 		{
-			foreach(var land in gameModel.board.landLayer.entities) {
-				GridEntity.CreateAndAddEntity(() => new FogModel(land.Key), gameModel.board.fogLayer);
+			foreach(var coord in gameModel.board.terrain.Coords) {
+				gameModel.board.fog[coord] = false;
 			}
-			gameModel.board.fogLayer.ResetFog();
 
 			var randomPos = HexUtils.HexagonPoints(3).Random();
-			var radialCoords = HexUtils.HexagonPoints(2);
-			foreach(var radialCoord in radialCoords) {
-				gameModel.board.fogLayer.RevealFog(randomPos+radialCoord);
-			}
+			gameModel.board.RevealFog(randomPos, 1);
 			
 			// This tests a bug where the fog has a hole in it
 // 			var text = @"

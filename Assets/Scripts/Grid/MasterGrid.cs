@@ -10,24 +10,8 @@ public class MasterGrid : MonoSingleton<MasterGrid> {
 
     public static Polygon tilePolygon => new(HexCornerVectors2D());
 
-    public static IEnumerable<Vector2> HexCornerVectors2D(int first = 0, float hexSize = 1) {
-		// foreach(var direction in HexCoord.Directions()) {
-		// 	var worldVector = CellToWorldVector(direction);
-		// 	yield return worldVector.XZ() * 0.5f;
-		// }
+    // Pointy-top corner offsets of a unit hex (corner 0 at 30 degrees below +X, then clockwise).
+    public static IEnumerable<Vector2> HexCornerVectors2D(int first = 0, float hexSize = 1) => HexCoord.CornerVectors(first, hexSize);
 
-		for(int corner = 0; corner < 6; corner++) {
-			yield return CornerVector2D(corner) * hexSize;
-		}
-	}
-
-	public static Vector2 CornerVector2D (int corner) {
-		// var angle = 2f * Mathf.PI * (0f - corner) / 6f;
-		// return new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
-
-		// Pointy-top corner offsets (corner 0 at 30 degrees below +X, then clockwise); this was
-		// HexCoord.HexCornerOffset(Orientation.Pointy, corner), which UnityX.HexGrid doesn't have.
-		var angle = 2f * Mathf.PI * (-0.5f - corner) / 6f;
-		return new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
-	}
+    public static Vector2 CornerVector2D (int corner) => HexCoord.CornerVector(corner);
 }

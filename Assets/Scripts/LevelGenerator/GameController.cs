@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using Utils.Algorithms;
 using UnityX.Islands;
 using UnityX.HexGrid;
 
@@ -46,23 +45,20 @@ public class GameController : MonoSingleton<GameController> {
     }
 
     void Reveal(HexCoord cursorGridPoint) {
-        var land = gameModel.board.landLayer.GetValueAtGridPoint<TerrainModel>(cursorGridPoint);
-        if (land == null) {
-            gameModel.board.fogLayer.RevealFog(gameModel.cursor.gridPoint);
-        } else if (land.type == TerrainType.Mountain) {
-            var radialCoords = HexUtils.HexagonPoints(2);
-            foreach(var radialCoord in radialCoords) {
-                gameModel.board.fogLayer.RevealFog(gameModel.cursor.gridPoint+radialCoord);
-            }
-        } else if (land.type == TerrainType.River) {
-            gameModel.board.fogLayer.RevealFog(gameModel.cursor.gridPoint);
+        var board = gameModel.board;
+        if (!board.terrain.TryGetValue(cursorGridPoint, out var land)) {
+            board.RevealFog(gameModel.cursor.gridPoint);
+        } else if (land == TerrainType.Mountain) {
+            board.RevealFog(gameModel.cursor.gridPoint, 1);
+        } else if (land == TerrainType.River) {
+            board.RevealFog(gameModel.cursor.gridPoint);
             
-        } else if (land.type == TerrainType.Forest) {
-            gameModel.board.fogLayer.RevealFog(gameModel.cursor.gridPoint);
-        } else if (land.type == TerrainType.Grass) {
-            var emptyLandDetector = new IslandDetector<HexCoord>(new List<HexCoord>(){cursorGridPoint}, p => HexCoord.Directions(p), p => gameModel.board.landLayer.GetValueAtGridPoint<TerrainModel>(p)?.type == TerrainType.Grass);
+        } else if (land == TerrainType.Forest) {
+            board.RevealFog(gameModel.cursor.gridPoint);
+        } else if (land == TerrainType.Grass) {
+            var emptyLandDetector = new IslandDetector<HexCoord>(new List<HexCoord>(){cursorGridPoint}, p => HexCoord.Directions(p), p => board.terrain.TryGetValue(p, out var type) && type == TerrainType.Grass);
             var islands = emptyLandDetector.FindIslands().ToArray();
-            foreach(var coord in islands.SelectMany(x => x.points)) gameModel.board.fogLayer.RevealFog(coord);
+            foreach(var coord in islands.SelectMany(x => x.points)) board.RevealFog(coord);
         }
         
     }
@@ -84,9 +80,8 @@ public class GameController : MonoSingleton<GameController> {
         };
     }
     public static int GetCostForAdjacentTileMovement (BoardModel board, HexCoord originPoint, HexCoord destinationPoint) {
-        var terrain = board.landLayer.GetValueAtGridPoint<TerrainModel>(destinationPoint);
-        if(terrain == null) return 10000;
-        else return GetMovementCostForTerrainType(terrain.type);
+        if(!board.terrain.TryGetValue(destinationPoint, out var terrain)) return 10000;
+        else return GetMovementCostForTerrainType(terrain);
     }
 
     public int GetCostForPath(BoardModel board, List<HexCoord> currentPathPoints) {
@@ -104,17 +99,16 @@ public class GameController : MonoSingleton<GameController> {
         // Try to reach this point without crossing any existing path points. 
         // If we can't reach it, "rewind" the path until it becomes viable.
         if(indexOfPoint == -1) {
-            var pathfinderOpts = PathFinder.PathFinderOptions.standard;
-            pathfinderOpts.getActualCostForMovementBetweenElementsFunc = (HexCoord originPoint, HexCoord destinationPoint) => GetCostForAdjacentTileMovement(board, originPoint, destinationPoint);
+            System.Func<HexCoord, HexCoord, float> stepCost = (originPoint, destinationPoint) => GetCostForAdjacentTileMovement(board, originPoint, destinationPoint);
             
             // Step back one point at a time until we can pathfind to the target point.
-            AStar<HexCoord>.PathfinderSolution newPath = null;
+            PathFinder.Path newPath = null;
             var startIndex = currentPathPoints.Count;
             while(newPath == null && startIndex > 0) {
                 startIndex--;
-                newPath = PathFinder.PathFind(board, currentPathPoints[startIndex], targetPoint, pathfinderOpts);
+                newPath = PathFinder.PathFind(currentPathPoints[startIndex], targetPoint, stepCost);
             }
-            if(!newPath.solution.IsNullOrEmpty()) {
+            if(newPath != null && !newPath.solution.IsNullOrEmpty()) {
                 // remove the first point since it's the same as the last one in our existing list
                 newPath.solution.RemoveAt(0);
                 int num = (currentPathPoints.Count-1)-startIndex;
@@ -127,8 +121,8 @@ public class GameController : MonoSingleton<GameController> {
             startIndex = currentPathPoints.Count;
             int pathLength = currentPathPoints.Count;
             if(pathLength - 1 > movementRange) {
-                var bestPath = PathFinder.PathFind(board, currentPathPoints.First(), targetPoint, pathfinderOpts);
-                if(bestPath == null || bestPath.totalCost - 1 > movementRange) {
+                var bestPath = PathFinder.PathFind(currentPathPoints.First(), targetPoint, stepCost);
+                if(bestPath == null || bestPath.totalCost > movementRange) {
                     // if no path can make this distance, clear the path
                     currentPathPoints.Clear();
                 } else {
@@ -136,11 +130,11 @@ public class GameController : MonoSingleton<GameController> {
                     while(startIndex > 0 && pathLength-1 > movementRange) {
                         startIndex--;
                         
-                        newPath = PathFinder.PathFind(board, currentPathPoints[startIndex], targetPoint, pathfinderOpts);
+                        newPath = PathFinder.PathFind(currentPathPoints[startIndex], targetPoint, stepCost);
                         if(newPath == null) pathLength = currentPathPoints.Count;
                         else pathLength = (currentPathPoints.Count - ((currentPathPoints.Count-1)-startIndex)) + (newPath.solution.Count-1);
                     }
-                    if(!newPath.solution.IsNullOrEmpty()) {
+                    if(newPath != null && !newPath.solution.IsNullOrEmpty()) {
                         // remove the first point since it's the same as the last one in our existing list
                         newPath.solution.RemoveAt(0);
                         int num = (currentPathPoints.Count-1)-startIndex;

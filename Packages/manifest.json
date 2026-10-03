@@ -8,7 +8,6 @@
     "com.tomkail.unityx.hex": "file:../UnityX/Packages/com.tomkail.unityx.hex",
     "com.tomkail.unityx.islands": "file:../UnityX/Packages/com.tomkail.unityx.islands",
     "com.tomkail.unityx.noise": "file:../UnityX/Packages/com.tomkail.unityx.noise",
-    "com.tomkail.unityx.pathfinding": "file:../UnityX/Packages/com.tomkail.unityx.pathfinding",
     "com.tomkail.unityx.polygon-renderer": "file:../UnityX/Packages/com.tomkail.unityx.polygon-renderer",
     "com.tomkail.unityx.property-drawers": "file:../UnityX/Packages/com.tomkail.unityx.property-drawers",
     "com.tomkail.unityx.scene-management": "file:../UnityX/Packages/com.tomkail.unityx.scene-management",

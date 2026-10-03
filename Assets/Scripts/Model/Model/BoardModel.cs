@@ -1,58 +1,33 @@
-﻿using System.Collections;
 using System.Collections.Generic;
-using UnityX.Geometry;
-using System.Linq;
-using Newtonsoft.Json;
-using System.Runtime.Serialization;
 using UnityX.HexGrid;
 
-// Remove most the helper funcitons
-// Consider moving the grid layers into this class, else moving most of the code related to them into their class.
 [System.Serializable]
 public class BoardModel {
-	// public static BoardModel current {
-	// 	get {
-	// 		if(!GameController.IsInitialized) return null;
-	// 		if(GameController.Instance.state == GameController.State.NoGame) return null;
-	// 		return GameController.Instance.gameModel.board;
-	// 	}
-	// }
-	//
 	[System.NonSerialized, Newtonsoft.Json.JsonIgnore]
 	public GameModel gameModel;
-	// public List<GridEntity> entities;
 
-	[Newtonsoft.Json.JsonIgnore]
-	public IEnumerable<GridLayerModel> gridLayers {
-		get {
-			yield return landLayer;
-			yield return gameEntityLayer;
-			yield return fogLayer;
-		}
-	}
-	
-	public TerrainGridLayerModel landLayer;
+	// The island: which cells exist and what terrain each has. Cells off the island aren't in the map.
+	public HexMap<TerrainType> terrain = new HexMap<TerrainType>();
+	// Fog over the island, per cell: true once revealed. Cells without fog count as revealed.
+	public HexMap<bool> fog = new HexMap<bool>();
+	// Things that move around (units); they own their position.
 	public DynamicGridLayerModel gameEntityLayer;
-	public FogGridLayerModel fogLayer;
 
 	public HexCoord.Layout offsetLayout;
 
 	internal void OnDeserializedMethod() {
-		foreach(var gridLayer in gridLayers) gridLayer.board = this;
+		gameEntityLayer.board = this;
 	}
-	
 
 	public BoardModel (GameModel gameModel) {
 		this.gameModel = gameModel;
-		landLayer = new TerrainGridLayerModel(this, "Land");
 		gameEntityLayer = new DynamicGridLayerModel(this, "Unit");
-		fogLayer = new FogGridLayerModel(this, "Fog");
 	}
 	protected BoardModel (GameModel gameModel, BoardModel modelToClone) {
 		this.gameModel = gameModel;
-		landLayer = modelToClone.landLayer.Clone() as TerrainGridLayerModel;
+		terrain = new HexMap<TerrainType>(modelToClone.terrain.Coords, coord => modelToClone.terrain[coord]);
+		fog = new HexMap<bool>(modelToClone.fog.Coords, coord => modelToClone.fog[coord]);
 		gameEntityLayer = modelToClone.gameEntityLayer.Clone() as DynamicGridLayerModel;
-		fogLayer = modelToClone.fogLayer.Clone() as FogGridLayerModel;
 		offsetLayout = modelToClone.offsetLayout;
 	}
 	public BoardModel Clone (GameModel gameModel) {
@@ -60,36 +35,34 @@ public class BoardModel {
 	}
 
 	public virtual void Clear () {
-		foreach(var gridLayer in gridLayers)
-			gridLayer.Clear();
+		terrain.Clear();
+		fog.Clear();
+		gameEntityLayer.Clear();
 	}
 
 	public GridEntity AddEntity(GridEntity newEntity) {
-		if(newEntity is TerrainModel) landLayer.AddEntity(newEntity);
-		else if(newEntity is FogModel) fogLayer.AddEntity(newEntity);
-		else gameEntityLayer.AddEntity(newEntity);
-		return newEntity;
+		return gameEntityLayer.AddEntity(newEntity);
 	}
 
-	public IEnumerable<GridEntity> AllEntities () {
-		foreach(var layer in gridLayers) {
-			foreach(var entity in layer.GetAllEntities()) {
-				yield return entity;
-			}
-		}
+	public IEnumerable<GridEntity> AllEntities () => gameEntityLayer.GetAllEntities();
+	public IEnumerable<T> AllEntitiesOfType<T> () => gameEntityLayer.OfType<T>();
+
+	public bool IsRevealed (HexCoord coord) => !fog.TryGetValue(coord, out var revealed) || revealed;
+
+	public void ResetFog () => SetAllFog(false);
+	public void RevealAllFog () => SetAllFog(true);
+	void SetAllFog (bool revealed) {
+		foreach (var coord in new List<HexCoord>(fog.Coords)) fog[coord] = revealed;
 	}
-	public IEnumerable<T> AllEntitiesOfType<T> () {
-		foreach(var layer in gridLayers) {
-			if(layer == null) continue;
-			foreach(var entity in layer.OfType<T>()) {
-				yield return entity;
-			}
-		}
+	// Reveals the fogged cells within `radius` of `point`.
+	public void RevealFog (HexCoord point, int radius = 0) {
+		foreach (var coord in HexShapes.Hexagon(point, radius))
+			if (fog.Contains(coord)) fog[coord] = true;
 	}
-	
+
 	public IEnumerable<GridCellModel> GetCells () {
-		foreach(var land in landLayer.entities) {
-			yield return GetCell(land.Key);
+		foreach(var coord in terrain.Coords) {
+			yield return GetCell(coord);
 		}
 	}
 	public GridCellModel GetCell (HexCoord coord) {
