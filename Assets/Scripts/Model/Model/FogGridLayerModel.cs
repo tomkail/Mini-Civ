@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using System.Linq;
+using UnityX.HexGrid;
 
 public class FogGridLayerModel : StaticGridLayerModel {
     protected FogGridLayerModel () : base () {}

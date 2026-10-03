@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityX.HexGrid;
 
 public class GameInputController : MonoSingleton<GameInputController> {
     public bool hoveringOverLegacyGUI => GUIUtility.hotControl != 0;

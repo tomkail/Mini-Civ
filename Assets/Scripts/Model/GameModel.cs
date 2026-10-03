@@ -7,6 +7,7 @@ using System.Linq;
 using UnityX.Geometry;
 using Newtonsoft.Json;
 using System.Runtime.Serialization;
+using UnityX.HexGrid;
 
 [System.Serializable]
 public class GameModel {
