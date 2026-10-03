@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityX.HexGrid;
 
 [ExecuteAlways]
 public class CursorView : MonoBehaviour {

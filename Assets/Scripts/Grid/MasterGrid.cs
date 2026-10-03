@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityX.HexGrid;
 
 
 public class MasterGrid : MonoSingleton<MasterGrid> {
@@ -24,6 +25,9 @@ public class MasterGrid : MonoSingleton<MasterGrid> {
 		// var angle = 2f * Mathf.PI * (0f - corner) / 6f;
 		// return new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
 
-		return HexCoord.HexCornerOffset(HexCoord.Orientation.Pointy, corner);
+		// Pointy-top corner offsets (corner 0 at 30 degrees below +X, then clockwise); this was
+		// HexCoord.HexCornerOffset(Orientation.Pointy, corner), which UnityX.HexGrid doesn't have.
+		var angle = 2f * Mathf.PI * (-0.5f - corner) / 6f;
+		return new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
 	}
 }

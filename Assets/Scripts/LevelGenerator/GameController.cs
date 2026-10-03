@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using Utils.Algorithms;
 using UnityX.Islands;
+using UnityX.HexGrid;
 
 [ExecuteAlways]
 public class GameController : MonoSingleton<GameController> {

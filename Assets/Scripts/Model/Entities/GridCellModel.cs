@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityX.Geometry;
+using UnityX.HexGrid;
 
 public struct GridCellModel : IEquatable<GridCellModel> {
 

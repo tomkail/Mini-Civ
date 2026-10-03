@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using Newtonsoft.Json;
+using UnityX.HexGrid;
 
 [System.Serializable]
 public abstract class GridEntity {

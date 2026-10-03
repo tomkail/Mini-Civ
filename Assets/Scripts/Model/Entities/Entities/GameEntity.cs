@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using Newtonsoft.Json;
+using UnityX.HexGrid;
 
 [System.Serializable]
 public class GameEntity : GridEntity {

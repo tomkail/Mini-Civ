@@ -6,6 +6,7 @@ using UnityEngine;
 using Shapes;
 using TMPro;
 using UnityEngine.Rendering;
+using UnityX.HexGrid;
 
 [ExecuteAlways]
 public class ShapesHexTest : ImmediateModeShapeDrawer {
@@ -28,7 +29,7 @@ public class ShapesHexTest : ImmediateModeShapeDrawer {
         polygonPath.AddPoints(MasterGrid.HexCornerVectors2D());
         
         // Draw.PushMatrix();
-        // Draw.Matrix = Matrix4x4.TRS(worldSpaceHexGrid.AxialToWorld(coord), worldSpaceHexGrid.axis, Vector3.one);
+        // Draw.Matrix = Matrix4x4.TRS(worldSpaceHexGrid.AxialToWorld(coord), worldSpaceHexGrid.XYPlaneRotation(), Vector3.one);
         // Draw.Polygon(polygonPath);
         // Draw.Color = Color.black;
         // Draw.Line(Vector3.zero, worldSpaceHexGrid.GetWorldPositionOnCoordInEdgeDirection(HexCoord.zero, corner));
@@ -36,7 +37,7 @@ public class ShapesHexTest : ImmediateModeShapeDrawer {
         
         foreach (var axial in HexCoord.GetPointsInRing(0, 3)) {
             Draw.PushMatrix();
-            Draw.Matrix = Matrix4x4.TRS(worldSpaceHexGrid.AxialToWorld(axial), worldSpaceHexGrid.axis, Vector3.one * radius);
+            Draw.Matrix = Matrix4x4.TRS(worldSpaceHexGrid.AxialToWorld(axial), worldSpaceHexGrid.XYPlaneRotation(), Vector3.one * radius);
             
             Draw.Color = Color.white.WithAlpha(0.5f);
             Draw.Polygon(polygonPath);
@@ -61,7 +62,7 @@ public class ShapesHexTest : ImmediateModeShapeDrawer {
             for (int i = 0; i < 6; i++) {
                 var cornerPosition = worldSpaceHexGrid.GetWorldPositionOnCoordInCornerDirection(axial, i, 0.8f);
                 Draw.PushMatrix();
-                Draw.Matrix = Matrix4x4.TRS(cornerPosition, worldSpaceHexGrid.axis, Vector3.one * radius);
+                Draw.Matrix = Matrix4x4.TRS(cornerPosition, worldSpaceHexGrid.XYPlaneRotation(), Vector3.one * radius);
                 
                 // var cornerVector = HexCoord.CornerVector(coord, i);
                 Draw.Ring(Vector3.zero, 0.1f, 0.025f);
