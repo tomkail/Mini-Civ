@@ -1,0 +1,9 @@
+{
+  "name": "com.angusj.clipper2",
+  "version": "2.0.1",
+  "displayName": "Clipper2",
+  "description": "Polygon clipping, offsetting and triangulation by Angus Johnson. Unmodified C# sources from https://github.com/AngusJohnson/Clipper2 (tag Clipper2_2.0.1, CSharp/Clipper2Lib).",
+  "unity": "2021.3",
+  "license": "BSL-1.0",
+  "author": { "name": "Angus Johnson", "url": "https://www.angusj.com" }
+}

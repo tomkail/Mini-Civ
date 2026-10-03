@@ -13,7 +13,6 @@ public class GameController : MonoSingleton<GameController> {
     public GameModel gameModel;
     public WorldSpaceHexGrid hexGrid;
     public Tilemap terrainTilemap;
-    public Tilemap fogTilemap;
 
     [Space]
     public HexCoord playerHexCoord;
@@ -44,23 +43,20 @@ public class GameController : MonoSingleton<GameController> {
         }
     }
 
+    // Fog is revealed by rule, per terrain type: mountains reveal radius 1, grass reveals its whole connected grass area,
+    // and everything else reveals just the clicked hex.
     void Reveal(HexCoord cursorGridPoint) {
-        var board = gameModel.board;
-        if (!board.terrain.TryGetValue(cursorGridPoint, out var land)) {
-            board.RevealFog(gameModel.cursor.gridPoint);
-        } else if (land == TerrainType.Mountain) {
-            board.RevealFog(gameModel.cursor.gridPoint, 1);
-        } else if (land == TerrainType.River) {
-            board.RevealFog(gameModel.cursor.gridPoint);
-            
-        } else if (land == TerrainType.Forest) {
-            board.RevealFog(gameModel.cursor.gridPoint);
-        } else if (land == TerrainType.Grass) {
-            var emptyLandDetector = new IslandDetector<HexCoord>(new List<HexCoord>(){cursorGridPoint}, p => HexCoord.Directions(p), p => board.terrain.TryGetValue(p, out var type) && type == TerrainType.Grass);
-            var islands = emptyLandDetector.FindIslands().ToArray();
-            foreach(var coord in islands.SelectMany(x => x.points)) board.RevealFog(coord);
+        gameModel.board.RevealFog(GetCellsRevealedFrom(gameModel.board, cursorGridPoint));
+    }
+
+    public static IEnumerable<HexCoord> GetCellsRevealedFrom(BoardModel board, HexCoord point) {
+        if (!board.terrain.TryGetValue(point, out var land)) return new[] { point };
+        if (land == TerrainType.Mountain) return HexShapes.Hexagon(point, 1);
+        if (land == TerrainType.Grass) {
+            var grassDetector = new IslandDetector<HexCoord>(new List<HexCoord>(){point}, p => HexCoord.Directions(p), p => board.terrain.TryGetValue(p, out var type) && type == TerrainType.Grass);
+            return grassDetector.FindIslands().SelectMany(x => x.points);
         }
-        
+        return new[] { point };
     }
 
     void UpdatePath () {

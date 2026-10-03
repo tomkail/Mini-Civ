@@ -1,61 +1,80 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using JetBrains.Annotations;
 using Shapes;
 using UnityEngine;
 using UnityEngine.Rendering;
-using UnityEngine.Tilemaps;
-using UnityX.Islands;
 using UnityX.HexGrid;
 
-public static class TilemapExtensions {
-    
-    public static T[] GetTiles<T>(this Tilemap tilemap) where T : TileBase {
-        List<T> tiles = new List<T>();
-        
-        for (int y = tilemap.origin.y; y < (tilemap.origin.y + tilemap.size.y); y++) {
-            for (int x = tilemap.origin.x; x < (tilemap.origin.x + tilemap.size.x); x++) {
-                T tile = tilemap.GetTile<T>(new Vector3Int(x, y, 0));
-                if (tile != null) tiles.Add(tile);
-            }
-        }
-        return tiles.ToArray();
-    }
-    
-    public static (Vector3Int position, T tileBase)[] GetTilesAndPositions<T>(this Tilemap tilemap) where T : TileBase {
-        List<(Vector3Int, T)> tiles = new List<(Vector3Int, T)>();
-        
-        for (int y = tilemap.origin.y; y < (tilemap.origin.y + tilemap.size.y); y++) {
-            for (int x = tilemap.origin.x; x < (tilemap.origin.x + tilemap.size.x); x++) {
-                T tile = tilemap.GetTile<T>(new Vector3Int(x, y, 0));
-                if (tile != null) tiles.Add((new Vector3Int(x,y,0), tile));
-            }
-        }
-        return tiles.ToArray();
-    }
-}
-
+// Draws the fog of war from the board's fog map: scrolling angled dashes everywhere outside the revealed area.
+// The revealed area is a cached mesh (rounded, offset, with holes) that writes a stencil mask before the dashes are drawn.
+// The mesh is only rebuilt when the fog changes, the level is regenerated, or these settings change.
 [ExecuteAlways]
 public class FogRenderer : ImmediateModeShapeDrawer {
+    const int MaskStencilRef = 1;
+    // Before Shapes' draws at AfterForwardAlpha (below), so the mask is in place when the dashes test against it.
+    const CameraEvent MaskCameraEvent = CameraEvent.BeforeForwardAlpha;
+
     public WorldSpaceHexGrid worldSpaceHexGrid;
-    
+
     public Color scrollingOverlayColorA;
     public Color scrollingOverlayColorB;
     public float scrollingOverlayLinesDashSize = 1f;
     public float scrollingOverlayLinesDashSpacing = 1f;
-    
+
     [Range(-1,1)]
     public float fogExtrusion = 0;
     [Range(0,1)]
     public float smoothingRadius = 0.3f;
-    [Range(0,90)]
+    [Range(1,90)]
     public float smoothingDegPerPoint = 20;
-    
+
     public Quaternion rotation => worldSpaceHexGrid.XYPlaneRotation();
-    public Matrix4x4 worldToXYMatrix => Matrix4x4.TRS(Vector3.zero, rotation, Vector3.one);
+
+    readonly HexShapeBuilder shapeBuilder = new HexShapeBuilder();
+    readonly List<Vector3> maskVertices = new List<Vector3>();
+    readonly List<int> maskIndices = new List<int>();
+    Mesh maskMesh;
+    Material maskMaterial;
+    CommandBuffer maskCommandBuffer;
+    readonly HashSet<Camera> camerasWithMask = new HashSet<Camera>();
+
+    BoardModel board;
+    bool maskDirty = true;
+
+    public override void OnEnable() {
+        base.OnEnable();
+        maskDirty = true;
+    }
+
+    public override void OnDisable() {
+        base.OnDisable();
+        SetBoard(null);
+        foreach (var cam in camerasWithMask) {
+            if (cam != null) cam.RemoveCommandBuffer(MaskCameraEvent, maskCommandBuffer);
+        }
+        camerasWithMask.Clear();
+    }
+
+    void OnDestroy() {
+        maskCommandBuffer?.Release();
+        maskCommandBuffer = null;
+        if (maskMesh != null) ObjectX.DestroyAutomatic(maskMesh);
+        if (maskMaterial != null) ObjectX.DestroyAutomatic(maskMaterial);
+    }
+
+    void OnValidate() {
+        maskDirty = true;
+    }
 
     public override void DrawShapes( Camera cam ) {
+        if (worldSpaceHexGrid == null || !GameController.IsInitialized) return;
+        var currentBoard = GameController.Instance.gameModel?.board;
+        if (currentBoard == null) return;
+
+        // A regenerated level comes with a new board.
+        if (currentBoard != board) SetBoard(currentBoard);
+        if (maskDirty) RebuildMask();
+        DrawMask(cam);
+
         // Shapes defaults to CameraEvent.BeforeImageEffects, which never runs on this camera: the Post
         // Processing v2 PostProcessLayer takes over image effects. Draw before post-processing instead.
         using (Draw.Command(cam, CameraEvent.AfterForwardAlpha)) {
@@ -63,24 +82,80 @@ public class FogRenderer : ImmediateModeShapeDrawer {
         }
     }
 
-    public List<HexCoord> pointsToReveal;
+    void SetBoard(BoardModel newBoard) {
+        if (board != null) board.OnFogChanged -= OnFogChanged;
+        board = newBoard;
+        if (board != null) board.OnFogChanged += OnFogChanged;
+        maskDirty = true;
+    }
+
+    void OnFogChanged() {
+        maskDirty = true;
+    }
+
+    void RebuildMask() {
+        maskDirty = false;
+        if (maskMesh == null) {
+            maskMesh = new Mesh { name = "Fog Mask", hideFlags = HideFlags.HideAndDontSave };
+            maskMesh.MarkDynamic();
+        }
+
+        maskVertices.Clear();
+        maskIndices.Clear();
+        if (board != null) {
+            // Only cells that had fog and lost it: the sea never had fog, but is still drawn fogged.
+            shapeBuilder.Build(board.RevealedFogCells(), board.IsFogRevealed, new HexShapeBuilder.Style(fogExtrusion, smoothingRadius, smoothingDegPerPoint));
+            foreach (var point in shapeBuilder.triangles) {
+                maskIndices.Add(maskVertices.Count);
+                maskVertices.Add(point);
+            }
+        }
+        maskMesh.Clear();
+        maskMesh.indexFormat = maskVertices.Count > 65535 ? IndexFormat.UInt32 : IndexFormat.UInt16;
+        maskMesh.SetVertices(maskVertices);
+        maskMesh.SetTriangles(maskIndices, 0);
+        maskMesh.RecalculateBounds();
+    }
+
+    // The mask is drawn by a command buffer on each camera that renders the fog; only the grid's transform is re-recorded per frame.
+    void DrawMask(Camera cam) {
+        if (maskMaterial == null) {
+            maskMaterial = new Material(Shader.Find("Hidden/Mini-Civ/FogStencilMask")) { name = "Fog Mask", hideFlags = HideFlags.HideAndDontSave };
+        }
+        if (maskCommandBuffer == null) maskCommandBuffer = new CommandBuffer { name = "Fog Mask" };
+        maskCommandBuffer.Clear();
+        maskCommandBuffer.DrawMesh(maskMesh, HexPositionToWorldMatrix(), maskMaterial);
+        if (camerasWithMask.Add(cam)) cam.AddCommandBuffer(MaskCameraEvent, maskCommandBuffer);
+    }
+
+    // Maps HexCoord.Position space (which the mask is built in) onto the grid in world space, by matching up cell centres.
+    Matrix4x4 HexPositionToWorldMatrix() {
+        var origin = worldSpaceHexGrid.AxialToWorld(HexCoord.zero);
+        var worldQ = worldSpaceHexGrid.AxialToWorld(new HexCoord(1, 0)) - origin;
+        var worldR = worldSpaceHexGrid.AxialToWorld(new HexCoord(0, 1)) - origin;
+        Vector2 positionQ = new HexCoord(1, 0).Position(), positionR = new HexCoord(0, 1).Position();
+        // Solve [worldX worldY] * [positionQ positionR] = [worldQ worldR] for the world vectors of the position axes.
+        float determinant = positionQ.x * positionR.y - positionR.x * positionQ.y;
+        var worldX = (worldQ * positionR.y - worldR * positionQ.y) / determinant;
+        var worldY = (worldR * positionQ.x - worldQ * positionR.x) / determinant;
+        var worldZ = Vector3.Cross(worldX, worldY).normalized;
+        var matrix = Matrix4x4.identity;
+        matrix.SetColumn(0, worldX);
+        matrix.SetColumn(1, worldY);
+        matrix.SetColumn(2, worldZ);
+        matrix.SetColumn(3, new Vector4(origin.x, origin.y, origin.z, 1));
+        return matrix;
+    }
+
     void DrawFog() {
         Draw.PushMatrix();
         Draw.Matrix = Matrix4x4.TRS(Vector3.zero, rotation, Vector3.one);
-        
-        GameController.Instance.terrainTilemap.RefreshAllTiles();
-        var fogTiles = GameController.Instance.fogTilemap.GetTilesAndPositions<FogTile>();
-        var revealedAreasDetector = new IslandDetector<HexCoord>(fogTiles.Select(x => ((HexCoord.OffsetToAxial(x.position.x,x.position.y)) )), p => HexCoord.Directions(p), p => fogTiles.Any(x => new HexCoord(x.position.x, x.position.y) == p));
-        var revealedIslands = revealedAreasDetector.FindIslands();
-        
-        // foreach (var island in revealedIslands) CreateFogRevealIsland(island.points);
-        CreateFogRevealIsland(pointsToReveal);
-        
-        Draw.StencilRefID = 1;
+
+        Draw.StencilRefID = MaskStencilRef;
         Draw.StencilOpPass = StencilOp.Keep;
         Draw.StencilComp = CompareFunction.NotEqual;
         Draw.ColorMask = ColorWriteMask.All;
-        
+
         Draw.UseDashes = true;
         Draw.DashOffset = Time.time;
         Draw.DashSize = scrollingOverlayLinesDashSize;
@@ -92,7 +167,7 @@ public class FogRenderer : ImmediateModeShapeDrawer {
 
         Draw.LineGeometry = LineGeometry.Flat2D;
         Draw.LineEndCaps = LineEndCap.None;
-        
+
         var rect = RectX.CreateEncapsulating(new Vector2(-30, -30), new Vector2(30, 30));
         Draw.Thickness = rect.size.y;
         Draw.ThicknessSpace = ThicknessSpace.Meters;
@@ -102,44 +177,7 @@ public class FogRenderer : ImmediateModeShapeDrawer {
         Draw.Color = scrollingOverlayColorB;
         Draw.Line(new Vector3(rect.center.x - rect.size.x * 0.5f, rect.center.y, 0), new Vector3(rect.center.x + rect.size.x * 0.5f, rect.center.y, 0));
         Draw.ResetStyle();
-        
 
-        // foreach (var island in revealedIslands) {
-            // var outlineCoords = OutlineDetector.GetOutlinePoly(island.points, HexCoord.GetBestCornerIndex, HexCoord.Corner, HexCoord.GetPointsOnRing).ToArray();
-            // foreach (var coord in island.points) {
-            //     Draw.Disc(coord.Position(), 0.5f);    
-            // }
-        // }
-        // foreach (var cell in gameModel.GetCells()) {
-        //     DrawFogTile(cell);
-        // }
         Draw.PopMatrix();
-    }
-
-    public float scaleFactor = 1;
-    Matrix4x4 axialToWorldMatrix2D;
-    void CreateFogRevealIsland(List<HexCoord> islandPoints) {
-        axialToWorldMatrix2D = Matrix4x4.TRS(worldSpaceHexGrid.transform.position, Quaternion.identity, worldSpaceHexGrid.transform.lossyScale * 0.5f);
-        var outline = OutlineDetector.GetOutlinePoly(islandPoints, HexCoord.GetTouchingCornerPointIndex, (coord, i) => axialToWorldMatrix2D.MultiplyPoint3x4(HexCoord.Corner(coord, i)), 6).ToArray();
-        // worldSpaceHexGrid.
-        // var outline = OutlineDetector.GetOutlinePoly(islandPoints, HexCoord.GetTouchingCornerPointIndex, (coord, i) => worldSpaceHexGrid.GetCornerPosition(coord, i), 6).ToArray();
-
-        var polygon = new Polygon(outline);
-        Vector2[] extrudedPoints = Polygon.GetExtruded(polygon, fogExtrusion);
-        var smoothedPoints = Polygon.GetSmoothed(extrudedPoints, smoothingRadius, smoothingDegPerPoint);
-            
-        Draw.Color = Color.black;
-            
-        Draw.PolygonTriangulation = PolygonTriangulation.EarClipping;
-        var polygonPath = new PolygonPath();
-        polygonPath.AddPoints(smoothedPoints);
-            
-        Draw.StencilRefID = 1;
-        Draw.StencilOpPass = StencilOp.Replace;
-        Draw.StencilComp = CompareFunction.Always;
-        Draw.ColorMask = (ColorWriteMask) 0;
-            
-        Draw.Polygon(polygonPath);
-        Draw.ResetStyle();
     }
 }

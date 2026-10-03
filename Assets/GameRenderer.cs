@@ -1,26 +1,19 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Cysharp.Threading.Tasks;
 using UnityEngine;
 using Shapes;
-using TMPro;
 using UnityEngine.Rendering;
-using UnityX.Islands;
 using UnityX.HexGrid;
 
 [ExecuteAlways]
 public class GameRenderer : ImmediateModeShapeDrawer {
-    public bool showFog = true;
-    
     public WorldSpaceHexGrid worldSpaceHexGrid;
     public Color grassColor;
     public Color forestColor;
     public Color mountainColor;
     public Color riverColor;
     public Color roadColor;
-    public Color fogColor;
     public Color cursorFillColor;
     public Color cursorOutlineColor;
     public Texture2D groundTexture;
@@ -36,7 +29,6 @@ public class GameRenderer : ImmediateModeShapeDrawer {
         // Processing v2 PostProcessLayer takes over image effects. Draw before post-processing instead.
         using (Draw.Command(cam, CameraEvent.AfterForwardAlpha)) {
             DrawFloor(gameModel);
-            if(showFog) DrawFog(gameModel);
             DrawOwnership(gameModel);
             DrawCursor(gameModel.cursor);
             DrawMovementPath(GameController.Instance.currentPathPoints);
@@ -90,97 +82,6 @@ public class GameRenderer : ImmediateModeShapeDrawer {
 
     public Quaternion rotation => worldSpaceHexGrid.XYPlaneRotation();
     public Matrix4x4 worldToXYMatrix => Matrix4x4.TRS(Vector3.zero, rotation, Vector3.one);
-    
-    void DrawFog(GameModel gameModel) {
-        Draw.PushMatrix();
-        Draw.Matrix = Matrix4x4.TRS(Vector3.zero, rotation, Vector3.one);
-        
-        var revealedAreasDetector = new IslandDetector<HexCoord>(gameModel.GetCells().Select(x => x.coord), p => HexCoord.Directions(p), p => gameModel.board.terrain.Contains(p) && gameModel.board.IsRevealed(p));
-        var revealedIslands = revealedAreasDetector.FindIslands();
-        
-        foreach (var island in revealedIslands) {
-            var outline = OutlineDetector.GetOutlinePoly(island.points, HexCoord.GetTouchingCornerPointIndex, HexCoord.Corner, 6).ToArray();
-            var polygon = new Polygon(outline);
-            Vector2[] extrudedPoints = Polygon.GetExtruded(polygon, fogExtrusion);
-            var smoothedPoints = Polygon.GetSmoothed(extrudedPoints, smoothingRadius, smoothingDegPerPoint);
-            
-            Draw.Color = Color.black;
-            
-            Draw.PolygonTriangulation = PolygonTriangulation.EarClipping;
-            var polygonPath = new PolygonPath();
-            polygonPath.AddPoints(smoothedPoints);
-            
-            Draw.StencilRefID = 1;
-            Draw.StencilOpPass = StencilOp.Replace;
-            Draw.StencilComp = CompareFunction.Always;
-            Draw.ColorMask = (ColorWriteMask) 0;
-            
-            Draw.Polygon(polygonPath);
-            Draw.ResetStyle();
-            
-        }
-        
-        
-        Draw.StencilRefID = 1;
-        Draw.StencilOpPass = StencilOp.Keep;
-        Draw.StencilComp = CompareFunction.NotEqual;
-        Draw.ColorMask = ColorWriteMask.All;
-        
-        Draw.UseDashes = true;
-        Draw.DashOffset = Time.time;
-        Draw.DashSize = scrollingOverlayLinesDashSize;
-        Draw.DashSpacing = scrollingOverlayLinesDashSpacing;
-        Draw.DashType = DashType.Angled;
-        Draw.DashShapeModifier = -1;
-        Draw.DashSpace = DashSpace.Meters;
-        Draw.DashSnap = DashSnapping.Off;
-
-        Draw.LineGeometry = LineGeometry.Flat2D;
-        Draw.LineEndCaps = LineEndCap.None;
-        
-        var rect = RectX.CreateEncapsulating(new Vector2(-30, -30), new Vector2(30, 30));
-        Draw.Thickness = rect.size.y;
-        Draw.ThicknessSpace = ThicknessSpace.Meters;
-
-        Draw.Color = scrollingOverlayColorA;
-        Draw.Rectangle(new Vector3(rect.center.x, rect.center.y, 0), new Vector2(rect.size.x, rect.size.y));
-        Draw.Color = scrollingOverlayColorB;
-        Draw.Line(new Vector3(rect.center.x - rect.size.x * 0.5f, rect.center.y, 0), new Vector3(rect.center.x + rect.size.x * 0.5f, rect.center.y, 0));
-        Draw.ResetStyle();
-        
-
-        // foreach (var island in revealedIslands) {
-            // var outlineCoords = OutlineDetector.GetOutlinePoly(island.points, HexCoord.GetBestCornerIndex, HexCoord.Corner, HexCoord.GetPointsOnRing).ToArray();
-            // foreach (var coord in island.points) {
-            //     Draw.Disc(coord.Position(), 0.5f);    
-            // }
-        // }
-        // foreach (var cell in gameModel.GetCells()) {
-        //     DrawFogTile(cell);
-        // }
-        Draw.PopMatrix();
-    }
-
-    public Color scrollingOverlayColorA;
-    public Color scrollingOverlayColorB;
-    public float scrollingOverlayLinesDashSize = 1f;
-    public float scrollingOverlayLinesDashSpacing = 1f;
-    
-    [Range(-1,1)]
-    public float fogExtrusion = 0;
-    [Range(0,1)]
-    public float smoothingRadius = 0.3f;
-    [Range(0,90)]
-    public float smoothingDegPerPoint = 20;
-    
-    void DrawFogTile(GridCellModel cell) {
-        if(cell.revealed) return;
-        DrawPolygonTile(cell.coord, () => {
-            Draw.Color = fogColor;
-            Draw.RegularPolygon(6);
-        });
-    }
-
 
     public Color arrowColor;
     public float arrowThickness = 1;
