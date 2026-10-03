@@ -52,12 +52,6 @@
       "source": "local",
       "dependencies": {}
     },
-    "com.tomkail.unityx.pathfinding": {
-      "version": "file:../UnityX/Packages/com.tomkail.unityx.pathfinding",
-      "depth": 0,
-      "source": "local",
-      "dependencies": {}
-    },
     "com.tomkail.unityx.polygon-renderer": {
       "version": "file:../UnityX/Packages/com.tomkail.unityx.polygon-renderer",
       "depth": 0,

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using Utils.Algorithms;
 using UnityX.Islands;
 using UnityX.HexGrid;
 
@@ -100,17 +99,16 @@ public class GameController : MonoSingleton<GameController> {
         // Try to reach this point without crossing any existing path points. 
         // If we can't reach it, "rewind" the path until it becomes viable.
         if(indexOfPoint == -1) {
-            var pathfinderOpts = PathFinder.PathFinderOptions.standard;
-            pathfinderOpts.getActualCostForMovementBetweenElementsFunc = (HexCoord originPoint, HexCoord destinationPoint) => GetCostForAdjacentTileMovement(board, originPoint, destinationPoint);
+            System.Func<HexCoord, HexCoord, float> stepCost = (originPoint, destinationPoint) => GetCostForAdjacentTileMovement(board, originPoint, destinationPoint);
             
             // Step back one point at a time until we can pathfind to the target point.
-            AStar<HexCoord>.PathfinderSolution newPath = null;
+            PathFinder.Path newPath = null;
             var startIndex = currentPathPoints.Count;
             while(newPath == null && startIndex > 0) {
                 startIndex--;
-                newPath = PathFinder.PathFind(board, currentPathPoints[startIndex], targetPoint, pathfinderOpts);
+                newPath = PathFinder.PathFind(currentPathPoints[startIndex], targetPoint, stepCost);
             }
-            if(!newPath.solution.IsNullOrEmpty()) {
+            if(newPath != null && !newPath.solution.IsNullOrEmpty()) {
                 // remove the first point since it's the same as the last one in our existing list
                 newPath.solution.RemoveAt(0);
                 int num = (currentPathPoints.Count-1)-startIndex;
@@ -123,8 +121,8 @@ public class GameController : MonoSingleton<GameController> {
             startIndex = currentPathPoints.Count;
             int pathLength = currentPathPoints.Count;
             if(pathLength - 1 > movementRange) {
-                var bestPath = PathFinder.PathFind(board, currentPathPoints.First(), targetPoint, pathfinderOpts);
-                if(bestPath == null || bestPath.totalCost - 1 > movementRange) {
+                var bestPath = PathFinder.PathFind(currentPathPoints.First(), targetPoint, stepCost);
+                if(bestPath == null || bestPath.totalCost > movementRange) {
                     // if no path can make this distance, clear the path
                     currentPathPoints.Clear();
                 } else {
@@ -132,11 +130,11 @@ public class GameController : MonoSingleton<GameController> {
                     while(startIndex > 0 && pathLength-1 > movementRange) {
                         startIndex--;
                         
-                        newPath = PathFinder.PathFind(board, currentPathPoints[startIndex], targetPoint, pathfinderOpts);
+                        newPath = PathFinder.PathFind(currentPathPoints[startIndex], targetPoint, stepCost);
                         if(newPath == null) pathLength = currentPathPoints.Count;
                         else pathLength = (currentPathPoints.Count - ((currentPathPoints.Count-1)-startIndex)) + (newPath.solution.Count-1);
                     }
-                    if(!newPath.solution.IsNullOrEmpty()) {
+                    if(newPath != null && !newPath.solution.IsNullOrEmpty()) {
                         // remove the first point since it's the same as the last one in our existing list
                         newPath.solution.RemoveAt(0);
                         int num = (currentPathPoints.Count-1)-startIndex;
