@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Tilemaps;
 using UnityX.Islands;
+using UnityX.HexGrid;
 
 public static class TilemapExtensions {
     
@@ -51,7 +52,7 @@ public class FogRenderer : ImmediateModeShapeDrawer {
     [Range(0,90)]
     public float smoothingDegPerPoint = 20;
     
-    public Quaternion rotation => worldSpaceHexGrid.axis;
+    public Quaternion rotation => worldSpaceHexGrid.XYPlaneRotation();
     public Matrix4x4 worldToXYMatrix => Matrix4x4.TRS(Vector3.zero, rotation, Vector3.one);
 
     public override void DrawShapes( Camera cam ) {
@@ -69,7 +70,7 @@ public class FogRenderer : ImmediateModeShapeDrawer {
         
         GameController.Instance.terrainTilemap.RefreshAllTiles();
         var fogTiles = GameController.Instance.fogTilemap.GetTilesAndPositions<FogTile>();
-        var revealedAreasDetector = new IslandDetector<HexCoord>(fogTiles.Select(x => ((HexCoord.OffsetToAxial(x.position.x,x.position.y)) )), p => HexCoord.Directions(p), p => fogTiles.Any(x => (HexCoord)x.position == p));
+        var revealedAreasDetector = new IslandDetector<HexCoord>(fogTiles.Select(x => ((HexCoord.OffsetToAxial(x.position.x,x.position.y)) )), p => HexCoord.Directions(p), p => fogTiles.Any(x => new HexCoord(x.position.x, x.position.y) == p));
         var revealedIslands = revealedAreasDetector.FindIslands();
         
         // foreach (var island in revealedIslands) CreateFogRevealIsland(island.points);
@@ -118,7 +119,7 @@ public class FogRenderer : ImmediateModeShapeDrawer {
     public float scaleFactor = 1;
     Matrix4x4 axialToWorldMatrix2D;
     void CreateFogRevealIsland(List<HexCoord> islandPoints) {
-        axialToWorldMatrix2D = Matrix4x4.TRS(worldSpaceHexGrid.hexCoordPositionToWorldMatrix.GetPosition(), Quaternion.identity, worldSpaceHexGrid.hexCoordPositionToWorldMatrix.lossyScale);
+        axialToWorldMatrix2D = Matrix4x4.TRS(worldSpaceHexGrid.transform.position, Quaternion.identity, worldSpaceHexGrid.transform.lossyScale * 0.5f);
         var outline = OutlineDetector.GetOutlinePoly(islandPoints, HexCoord.GetTouchingCornerPointIndex, (coord, i) => axialToWorldMatrix2D.MultiplyPoint3x4(HexCoord.Corner(coord, i)), 6).ToArray();
         // worldSpaceHexGrid.
         // var outline = OutlineDetector.GetOutlinePoly(islandPoints, HexCoord.GetTouchingCornerPointIndex, (coord, i) => worldSpaceHexGrid.GetCornerPosition(coord, i), 6).ToArray();

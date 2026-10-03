@@ -5,6 +5,7 @@ using System.Linq;
 using UnityX.Geometry;
 using Newtonsoft.Json;
 using System.Runtime.Serialization;
+using UnityX.HexGrid;
 
 
 public class StaticGridLayerModel : GridLayerModel {

@@ -4,6 +4,7 @@ using UnityX.Geometry;
 using System.Linq;
 using Newtonsoft.Json;
 using System.Runtime.Serialization;
+using UnityX.HexGrid;
 
 // Remove most the helper funcitons
 // Consider moving the grid layers into this class, else moving most of the code related to them into their class.

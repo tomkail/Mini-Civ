@@ -34,6 +34,12 @@
       "source": "local",
       "dependencies": {}
     },
+    "com.tomkail.unityx.hex": {
+      "version": "file:../UnityX/Packages/com.tomkail.unityx.hex",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {}
+    },
     "com.tomkail.unityx.islands": {
       "version": "file:../UnityX/Packages/com.tomkail.unityx.islands",
       "depth": 0,

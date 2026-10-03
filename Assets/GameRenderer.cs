@@ -8,6 +8,7 @@ using Shapes;
 using TMPro;
 using UnityEngine.Rendering;
 using UnityX.Islands;
+using UnityX.HexGrid;
 
 [ExecuteAlways]
 public class GameRenderer : ImmediateModeShapeDrawer {
@@ -61,14 +62,14 @@ public class GameRenderer : ImmediateModeShapeDrawer {
 
     void DrawTextureTile(HexCoord coord, Action draw) {
         Draw.PushMatrix();
-        Draw.Matrix = Matrix4x4.TRS(worldSpaceHexGrid.AxialToWorld(coord), worldSpaceHexGrid.axis, Vector3.one);
+        Draw.Matrix = Matrix4x4.TRS(worldSpaceHexGrid.AxialToWorld(coord), worldSpaceHexGrid.XYPlaneRotation(), Vector3.one);
         draw();
         Draw.PopMatrix();
     }
 
     void DrawPolygonTile(HexCoord coord, Action draw) {
         Draw.PushMatrix();
-        Draw.Matrix = Matrix4x4.TRS(worldSpaceHexGrid.AxialToWorld(coord), worldSpaceHexGrid.axis.Rotate(new Vector3(0,0,30)), Vector3.one);
+        Draw.Matrix = Matrix4x4.TRS(worldSpaceHexGrid.AxialToWorld(coord), worldSpaceHexGrid.XYPlaneRotation().Rotate(new Vector3(0,0,30)), Vector3.one);
         draw();
         Draw.PopMatrix();
     }
@@ -86,7 +87,7 @@ public class GameRenderer : ImmediateModeShapeDrawer {
         
     }
 
-    public Quaternion rotation => worldSpaceHexGrid.axis;
+    public Quaternion rotation => worldSpaceHexGrid.XYPlaneRotation();
     public Matrix4x4 worldToXYMatrix => Matrix4x4.TRS(Vector3.zero, rotation, Vector3.one);
     
     void DrawFog(GameModel gameModel) {
@@ -219,7 +220,7 @@ public class GameRenderer : ImmediateModeShapeDrawer {
 
             if (instanceCurrentPathPoints.Count > 1) {
                 // var arrowDir = GameController.Instance.hexGrid.AxialToWorld(instanceCurrentPathPoints[instanceCurrentPathPoints.Count-1])-GameController.Instance.hexGrid.AxialToWorld(instanceCurrentPathPoints[instanceCurrentPathPoints.Count-2]);
-                var arrowRot = Quaternion.Inverse(Quaternion.LookRotation(arrowDir, Vector3.forward)) * worldSpaceHexGrid.axis;
+                var arrowRot = Quaternion.Inverse(Quaternion.LookRotation(arrowDir, Vector3.forward)) * worldSpaceHexGrid.XYPlaneRotation();
                 ShapesUtils.DrawArrowHeadPolygon(points3D.Last(), arrowRot, arrowHeadThickness, arrowHeadLength, arrowHeadRadius, 16);
             }
         }

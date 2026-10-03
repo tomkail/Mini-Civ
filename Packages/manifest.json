@@ -5,6 +5,7 @@
     "com.tomkail.unityx.core": "file:../UnityX/Packages/com.tomkail.unityx.core",
     "com.tomkail.unityx.geometry": "file:../UnityX/Packages/com.tomkail.unityx.geometry",
     "com.tomkail.unityx.gradient-renderer": "file:../UnityX/Packages/com.tomkail.unityx.gradient-renderer",
+    "com.tomkail.unityx.hex": "file:../UnityX/Packages/com.tomkail.unityx.hex",
     "com.tomkail.unityx.islands": "file:../UnityX/Packages/com.tomkail.unityx.islands",
     "com.tomkail.unityx.noise": "file:../UnityX/Packages/com.tomkail.unityx.noise",
     "com.tomkail.unityx.pathfinding": "file:../UnityX/Packages/com.tomkail.unityx.pathfinding",
