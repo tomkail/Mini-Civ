@@ -46,22 +46,20 @@ public class GameController : MonoSingleton<GameController> {
     }
 
     void Reveal(HexCoord cursorGridPoint) {
-        var land = gameModel.board.landLayer.GetValueAtGridPoint<TerrainModel>(cursorGridPoint);
-        if (land == null) {
-            gameModel.board.fogLayer.RevealFog(gameModel.cursor.gridPoint);
-        } else if (land.type == TerrainType.Mountain) {
-            foreach(var coord in HexShapes.Hexagon(gameModel.cursor.gridPoint, 1)) {
-                gameModel.board.fogLayer.RevealFog(coord);
-            }
-        } else if (land.type == TerrainType.River) {
-            gameModel.board.fogLayer.RevealFog(gameModel.cursor.gridPoint);
+        var board = gameModel.board;
+        if (!board.terrain.TryGetValue(cursorGridPoint, out var land)) {
+            board.RevealFog(gameModel.cursor.gridPoint);
+        } else if (land == TerrainType.Mountain) {
+            board.RevealFog(gameModel.cursor.gridPoint, 1);
+        } else if (land == TerrainType.River) {
+            board.RevealFog(gameModel.cursor.gridPoint);
             
-        } else if (land.type == TerrainType.Forest) {
-            gameModel.board.fogLayer.RevealFog(gameModel.cursor.gridPoint);
-        } else if (land.type == TerrainType.Grass) {
-            var emptyLandDetector = new IslandDetector<HexCoord>(new List<HexCoord>(){cursorGridPoint}, p => HexCoord.Directions(p), p => gameModel.board.landLayer.GetValueAtGridPoint<TerrainModel>(p)?.type == TerrainType.Grass);
+        } else if (land == TerrainType.Forest) {
+            board.RevealFog(gameModel.cursor.gridPoint);
+        } else if (land == TerrainType.Grass) {
+            var emptyLandDetector = new IslandDetector<HexCoord>(new List<HexCoord>(){cursorGridPoint}, p => HexCoord.Directions(p), p => board.terrain.TryGetValue(p, out var type) && type == TerrainType.Grass);
             var islands = emptyLandDetector.FindIslands().ToArray();
-            foreach(var coord in islands.SelectMany(x => x.points)) gameModel.board.fogLayer.RevealFog(coord);
+            foreach(var coord in islands.SelectMany(x => x.points)) board.RevealFog(coord);
         }
         
     }
@@ -83,9 +81,8 @@ public class GameController : MonoSingleton<GameController> {
         };
     }
     public static int GetCostForAdjacentTileMovement (BoardModel board, HexCoord originPoint, HexCoord destinationPoint) {
-        var terrain = board.landLayer.GetValueAtGridPoint<TerrainModel>(destinationPoint);
-        if(terrain == null) return 10000;
-        else return GetMovementCostForTerrainType(terrain.type);
+        if(!board.terrain.TryGetValue(destinationPoint, out var terrain)) return 10000;
+        else return GetMovementCostForTerrainType(terrain);
     }
 
     public int GetCostForPath(BoardModel board, List<HexCoord> currentPathPoints) {
